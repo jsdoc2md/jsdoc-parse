@@ -12,10 +12,87 @@ var parse = require("jsdoc-parse");
 
 <a name="module_jsdoc-parse"></a>
 ##parse(options) ⏏
+Documented javascript source files in, doclet data out.
+
 **Params**
 
 - options `object` - options
-  - [src] `Array.<string>` - an array of source files to parse
+  - [src] `string` | `Array.<string>` - source file(s) to parse
   - [private] `boolean` - include @private members in the output
 
-**Returns**: `Transform`  
+**Returns**: `Stream` - a readable stream containing the parsed json data  
+**Example**  
+```js
+> parse({ src: "lib/jsdoc-parse.js" }).pipe(process.stdout);
+[
+  {
+    "kind": "module",
+    "name": "jsdoc-parse",
+    "examples": [
+      "```js\nvar parse = require(\"jsdoc-parse\");\n```"
+    ],
+    "longname": "module:jsdoc-parse"
+  },
+  {
+    "description": "Documented javascript source files in, doclet data out.",
+    "alias": "module:jsdoc-parse",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "object"
+          ]
+        },
+        "description": "options",
+        "name": "options"
+      },
+      {
+        "type": {
+          "names": [
+            "string",
+            "Array.<string>"
+          ]
+        },
+        "optional": true,
+        "description": "source file(s) to parse",
+        "name": "options.src"
+      },
+      {
+        "type": {
+          "names": [
+            "boolean"
+          ]
+        },
+        "optional": true,
+        "description": "include @private members in the output",
+        "name": "options.private"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "Stream"
+          ]
+        },
+        "description": "a readable stream containing the parsed json data"
+      }
+    ],
+    "examples": [
+      "```js\nparse({ src: \"lib/jsdoc-parse.js\" }).pipe(process.stdout);\n```"
+    ],
+    "name": "module:jsdoc-parse",
+    "longname": "module:jsdoc-parse",
+    "kind": "function",
+    "codeName": "parse"
+  },
+  {
+    "files": [
+      "/Users/Lloyd/Documents/75lb/jsdoc-parse/lib/jsdoc-parse.js"
+    ],
+    "kind": "package",
+    "longname": "package:undefined"
+  }
+]
+```
+
