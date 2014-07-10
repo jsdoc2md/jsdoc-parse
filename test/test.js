@@ -5,7 +5,10 @@ test("valid json out", function(t){
     t.plan(1);
     var stream = parse({ src: "lib/jsdoc-parse.js" });
     stream.on("readable", function(){
-        var data = JSON.parse(this.read());
-        t.equal(data[0].name, "jsdoc-parse");
+        var chunk = this.read();
+        if (chunk){
+            var data = JSON.parse(chunk);
+            t.equal(data[0].name, "jsdoc-parse");
+        }
     });
 });
