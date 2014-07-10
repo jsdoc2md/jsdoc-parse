@@ -3,13 +3,21 @@
 [![Build Status](https://travis-ci.org/75lb/jsdoc-parse.svg?branch=master)](https://travis-ci.org/75lb/jsdoc-parse)
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
-<a name="module_jsdoc-parse"></a>
 #jsdoc-parse
+Exports a single function (`parse(options)`)..
+
 **Example**  
 ```js
 var parse = require("jsdoc-parse");
 ```
 
+##Install
+```sh
+$ npm install -g jsdoc-parse
+```
+*Mac / Linux users may need to run with `sudo`*.
+
+##API
 <a name="module_jsdoc-parse"></a>
 ##parse(options) ⏏
 Documented javascript source files in, doclet data out.
@@ -96,3 +104,4 @@ Documented javascript source files in, doclet data out.
 ]
 ```
 
+*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
