@@ -19,16 +19,3 @@ var parse = require("jsdoc-parse");
   - [private] `boolean` - include @private members in the output
 
 **Returns**: `Transform`  
-#Global
-* [publish(data, opts)](#publish)
-
-<a name="publish"></a>
-##publish(data, opts)
-Generate documentation output.
-
-**Params**
-
-- data `TAFFY` - A TaffyDB collection representing
-                      all the symbols documented in your code.
-- opts `object` - An object with options information.
-
