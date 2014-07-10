@@ -1,0 +1,24 @@
+{
+  "name": "jsdoc-parse",
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "https://github.com/75lb/jsdoc-parse.git",
+  "main": "lib/jsdoc-parse.js",
+  "bin": {
+    "jsdoc-parse": "bin/cli.js"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "tape test/*.js",
+    "lint": "jshint lib/*.js bin/*.js test/*.js; echo",
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+  },
+  "dependencies": {
+    "jsdoc": "jsdoc3/jsdoc",
+    "object-tools": "^1.1.1"
+  }
+}
