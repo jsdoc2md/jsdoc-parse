@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 #jsdoc-parse
-Exports a single function (`parse`) to extract jsdoc data from source code.
+Exports a single function (`parse`) to parse jsdoc data.
 
 **Example**  
 ```js
