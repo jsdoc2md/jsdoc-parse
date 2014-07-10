@@ -18,7 +18,11 @@
     "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/jsdoc-parse.js > README.md; echo"
   },
   "dependencies": {
+    "array-tools": "^1.1.5",
     "jsdoc": "jsdoc3/jsdoc",
     "object-tools": "^1.1.1"
+  },
+  "devDependencies": {
+    "tape": "^2.13.3"
   }
 }
