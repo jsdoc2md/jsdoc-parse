@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 #jsdoc-parse
-Exports a single function (`parse(options)`)..
+Exports a single function (`parse`) to extract jsdoc data from source code.
 
 **Example**  
 ```js
@@ -17,7 +17,7 @@ $ npm install -g jsdoc-parse
 ```
 *Mac / Linux users may need to run with `sudo`*.
 
-##API
+##API Reference
 <a name="module_jsdoc-parse"></a>
 ##parse(options) ⏏
 Documented javascript source files in, doclet data out.
