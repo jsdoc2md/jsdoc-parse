@@ -12,26 +12,39 @@ var parse = require("jsdoc-parse");
 ```
 
 ##Install
+*Mac / Linux users may need to run the following with `sudo`*.
+
+###As a library
+```sh
+$ npm install jsdoc-parse --save
+```
+
+###As a command-line tool
 ```sh
 $ npm install -g jsdoc-parse
 ```
-*Mac / Linux users may need to run with `sudo`*.
 
 ##API Reference
 <a name="module_jsdoc-parse"></a>
-##parse(options) ⏏
+##parse(src, options) ⏏
 Documented javascript source files in, doclet data out.
 
 **Params**
 
+- src `string` | `Array.<string>` - source file(s) to parse
 - options `object` - options
-  - [src] `string` | `Array.<string>` - source file(s) to parse
+  - [stats] `boolean` - Return stats about the doclets parsed
   - [private] `boolean` - include @private members in the output
 
 **Returns**: `Stream` - a readable stream containing the parsed json data  
 **Example**  
+Code like this: 
 ```js
-> parse({ src: "lib/jsdoc-parse.js" }).pipe(process.stdout);
+parse("lib/jsdoc-parse.js).pipe(process.stdout);
+```
+
+would output: 
+```json
 [
   {
     "kind": "module",
