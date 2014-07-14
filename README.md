@@ -40,7 +40,7 @@ Documented javascript source files in, doclet data out.
 **Example**  
 Code like this: 
 ```js
-parse("lib/jsdoc-parse.js).pipe(process.stdout);
+parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
 
 would output: 
