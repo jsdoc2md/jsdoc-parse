@@ -20,7 +20,9 @@
   "dependencies": {
     "array-tools": "^1.1.5",
     "jsdoc": "jsdoc3/jsdoc",
-    "object-tools": "^1.1.1"
+    "more-fs": "^0.5.0",
+    "object-tools": "^1.1.1",
+    "typical": "^1.0.0"
   },
   "devDependencies": {
     "tape": "^2.13.3"
