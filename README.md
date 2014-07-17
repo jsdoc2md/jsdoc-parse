@@ -43,6 +43,13 @@ $ npm install jsdoc-parse --save
 ```
 
 ###API Reference
+Exports a single function (`parse`) to parse jsdoc data.
+
+**Example**  
+```js
+var parse = require("jsdoc-parse");
+```
+
 <a name="module_jsdoc-parse"></a>
 ####parse(src, options) ⏏
 Documented javascript source files in, doclet data out.
