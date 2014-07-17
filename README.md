@@ -20,7 +20,7 @@ $ jsdoc-parse <src_files>
 $ cat <src_files> | jsdoc-parse 
 ```
 
-***Usage form 2 edge case warning***: jsdoc will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
+***Usage form 2 edge case warning***: `jsdoc-parse` will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
 
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
@@ -72,10 +72,11 @@ Code like this:
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
 
-would output: 
+would output something like: 
 ```json
 [
   {
+    "description": "Exports a single function (`parse`) to parse jsdoc data.",
     "kind": "module",
     "name": "jsdoc-parse",
     "examples": [
@@ -90,6 +91,16 @@ would output:
       {
         "type": {
           "names": [
+            "string",
+            "Array.<string>"
+          ]
+        },
+        "description": "source file(s) to parse",
+        "name": "src"
+      },
+      {
+        "type": {
+          "names": [
             "object"
           ]
         },
@@ -99,13 +110,12 @@ would output:
       {
         "type": {
           "names": [
-            "string",
-            "Array.<string>"
+            "boolean"
           ]
         },
         "optional": true,
-        "description": "source file(s) to parse",
-        "name": "options.src"
+        "description": "Return stats about the doclets parsed",
+        "name": "options.stats"
       },
       {
         "type": {
@@ -128,20 +138,9 @@ would output:
         "description": "a readable stream containing the parsed json data"
       }
     ],
-    "examples": [
-      "```js\nparse({ src: \"lib/jsdoc-parse.js\" }).pipe(process.stdout);\n```"
-    ],
     "name": "module:jsdoc-parse",
     "longname": "module:jsdoc-parse",
-    "kind": "function",
-    "codeName": "parse"
-  },
-  {
-    "files": [
-      "/Users/Lloyd/Documents/75lb/jsdoc-parse/lib/jsdoc-parse.js"
-    ],
-    "kind": "package",
-    "longname": "package:undefined"
+    "kind": "function"
   }
 ]
 ```
