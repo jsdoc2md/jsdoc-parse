@@ -1,7 +1,7 @@
 {
   "name": "jsdoc-parse",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Documented javascript source files in, doclet data out.",
   "repository": "https://github.com/75lb/jsdoc-parse.git",
   "main": "lib/jsdoc-parse.js",
