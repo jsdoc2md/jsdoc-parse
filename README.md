@@ -20,6 +20,10 @@ $ jsdoc-parse <src_files>
 $ cat <src_files> | jsdoc-parse 
 ```
 
+***Usage form 2 edge case warning***: jsdoc will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
+
+> The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
+
 ###Example
 ```sh
 $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
