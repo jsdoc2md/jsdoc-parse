@@ -4,27 +4,45 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 #jsdoc-parse
-Exports a single function (`parse`) to parse jsdoc data.
+Jsdoc-annotated javascript source files in, [dmd](https://github.com/75lb/dmd) input data out. 
 
-**Example**  
-```js
-var parse = require("jsdoc-parse");
-```
+##As a command-line tool
+Useful for quick access to the data.. 
 
-##Install
-*Mac / Linux users may need to run the following with `sudo`*.
-
-###As a library
-```sh
-$ npm install jsdoc-parse --save
-```
-
-###As a command-line tool
+###Install
 ```sh
 $ npm install -g jsdoc-parse
 ```
 
-##API Reference
+###Usage
+```
+$ jsdoc-parse <src_files>
+$ cat <src_files> | jsdoc-parse 
+```
+
+###Example
+```sh
+$ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
+[
+  {
+    "description": "a wonderful global",
+    "name": "majestic",
+    "longname": "majestic",
+    "kind": "member",
+    "scope": "global"
+  }
+]
+```
+
+##As a library
+For use within node.js. 
+
+###Install
+```sh
+$ npm install jsdoc-parse --save
+```
+
+###API Reference
 <a name="module_jsdoc-parse"></a>
 ##parse(src, options) ⏏
 Documented javascript source files in, doclet data out.
@@ -116,5 +134,8 @@ would output:
   }
 ]
 ```
+
+
+
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
