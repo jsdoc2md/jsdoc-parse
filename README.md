@@ -44,7 +44,7 @@ $ npm install jsdoc-parse --save
 
 ###API Reference
 <a name="module_jsdoc-parse"></a>
-##parse(src, options) ⏏
+####parse(src, options) ⏏
 Documented javascript source files in, doclet data out.
 
 **Params**
