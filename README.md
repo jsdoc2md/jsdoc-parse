@@ -6,6 +6,9 @@
 #jsdoc-parse
 Jsdoc-annotated javascript source files in, [dmd](https://github.com/75lb/dmd) input data out. 
 
+**Compatible Platforms**
+MacOSX and Linux only until [this upstream bug](https://github.com/jsdoc3/jsdoc/issues/713) is fixed. 
+
 ##As a command-line tool
 Useful for quick access to the data.. 
 
@@ -54,7 +57,7 @@ Exports a single function (`parse`) to parse jsdoc data.
 var parse = require("jsdoc-parse");
 ```
 
-<a name="module_jsdoc-parse"></a>
+<a name="exp_module_jsdoc-parse"></a>
 ####parse(src, options) ⏏
 Documented javascript source files in, doclet data out.
 
