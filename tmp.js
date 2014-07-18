@@ -1,6 +1,8 @@
 var cp = require("child_process");
+var path = require("path");
 
-cp.exec("./node_modules/.bin/jsdoc lib/jsdoc-parse.js", function(err, stdout, stderr){
+var jsdoc = path.join("node_modules", ".bin", "jsdoc");
+cp.exec(jsdoc + " -X lib/jsdoc-parse.js", function(err, stdout, stderr){
     console.log("Failed: ", err);
     console.log("stdout: " + stdout.length);
     console.log("stderr: " + stderr.length);
