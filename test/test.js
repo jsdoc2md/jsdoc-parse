@@ -31,3 +31,16 @@ test("stdin input working", function(t){
         t.ok(/longname/.test(data));
     });
 });
+
+test("glob expression", function(t){
+    t.plan(2);
+    var stream = parse("lib/*.js");
+    stream.on("readable", function(){
+        var chunk = this.read();
+        if (chunk){
+            var data = JSON.parse(chunk);
+            t.equal(data[0].name, "jsdoc-parse");
+            t.equal(data[2].name, "publish");
+        }
+    });
+});
