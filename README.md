@@ -7,7 +7,7 @@
 Jsdoc-annotated javascript source files in, [dmd](https://github.com/75lb/dmd) input data out. 
 
 ##Compatible Platforms
-MacOSX and Linux only until [this upstream bug](https://github.com/jsdoc3/jsdoc/issues/713) is fixed. 
+Currently MacOSX and Linux only. Windows support coming as soon as [this upstream bug](https://github.com/jsdoc3/jsdoc/issues/713) is fixed. 
 
 ##As a command-line tool
 Useful for quick access to the data.. 
