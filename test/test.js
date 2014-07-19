@@ -27,8 +27,9 @@ test("stdin input working", function(t){
     var outputFile = fs.openSync("tmp/jsdoc-parse.json", "w");
     var handle = spawn("node", [ "bin/cli.js"], { stdio: [ inputFile, outputFile, process.stderr ]});
     handle.on("close", function(){
-        var data = fs.readFileSync("tmp/jsdoc-parse.json", "utf8");
-        t.ok(/longname/.test(data));
+        var json = fs.readFileSync("tmp/jsdoc-parse.json", "utf8");
+        var data = JSON.parse(json);
+        t.equal(data[0].name, "jsdoc-parse");
     });
 });
 
