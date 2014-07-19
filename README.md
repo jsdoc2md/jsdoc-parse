@@ -87,64 +87,8 @@ would output something like:
     ],
     "longname": "module:jsdoc-parse"
   },
-  {
-    "description": "Documented javascript source files in, doclet data out.",
-    "alias": "module:jsdoc-parse",
-    "params": [
-      {
-        "type": {
-          "names": [
-            "string",
-            "Array.<string>"
-          ]
-        },
-        "description": "source file(s) to parse",
-        "name": "src"
-      },
-      {
-        "type": {
-          "names": [
-            "object"
-          ]
-        },
-        "description": "options",
-        "name": "options"
-      },
-      {
-        "type": {
-          "names": [
-            "boolean"
-          ]
-        },
-        "optional": true,
-        "description": "Return stats about the doclets parsed",
-        "name": "options.stats"
-      },
-      {
-        "type": {
-          "names": [
-            "boolean"
-          ]
-        },
-        "optional": true,
-        "description": "include @private members in the output",
-        "name": "options.private"
-      }
-    ],
-    "returns": [
-      {
-        "type": {
-          "names": [
-            "Stream"
-          ]
-        },
-        "description": "a readable stream containing the parsed json data"
-      }
-    ],
-    "name": "module:jsdoc-parse",
-    "longname": "module:jsdoc-parse",
-    "kind": "function"
-  }
+  etc,
+  etc
 ]
 ```
 
