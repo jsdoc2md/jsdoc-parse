@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "array-tools": "^1.1.5",
-    "file-set": "^0.2.1",
+    "file-set": "~0.2.1",
     "jsdoc": "git+https://github.com/jsdoc3/jsdoc#b5653b838ce7b96f97322c77e65f74c3086bd3d1",
-    "more-fs": "^0.5.0",
+    "more-fs": "~0.5.0",
     "object-tools": "^1.1.1",
     "typical": "^1.0.0"
   },

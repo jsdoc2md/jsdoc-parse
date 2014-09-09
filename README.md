@@ -63,10 +63,10 @@ Documented javascript source files in, doclet data out.
 
 **Params**
 
-- src `string` | `Array.<string>` - source file(s) to parse
-- options `object` - options
-  - [stats] `boolean` - Return stats about the doclets parsed
-  - [private] `boolean` - include @private members in the output
+- src `string` | `Array.<string>` - source file(s) to parse  
+- options `object` - options  
+  - \[stats\] `boolean` - Return stats about the doclets parsed  
+  - \[private\] `boolean` - include @private members in the output  
 
 **Returns**: `Stream` - a readable stream containing the parsed json data  
 **Example**  
