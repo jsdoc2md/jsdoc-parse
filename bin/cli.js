@@ -5,7 +5,12 @@ var parse = require("../");
 
 var files = process.argv.slice(2);
 if (files.length){
-    parse(files).pipe(process.stdout);
+    var parseStream = parse(files);
+    parseStream
+        .on("error", console.log)
+        .pipe(process.stdout);
 } else {
-    process.stdin.pipe(parse()).pipe(process.stdout);
+    var parseStream = parse();
+    parseStream.on("error", console.log);
+    process.stdin.pipe(parseStream).pipe(process.stdout);
 }
