@@ -1,6 +1,7 @@
 /**
 exports a class
 @module
+@typicalname exp
 */
 module.exports = ExportedClass;
 

@@ -1,11 +1,11 @@
 /**
 module two exports a function
 @module
+@typicalname $
 */
 module.exports = function(one, two){
     /**
-    instance property
+    inner property
     */
-    this.prop = 1;
+    var prop = 1;
 };
-
