@@ -1,12 +1,14 @@
 /**
 exports a pointer to a function
-@module functionAlias
-@typicalname pf
+@module
 */
-module.exports = pointerFunction;
+module.exports = sum;
 
 /**
 the function
-@alias module:functionAlias
+@param {number} - the first number
+@param {number} - the second number
+@returns {number} - the calculation result
+@alias module:cjs/function-alias
 */
-function pointerFunction(one, two){};
+function sum(one, two){};

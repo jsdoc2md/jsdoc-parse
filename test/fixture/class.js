@@ -1,18 +1,4 @@
 /**
-a global var
-@type {string}
-@default "something"
-*/
-var globalVar = "something";
-
-/**
-a global function
-@param {number} - first param
-@param {string} - second param
-*/
-function globalFunction(one, two){}
-
-/**
 the global class constructor
 @class
 @classdesc a global class

@@ -1,11 +1,11 @@
 /**
 module one
-@module teams
+@module
 */
 
 /**
 the teams
-@alias module:teams
+@alias module:cjs/object-alias
 */
 var teams = {
     manu: "england",
