@@ -1,5 +1,5 @@
 /**
-module one
+a module exporting an object
 @module
 */
 

@@ -1,5 +1,5 @@
 /**
-module one
+a module exporting `exports` directly
 @module
 @typicalname obj
 */
