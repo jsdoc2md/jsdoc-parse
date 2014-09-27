@@ -4,3 +4,9 @@ a global function returning multiple stuff
 @returns {object|function} or an object, or function
 */
 function globalFunction(one, two){}
+
+/**
+returns has no desc
+@returns {string}
+*/
+function returnsSomething(one, two){}
