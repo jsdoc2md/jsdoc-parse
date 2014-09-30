@@ -20,7 +20,7 @@
   "dependencies": {
     "array-tools": "^1.1.5",
     "file-set": "~0.2.1",
-    "jsdoc": "git+https://github.com/jsdoc3/jsdoc#d09c654d366641e99d23436a6d99db7a6919aedb",
+    "jsdoc-75lb": "^3.3.0-dev",
     "more-fs": "~0.5.0",
     "object-tools": "^1.1.1",
     "typical": "^1.0.0"
