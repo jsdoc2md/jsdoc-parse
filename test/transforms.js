@@ -9,6 +9,9 @@ test("exported class IDs", function(t){
             "longname": "module:human"
         },
         {
+            "kind": "clive"
+        },
+        {
             "name": "module:human",
             "kind": "class",
             "meta": {
@@ -136,11 +139,13 @@ test("exported class IDs", function(t){
         "id": "module:human--Human#getOrgan"
       }
     ];
-    
-    data = transform.setIDs(data);
-    data = transform.setIsExportedFlag(data);
-    data = transform.exportedClassIDs(data)
-    t.deepEqual(data, expected);    
+
+    transform
+        .setData(data)
+        .setIDs()
+        .setIsExportedFlag()
+        .exportedClassIDs();
+    t.deepEqual(transform.getData(), expected);
     t.end();
     // console.log(JSON.stringify(data, null, "  "))
 });
