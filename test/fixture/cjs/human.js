@@ -9,7 +9,7 @@ module.exports = Human;
 the exported contructor
 @class
 @classdesc the exported class
-@alias module:cjs/human
+@alias module:human
 */
 function Human(){
     

@@ -1,0 +1,70 @@
+[
+  {
+    "kind": "module",
+    "longname": "module:human",
+    "id": "module:human"
+  },
+  {
+    "name": "Human",
+    "kind": "class",
+    "meta": {
+      "code": {
+        "name": "Human"
+      }
+    },
+    "longname": "module:human",
+    "id": "module:human--Human",
+    "isExported": true
+  },
+  {
+    "name": "Organ",
+    "kind": "class",
+    "longname": "module:human~Organ",
+    "memberof": "module:human--Human",
+    "id": "module:human--Human~Organ"
+  },
+  {
+    "name": "Cell",
+    "kind": "class",
+    "longname": "module:human~Organ~Cell",
+    "memberof": "module:human--Human~Organ",
+    "id": "module:human--Human~Organ~Cell"
+  },
+  {
+    "kind": "member",
+    "longname": "module:human~Organ#redCell",
+    "memberof": "module:human--Human~Organ",
+    "type": {
+      "names": [
+        "module:human--Human~Organ~Cell"
+      ]
+    },
+    "id": "module:human--Human~Organ#redCell"
+  },
+  {
+    "kind": "member",
+    "longname": "module:human#liver",
+    "memberof": "module:human--Human",
+    "type": {
+      "names": [
+        "module:human--Human~Organ"
+      ]
+    },
+    "id": "module:human--Human#liver"
+  },
+  {
+    "kind": "function",
+    "longname": "module:human#getOrgan",
+    "memberof": "module:human--Human",
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "module:human--Human~Organ"
+          ]
+        }
+      }
+    ],
+    "id": "module:human--Human#getOrgan"
+  }
+]
