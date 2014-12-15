@@ -1,3 +1,4 @@
+"use strict";
 var test = require("tape");
 var parse = require("../");
 var transform = require("../lib/transform");
@@ -7,17 +8,19 @@ var fixture = {
 	exportedClassIDs: require("./transforms/fixture/exportedClassIDs"),
 	setID: require("./transforms/fixture/setID"),
 	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag"),
+	createConstructor: require("./transforms/fixture/createConstructor"),
 	setCodename: require("./transforms/fixture/setCodename")
 };
 var expected = {
 	exportedClassIDs: require("./transforms/expected/exportedClassIDs"),
 	setID: require("./transforms/expected/setID"),
 	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag"),
+	createConstructor: require("./transforms/expected/createConstructor"),
 	setCodename: require("./transforms/expected/setCodename")
 };
 
 test("setID", function(t){
-    t.deepEqual(transform.setID(fixture.setID), expected.setID);
+    t.deepEqual(fixture.setID.map(transform.setID), expected.setID);
     t.end();
 });
 
@@ -28,6 +31,16 @@ test("setIsExportedFlag", function(t){
 
 test("setCodename", function(t){
     t.deepEqual(transform.setCodename(fixture.setCodename), expected.setCodename);
+    t.end();
+});
+
+test("create constructor", function(t){
+    t.deepEqual(transform.createConstructor2(fixture.createConstructor), expected.createConstructor);
+    t.end();
+});
+
+test("setMemberOf", function(t){
+    t.deepEqual(transform.setID(fixture.setID), expected.setID);
     t.end();
 });
 
