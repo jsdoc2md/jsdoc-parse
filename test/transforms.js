@@ -2,21 +2,25 @@ var test = require("tape");
 var parse = require("../");
 var transform = require("../lib/transform");
 var human = require("./transforms/human");
-var exportedClassIDs = require("./transforms/exportedClassIDs");
-var setID = require("./transforms/setID");
-var setIsExportedFlag = require("./transforms/setIsExportedFlag");
+
+var fixture = {
+	exportedClassIDs: require("./transforms/fixture/exportedClassIDs"),
+	setID: require("./transforms/fixture/setID"),
+	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag")
+};
+var expected = {
+	exportedClassIDs: require("./transforms/expected/exportedClassIDs"),
+	setID: require("./transforms/expected/setID"),
+	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag")
+};
 
 test("setID", function(t){
-    var data = human;
-    var expected = setID;
-    t.deepEqual(data.map(transform.setID), expected);
+    t.deepEqual(transform.setID(fixture.setID), expected.setID);
     t.end();
 });
 
 test("setIsExportedFlag", function(t){
-    var data = human;
-    var expected = setIsExportedFlag;
-    t.deepEqual(data.map(transform.setIsExportedFlag), expected);
+    t.deepEqual(transform.setIsExportedFlag(fixture.setIsExportedFlag), expected.setIsExportedFlag);
     t.end();
 });
 

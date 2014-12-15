@@ -1,0 +1,11 @@
+{
+  "name": "Human",
+  "kind": "class",
+  "meta": {
+    "code": {
+      "name": "Human"
+    }
+  },
+  "longname": "module:human",
+  "id": "module:human--Human"
+}

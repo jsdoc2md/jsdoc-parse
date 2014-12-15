@@ -9,7 +9,6 @@
     {
         "name": "module:human",
         "kind": "class",
-        "isExported": true,
         "meta": {
             "code": {
                 "name": "Human"
