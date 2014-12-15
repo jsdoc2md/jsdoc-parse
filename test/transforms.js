@@ -9,6 +9,8 @@ var fixture = {
 	setID: require("./transforms/fixture/setID"),
 	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag"),
 	createConstructor: require("./transforms/fixture/createConstructor"),
+	removeQuotes: require("./transforms/fixture/removeQuotes"),
+	buildTodoList: require("./transforms/fixture/buildTodoList"),
 	setCodename: require("./transforms/fixture/setCodename")
 };
 var expected = {
@@ -16,6 +18,8 @@ var expected = {
 	setID: require("./transforms/expected/setID"),
 	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag"),
 	createConstructor: require("./transforms/expected/createConstructor"),
+	removeQuotes: require("./transforms/expected/removeQuotes"),
+	buildTodoList: require("./transforms/expected/buildTodoList"),
 	setCodename: require("./transforms/expected/setCodename")
 };
 
@@ -41,6 +45,18 @@ test("create constructor", function(t){
 
 test("setMemberOf", function(t){
     t.deepEqual(transform.setID(fixture.setID), expected.setID);
+    t.end();
+});
+
+test("removeQuotes", function(t){
+    t.deepEqual(transform.removeQuotes(fixture.removeQuotes), expected.removeQuotes);
+    t.end();
+});
+
+test("clean properties - need a fixture");
+
+test("buildTodoList", function(t){
+    t.deepEqual(fixture.buildTodoList.map(transform.buildTodoList), expected.buildTodoList);
     t.end();
 });
 

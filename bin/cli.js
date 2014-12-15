@@ -4,6 +4,9 @@
 var parse = require("../");
 var cliArgs = require("command-line-args");
 
+/**
+check for cli args then 
+*/
 var cli = cliArgs([
     { name: "private", type: Boolean },
     { name: "help", alias: "h", type: Boolean },
