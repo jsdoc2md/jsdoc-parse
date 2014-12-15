@@ -6,12 +6,14 @@ var human = require("./transforms/human");
 var fixture = {
 	exportedClassIDs: require("./transforms/fixture/exportedClassIDs"),
 	setID: require("./transforms/fixture/setID"),
-	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag")
+	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag"),
+	setCodename: require("./transforms/fixture/setCodename")
 };
 var expected = {
 	exportedClassIDs: require("./transforms/expected/exportedClassIDs"),
 	setID: require("./transforms/expected/setID"),
-	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag")
+	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag"),
+	setCodename: require("./transforms/expected/setCodename")
 };
 
 test("setID", function(t){
@@ -21,6 +23,11 @@ test("setID", function(t){
 
 test("setIsExportedFlag", function(t){
     t.deepEqual(transform.setIsExportedFlag(fixture.setIsExportedFlag), expected.setIsExportedFlag);
+    t.end();
+});
+
+test("setCodename", function(t){
+    t.deepEqual(transform.setCodename(fixture.setCodename), expected.setCodename);
     t.end();
 });
 

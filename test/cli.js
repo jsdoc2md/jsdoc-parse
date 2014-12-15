@@ -15,7 +15,6 @@ test("valid json out", function(t){
     stream.on("readable", function(){
         var chunk = this.read();
         if (chunk){
-			console.log(chunk.toString())
             var data = JSON.parse(chunk);
             t.equal(data[0].name, "jsdoc-parse");
         }
