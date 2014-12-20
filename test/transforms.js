@@ -3,9 +3,10 @@ var test = require("tape");
 var parse = require("../");
 var transform = require("../lib/transform");
 var human = require("./transforms/human");
+var util = require("util");
 
 var fixture = {
-	exportedClassIDs: require("./transforms/fixture/exportedClassIDs"),
+	updateIDReferences: require("./transforms/fixture/updateIDReferences"),
 	setID: require("./transforms/fixture/setID"),
 	setIsExportedFlag: require("./transforms/fixture/setIsExportedFlag"),
 	createConstructor: require("./transforms/fixture/createConstructor"),
@@ -14,7 +15,7 @@ var fixture = {
 	setCodename: require("./transforms/fixture/setCodename")
 };
 var expected = {
-	exportedClassIDs: require("./transforms/expected/exportedClassIDs"),
+	updateIDReferences: require("./transforms/expected/updateIDReferences"),
 	setID: require("./transforms/expected/setID"),
 	setIsExportedFlag: require("./transforms/expected/setIsExportedFlag"),
 	createConstructor: require("./transforms/expected/createConstructor"),
@@ -60,15 +61,10 @@ test("buildTodoList", function(t){
     t.end();
 });
 
-test.skip("exported class IDs", function(t){
-    var data = human;
-    var expected = exportedClassIDs;
-
-    data = data.map(transform.setID)
-        .map(transform.setIsExportedFlag);
-
-    transform.setData(data).exportedClassIDs();
-    t.deepEqual(transform.getData(), expected);
+test("updateIDReferences", function(t){
+    var result = fixture.updateIDReferences.map(function(identifier){
+        return transform.updateIDReferences(identifier, "module:cjs/human--Human");
+    });
+    t.deepEqual(result, expected.updateIDReferences);
     t.end();
-    // console.log(JSON.stringify(data, null, "  "))
 });
