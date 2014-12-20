@@ -17,5 +17,10 @@
             }
           }
         ]
+    },
+    {
+      "id": "module:MapView",
+      "name": "MapView",
+      "kind": "module"
     }
 ]

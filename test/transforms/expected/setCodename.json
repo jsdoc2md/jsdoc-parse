@@ -18,11 +18,8 @@
             "this.liver": null
         }
     },
-    "description": "the exported contructor",
     "kind": "class",
-    "classdesc": "the exported class",
-    "alias": "module:human",
-    "name": "module:human",
+    "name": "Human",
     "longname": "module:human",
     "codeName": "Human"
 }

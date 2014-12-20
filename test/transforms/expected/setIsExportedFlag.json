@@ -5,5 +5,6 @@
     "alias": "module:human",
     "name": "module:human",
     "longname": "module:human",
-	"isExported": true
+	"isExported": true,
+    "memberof": "module:human"
 }
