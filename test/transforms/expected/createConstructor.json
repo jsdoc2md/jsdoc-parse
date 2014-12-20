@@ -9,6 +9,7 @@
     {
         "name": "module:file-set",
         "longname": "module:file-set",
+        "memberof": "module:file-set",
         "kind": "constructor",
         "description": "constructor description",
         "params": [

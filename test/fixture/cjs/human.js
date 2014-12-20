@@ -1,6 +1,6 @@
 /**
 exports a class
-@module
+@module cjs/human
 @typicalname d
 */
 module.exports = Human;
@@ -9,7 +9,7 @@ module.exports = Human;
 the exported contructor
 @class
 @classdesc the exported class
-@alias module:human
+@alias module:cjs/human
 */
 function Human(){
     
@@ -27,14 +27,14 @@ function Human(){
         
         /**
         an instance of Cell
-        @type {module:human~Organ~Cell}
+        @type {module:cjs/human~Organ~Cell}
         */
         this.redCell = new Cell();
     }
     
     /**
     an instance of Organ
-    @type {module:human~Organ}
+    @type {module:cjs/human~Organ}
     */
     this.liver = new Organ();
 };

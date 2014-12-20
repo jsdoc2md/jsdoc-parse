@@ -1,6 +1,6 @@
 /**
 a module exporting `exports` directly
-@module
+@module cjs/object
 @typicalname obj
 */
 

@@ -1,6 +1,6 @@
 /**
 a module exporting an object
-@module
+@module cjs/object-alias
 */
 
 /**

@@ -1,7 +1,10 @@
+"use strict";
 var test = require("tape");
 var parse = require("../");
 var spawn = require("child_process").spawn;
 var fs = require("fs");
+
+/* Test the CLI API functions as expected, not interested in correct output here */
 
 try{
     fs.mkdirSync("tmp");

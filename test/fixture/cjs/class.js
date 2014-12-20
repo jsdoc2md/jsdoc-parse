@@ -1,6 +1,6 @@
 /**
 exports a class
-@module
+@module cjs/class
 @typicalname exp
 */
 module.exports = ExportedClass;

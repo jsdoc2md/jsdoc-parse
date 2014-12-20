@@ -39,7 +39,7 @@ test("setCodename", function(t){
 });
 
 test("create constructor", function(t){
-    t.deepEqual(transform.createConstructor2(fixture.createConstructor), expected.createConstructor);
+    t.deepEqual(transform.createConstructor(fixture.createConstructor), expected.createConstructor);
     t.end();
 });
 

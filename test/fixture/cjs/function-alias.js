@@ -1,6 +1,6 @@
 /**
 exports a pointer to a function
-@module
+@module cjs/function-alias
 */
 module.exports = sum;
 
