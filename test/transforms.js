@@ -5,6 +5,10 @@ var transform = require("../lib/transform");
 var human = require("./transforms/human");
 var util = require("util");
 
+function pp(obj){
+    console.log(util.inspect(obj, { depth: null }));
+}
+
 var fixture = {
 	updateIDReferences: require("./transforms/fixture/updateIDReferences"),
 	setID: require("./transforms/fixture/setID"),
@@ -12,6 +16,7 @@ var fixture = {
 	createConstructor: require("./transforms/fixture/createConstructor"),
 	removeQuotes: require("./transforms/fixture/removeQuotes"),
 	buildTodoList: require("./transforms/fixture/buildTodoList"),
+	sortIdentifier: require("./transforms/fixture/sortIdentifier"),
 	setCodename: require("./transforms/fixture/setCodename")
 };
 var expected = {
@@ -21,11 +26,19 @@ var expected = {
 	createConstructor: require("./transforms/expected/createConstructor"),
 	removeQuotes: require("./transforms/expected/removeQuotes"),
 	buildTodoList: require("./transforms/expected/buildTodoList"),
+	sortIdentifier: require("./transforms/expected/sortIdentifier"),
 	setCodename: require("./transforms/expected/setCodename")
 };
 
 test("setID", function(t){
     t.deepEqual(fixture.setID.map(transform.setID), expected.setID);
+    t.end();
+});
+
+test("sortIdentifier", function(t){
+    pp(fixture.sortIdentifier)
+    pp(fixture.sortIdentifier.map(transform.sortIdentifier))
+    t.deepEqual(fixture.sortIdentifier.map(transform.sortIdentifier), expected.sortIdentifier);
     t.end();
 });
 

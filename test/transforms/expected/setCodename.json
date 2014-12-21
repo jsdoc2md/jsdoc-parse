@@ -19,7 +19,7 @@
         }
     },
     "kind": "class",
-    "name": "Human",
+    "name": "module:human",
     "longname": "module:human",
     "codeName": "Human"
 }
