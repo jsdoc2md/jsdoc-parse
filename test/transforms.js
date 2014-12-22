@@ -36,8 +36,6 @@ test("setID", function(t){
 });
 
 test("sortIdentifier", function(t){
-    pp(fixture.sortIdentifier)
-    pp(fixture.sortIdentifier.map(transform.sortIdentifier))
     t.deepEqual(fixture.sortIdentifier.map(transform.sortIdentifier), expected.sortIdentifier);
     t.end();
 });
