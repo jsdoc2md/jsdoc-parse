@@ -1,14 +1,14 @@
 {
   "name": "jsdoc-parse",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "Documented javascript source files in, doclet data out.",
   "repository": "https://github.com/75lb/jsdoc-parse.git",
   "main": "lib/jsdoc-parse.js",
   "bin": {
     "jsdoc-parse": "bin/cli.js"
   },
-  "keywords": [],
+  "keywords": [ "jsdoc", "document", "documentation" ],
   "engines": {
     "node": ">=0.10.0"
   },
