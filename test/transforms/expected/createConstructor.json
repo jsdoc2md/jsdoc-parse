@@ -43,6 +43,11 @@
         ],
         "examples": [
             "var thisVar = funtion(){\n    return \"a value\";\n};"
+        ],
+        "exceptions": [
+          {
+            "description": "Invalid argument error if the argument cannot be converted to a finite numeric value."
+          }
         ]
     }
 ]
