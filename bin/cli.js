@@ -4,14 +4,7 @@
 var parse = require("../");
 var cliArgs = require("command-line-args");
 
-/**
-check for cli args then 
-*/
-var cli = cliArgs([
-    { name: "private", type: Boolean },
-    { name: "help", alias: "h", type: Boolean },
-    { name: "files", type: Array, defaultOption: true }
-]);
+var cli = cliArgs(parse.cliOptions);
 
 try {
 	var usage = cli.getUsage();
