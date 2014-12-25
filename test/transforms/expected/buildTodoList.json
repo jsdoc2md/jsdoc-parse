@@ -20,20 +20,6 @@
             "Write the documentation.",
             "Implement this function."
         ],
-        "tags": [
-            {
-                "originalTitle": "done",
-                "title": "done",
-                "text": "this one is done",
-                "value": "this one is done"
-            },
-            {
-                "originalTitle": "done",
-                "title": "done",
-                "text": "finished",
-                "value": "finished"
-            }
-        ],
         "todoList": [
           {
             "done": false,
@@ -54,20 +40,6 @@
         ]
     },
     {
-        "tags": [
-            {
-                "originalTitle": "done",
-                "title": "done",
-                "text": "this one is done",
-                "value": "this one is done"
-            },
-            {
-                "originalTitle": "done",
-                "title": "done",
-                "text": "finished",
-                "value": "finished"
-            }
-        ],
         "todoList": [
           {
             "done": true,

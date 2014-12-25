@@ -12,3 +12,8 @@ the function
 @alias module:cjs/function-alias
 */
 function sum(one, two){};
+
+/**
+an additional static property
+*/
+sum.sumthingStatic = 1;
