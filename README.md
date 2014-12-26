@@ -56,19 +56,22 @@ Exports a single function (`parse`) to parse jsdoc data.
 ```js
 var parse = require("jsdoc-parse");
 ```
+<a name="exp_module_jsdoc-parse--parse"></a>
+###parse(src, options) ⇒ <code>Stream</code> ⏏
+Documented javascript source in, documentation JSON out.
 
-<a name="exp_module_jsdoc-parse"></a>
-####parse(src, options) ⏏
-Documented javascript source files in, doclet data out.
+| Param | Type | Description |
+| ----- | ---- | ----------- |
+| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | source file(s) to parse |
+| options | <code>object</code> | options |
+| \[options.stats\] | <code>boolean</code> | Return stats about the doclets parsed |
+| \[options.private\] | <code>boolean</code> | include @private members in the output |
 
-**Params**
+**Returns**: <code>Stream</code> - a readable stream containing the parsed json data  
+**Todo**
 
-- src `string` | `Array.<string>` - source file(s) to parse  
-- options `object` - options  
-  - \[stats\] `boolean` - Return stats about the doclets parsed  
-  - \[private\] `boolean` - include @private members in the output  
+- split into two separate methods
 
-**Returns**: `Stream` - a readable stream containing the parsed json data  
 **Example**  
 Code like this: 
 ```js
@@ -91,8 +94,6 @@ would output something like:
   etc
 ]
 ```
-
-
 
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
