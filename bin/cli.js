@@ -17,7 +17,7 @@ try {
 
 if (argv.help){
 	console.log(usage);
-	process.exit(0);	
+	process.exit(0);
 }
 
 if (argv.files && argv.files.length){
