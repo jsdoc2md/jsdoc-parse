@@ -20,8 +20,8 @@ if (argv.help){
 	process.exit(0);
 }
 
-if (argv.files && argv.files.length){
-    var parseStream = parse(argv.files, argv);
+if (argv.src && argv.src.length){
+    var parseStream = parse(argv.src, argv);
     parseStream
         .on("error", console.error)
         .pipe(process.stdout);
