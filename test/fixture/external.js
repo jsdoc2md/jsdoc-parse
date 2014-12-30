@@ -1,7 +1,11 @@
 /**
- * The built in string object.
  * @external String
  * @see {@link https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String String}
+ */
+
+/**
+ * @external Clive
+ * @see https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String
  */
 
 /**
@@ -35,3 +39,12 @@
  * @extends external:XMLHttpRequest
  */
 
+/**
+@type {external:Clive}
+*/
+var cliveExternal;
+
+/**
+@type {external:String}
+*/
+var stringExternal;
