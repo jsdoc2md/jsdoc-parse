@@ -73,12 +73,12 @@ Documented javascript source in, documentation JSON out.
 - split into two separate methods
 
 **Example**  
-Code like this: 
+Code like this:
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
 
-would output something like: 
+would output something like:
 ```json
 [
   {
@@ -97,3 +97,5 @@ would output something like:
 
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
+
+&copy; 2015 Lloyd Brookes <75pound@gmail.com>
