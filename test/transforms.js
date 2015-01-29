@@ -79,3 +79,23 @@ test("updateIDReferences", function(t){
     t.deepEqual(result, expected.updateIDReferences);
     t.end();
 });
+
+test("extractChainable", function(t){
+    var fixture = {
+        id: "Chainable#method",
+        tags: [
+            {
+                "originalTitle": "chainable",
+                "title": "chainable",
+                "text": ""
+            }
+        ]
+    };
+    var expected = {
+        id: "Chainable#method",
+        tags: [],
+        chainable: true
+    };
+    t.deepEqual(transform.extractChainable(fixture), expected);
+    t.end();
+});
