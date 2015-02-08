@@ -1,6 +1,6 @@
 /**
 a global var
 @type {string}
-@default "something"
+@default
 */
 var globalVar = "something";
