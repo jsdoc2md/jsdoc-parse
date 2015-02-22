@@ -1,20 +1,20 @@
 /**
-@returns {module:cjs/human[]}
+@type {module:cjs/human[]}
 */
 var returnsArrayOfType;
 
 /**
-@returns {?module:cjs/human[]}
+@type {?module:cjs/human[]}
 */
 var returnsArrayOfType2;
 
 /**
-@returns {?number}
+@type {?number}
 */
 var nullableNumber = null;
 
 /**
-@returns {!number}
+@type {!number}
 */
 var nonNullableNumber = null;
 

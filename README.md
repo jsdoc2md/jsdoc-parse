@@ -50,27 +50,29 @@ $ npm install jsdoc-parse --save
 ```
 
 ###API Reference
-Exports a single function (`parse`) to parse jsdoc data.
-
-**Example**  
-```js
-var parse = require("jsdoc-parse");
-```
+  Exports a single function (`parse`) to parse jsdoc data.
+  
+  **Example**  
+  ```js
+  var parse = require("jsdoc-parse");
+  ```
 <a name="exp_module_jsdoc-parse--parse"></a>
-###parse(src, options) ⇒ <code>Stream</code> ⏏
+### parse(src, options) ⇒ <code>Stream</code> ⏏
 Documented javascript source in, documentation JSON out.
 
-| Param | Type | Description |
-| ----- | ---- | ----------- |
-| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | source file(s) to parse |
-| options | <code>object</code> | options |
-| \[options.stats\] | <code>boolean</code> | Return stats about the doclets parsed |
-| \[options.private\] | <code>boolean</code> | include @private members in the output |
-
+**Scope**: Exported function  
 **Returns**: <code>Stream</code> - a readable stream containing the parsed json data  
 **Todo**
 
-- split into two separate methods
+- [ ] split into two separate methods
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | source file(s) to parse |
+| options | <code>object</code> | options |
+| [options.stats] | <code>boolean</code> | Return stats about the doclets parsed |
+| [options.private] | <code>boolean</code> | include @private members in the output |
 
 **Example**  
 Code like this:
@@ -94,7 +96,6 @@ would output something like:
   etc
 ]
 ```
-
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
 
