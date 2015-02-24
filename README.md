@@ -3,48 +3,62 @@
 [![Build Status](https://travis-ci.org/75lb/jsdoc-parse.svg?branch=master)](https://travis-ci.org/75lb/jsdoc-parse)
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
-#jsdoc-parse
-Jsdoc-annotated javascript source files in, [dmd](https://github.com/75lb/dmd) input data out. 
+# jsdoc-parse
+Jsdoc-annotated javascript in, JSON out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
 
-##Compatible Platforms
+* Some new fields: `id` (unique identifier), `isExported`, `thisvalue`, `typicalname`, `category` and `todoList`
+* A new kind: `"constructor"`. The constructor record is separated from the class.
+* Support for new tags: `@category`, `@done`, `@typicalname`, `@chainable`
+  
+
+## Synopsis
+```sh
+$ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
+[
+  {
+    "id": "majestic",
+    "longname": "majestic",
+    "name": "majestic",
+    "scope": "global",
+    "kind": "member",
+    "description": "a wonderful global"
+  }
+]
+```
+
+## Compatible Platforms
 Tested on Mac OSX, Linux, Windows 8.1 and Windows XP. 
 
-##As a command-line tool
+## As a command-line tool
 Useful for quick access to the data.. 
 
-###Install
+### Install
 ```sh
 $ npm install -g jsdoc-parse
 ```
 
-###Usage
+### Usage
 ```
-$ jsdoc-parse <src_files>
-$ cat <src_files> | jsdoc-parse 
+Usage
+$ jsdoc-parse <files>
+$ cat <files> | jsdoc-parse
+
+--private              Include identifiers marked @private in the output
+--stats                Print a few stats about the doclets parsed
+--html                 Enable experimental parsing of .html files
+--src <array>          A list of javascript source files or glob expressions
+-s, --sort-by <array>  Sort by one of more fields, e.g. `--sort-by kind category`. Defaults to 'scope kind'.
+-h, --help
 ```
 
 ***Usage form 2 edge case warning***: `jsdoc-parse` will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
 
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
-###Example
-```sh
-$ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
-[
-  {
-    "description": "a wonderful global",
-    "name": "majestic",
-    "longname": "majestic",
-    "kind": "member",
-    "scope": "global"
-  }
-]
-```
+## As a library
+For use within your node.js app. 
 
-##As a library
-For use within node.js. 
-
-###Install
+### Install
 ```sh
 $ npm install jsdoc-parse --save
 ```
@@ -60,41 +74,25 @@ $ npm install jsdoc-parse --save
 ### parse(src, options) ⇒ <code>Stream</code> ⏏
 Documented javascript source in, documentation JSON out.
 
-**Scope**: Exported function  
+**Kind**: Exported function  
 **Returns**: <code>Stream</code> - a readable stream containing the parsed json data  
 **Todo**
 
 - [ ] split into two separate methods
 
 
-| Param | Type | Description |
-| --- | --- | --- |
-| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> | source file(s) to parse |
-| options | <code>object</code> | options |
-| [options.stats] | <code>boolean</code> | Return stats about the doclets parsed |
-| [options.private] | <code>boolean</code> | include @private members in the output |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | source file(s) to parse |
+| options | <code>object</code> |  | options |
+| [options.stats] | <code>boolean</code> |  | Return stats about the doclets parsed |
+| [options.private] | <code>boolean</code> |  | include @private members in the output |
+| [options.html] | <code>boolean</code> |  | if set, you can parse jsdoc from html files |
+| [options.sort-by] | <code>Array</code> | <code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code> | sort the output |
 
 **Example**  
-Code like this:
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
-```
-
-would output something like:
-```json
-[
-  {
-    "description": "Exports a single function (`parse`) to parse jsdoc data.",
-    "kind": "module",
-    "name": "jsdoc-parse",
-    "examples": [
-      "```js\nvar parse = require(\"jsdoc-parse\");\n```"
-    ],
-    "longname": "module:jsdoc-parse"
-  },
-  etc,
-  etc
-]
 ```
 
 *documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*

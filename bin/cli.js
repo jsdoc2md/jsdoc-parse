@@ -1,13 +1,21 @@
 #!/usr/bin/env node
 "use strict";
-
 var parse = require("../");
 var cliArgs = require("command-line-args");
 
-var cli = cliArgs(parse.cliOptions);
+var cli = cliArgs(parse.cliOptions.concat([
+    { name: "help", alias: "h", type: Boolean }
+]));
 
 try {
-	var usage = cli.getUsage();
+	var usage = cli.getUsage({
+	    title: "jsdoc-parse",
+        header: "Jsdoc-annotated javascript in, JSON out",
+        forms: [
+            "$ jsdoc-parse <files>",
+            "$ cat <files> | jsdoc-parse"
+        ]
+	});
 	var argv = cli.parse();
 } catch (err){
 	console.log(err.message);
