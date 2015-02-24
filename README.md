@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 # jsdoc-parse
-Jsdoc-annotated javascript in, JSON out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
+Jsdoc-annotated javascript in, parsed documentation data out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
 
 * Some new fields: `id` (unique identifier), `isExported`, `thisvalue`, `typicalname`, `category` and `todoList`
 * A new kind: `"constructor"`. The constructor record is separated from the class.
@@ -85,9 +85,9 @@ Documented javascript source in, documentation JSON out.
 | --- | --- | --- | --- |
 | src | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | source file(s) to parse |
 | options | <code>object</code> |  | options |
-| [options.stats] | <code>boolean</code> |  | Return stats about the doclets parsed |
-| [options.private] | <code>boolean</code> |  | include @private members in the output |
-| [options.html] | <code>boolean</code> |  | if set, you can parse jsdoc from html files |
+| [options.stats] | <code>boolean</code> | <code>false</code> | Return stats about the doclets parsed |
+| [options.private] | <code>boolean</code> | <code>false</code> | include @private members in the output |
+| [options.html] | <code>boolean</code> | <code>false</code> | if set, you can parse jsdoc from html files |
 | [options.sort-by] | <code>Array</code> | <code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code> | sort the output |
 
 **Example**  
@@ -95,6 +95,6 @@ Documented javascript source in, documentation JSON out.
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
 
-*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*
+* * * 
 
-&copy; 2015 Lloyd Brookes <75pound@gmail.com>
+&copy; 2015 Lloyd Brookes <75pound@gmail.com>. *Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
