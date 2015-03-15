@@ -4,12 +4,22 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 # jsdoc-parse
-Jsdoc-annotated source code in, JSON format documentation out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
+Jsdoc-annotated source code in, JSON format documentation out. The input can be plain javascript or html (see `--html` option). 
 
-* Some new fields: `id` (unique identifier), `isExported`, `thisvalue`, `typicalname`, `category` and `todoList`
+Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few extras:
+
+* Support for new tags in the input javascript
+  * `@category <string>`: Useful for grouping identifiers by category.
+  * `@done`: Used mark `@todo` items as complete. 
+  * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for instances of `jQuery`), `_` (the typical name for underscore instances).
+  * `@chainable`: Set on chainable methods with a return value of `this`.
+* Some new fields: 
+  * `id`: a unique identifier (the jsdoc `longname` field is not guaranteed unique)
+  * `isExported`: set to true on the identifier which is exported from a module.
+  * `todoList`: A list. 
+  * `typicalname` 
+  * `category` 
 * A new kind: `"constructor"`. The constructor record is separated from the class.
-* Support for new tags: `@category`, `@done`, `@typicalname`, `@chainable`
-  
 
 ## Synopsis
 ### Simple example
@@ -188,7 +198,7 @@ $ jsdoc-parse --help
   -h, --help
 ```
 
-***Usage form 2 edge case warning***: `jsdoc-parse` will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
+***Usage form 2 warning***: When piping input into `jsdoc-parse` it will intepret the whole of what is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
 
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
