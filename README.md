@@ -136,7 +136,7 @@ $ npm install jsdoc-parse --save
 ```
 
 ##API Reference
-  Exports a single function (`parse`) to parse jsdoc data.
+  Exports a single function to parse jsdoc data.
 
 **Example**  
 ```js
@@ -159,6 +159,7 @@ Documented javascript source in, documentation JSON out.
   - \[private =<code>false</code>\] <code>boolean</code> - include @private members in the output  
   - \[html =<code>false</code>\] <code>boolean</code> - if set, you can parse jsdoc from html files  
   - \[sort-by =<code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code>\] <code>Array</code> - sort the output  
+
 **Example**  
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
