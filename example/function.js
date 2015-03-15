@@ -6,4 +6,4 @@ Pump an idiot full of volts. Returns a promise they will slump.
 @return {external:Promise}
 @resolve {Slump}
 */
-function taze(victim, options, done){}
+function taze(victim, crazyHair){}

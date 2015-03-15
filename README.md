@@ -39,7 +39,7 @@ Pump an idiot full of volts. Returns a promise they will slump.
 @return {external:Promise}
 @resolve {Slump}
 */
-function taze(victim, options, done){}
+function taze(victim, crazyHair){}
 ```
 
 returns this JSON:
@@ -105,7 +105,7 @@ Tested on Mac OSX, Linux, Windows 8.1 and Windows XP.
 ### As a command-line tool
 Useful for quick access to the data.. 
 
-```sh
+```
 $ npm install -g jsdoc-parse
 $ jsdoc-parse --help
 
@@ -143,11 +143,10 @@ $ npm install jsdoc-parse --save
 var parse = require("jsdoc-parse");
 ```
 <a name="exp_module_jsdoc-parse--parse"></a>
-### parse(src, options) ⇒ <code>Stream</code> ⏏
+### parse(src, options) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
 
 **Kind**: Exported function  
-**Returns**: <code>Stream</code> - a readable stream containing the parsed json data  
 **Todo**
 
 - [ ] split into two separate methods
