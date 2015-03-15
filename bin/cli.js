@@ -10,7 +10,7 @@ var cli = cliArgs(parse.cliOptions.concat([
 try {
 	var usage = cli.getUsage({
 	    title: "jsdoc-parse",
-        header: "Jsdoc-annotated javascript in, JSON out",
+        header: "Jsdoc-annotated source code in, JSON format documentation out.",
         forms: [
             "$ jsdoc-parse <files>",
             "$ cat <files> | jsdoc-parse"

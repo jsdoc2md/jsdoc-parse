@@ -29,6 +29,20 @@ $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
 ```
 
 ### Longer example
+This input javascript: 
+```js
+/**
+Pump an idiot full of volts. Returns a promise they will slump. 
+@deprecated
+@param {object | array} - the victim(s) to fry
+@param [crazyHair=true] {boolean} - optional spikey hair effect
+@return {external:Promise}
+@resolve {Slump}
+*/
+function taze(victim, options, done){}
+```
+
+returns this JSON:
 ```
 $ jsdoc-parse example/function.js
 [
@@ -83,44 +97,45 @@ $ jsdoc-parse example/function.js
 ]
 ```
 
-## Compatible Platforms
+## Install and use
+
+### Compatible Platforms
 Tested on Mac OSX, Linux, Windows 8.1 and Windows XP. 
 
-## As a command-line tool
+### As a command-line tool
 Useful for quick access to the data.. 
 
-### Install
 ```sh
 $ npm install -g jsdoc-parse
-```
+$ jsdoc-parse --help
 
-### Usage
-```
-Usage
-$ jsdoc-parse <files>
-$ cat <files> | jsdoc-parse
+  jsdoc-parse
+  Jsdoc-annotated source code in, JSON format documentation out.
 
---private              Include identifiers marked @private in the output
---stats                Print a few stats about the doclets parsed
---html                 Enable experimental parsing of .html files
---src <array>          A list of javascript source files or glob expressions
--s, --sort-by <array>  Sort by one of more fields, e.g. `--sort-by kind category`. Defaults to 'scope kind'.
--h, --help
+  Usage
+  $ jsdoc-parse <files>
+  $ cat <files> | jsdoc-parse
+
+  --private              Include identifiers marked @private in the output
+  --stats                Print a few stats about the doclets parsed
+  --html                 Enable experimental parsing of .html files
+  --src <array>          A list of javascript source files or glob expressions
+  -s, --sort-by <array>  Sort by one of more fields, e.g. `--sort-by kind category`. Defaults to 'scope kind'.
+  -h, --help
 ```
 
 ***Usage form 2 edge case warning***: `jsdoc-parse` will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
 
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
-## As a library
+### As a library
 For use within your node.js app. 
 
-### Install
 ```sh
 $ npm install jsdoc-parse --save
 ```
 
-###API Reference
+##API Reference
   Exports a single function (`parse`) to parse jsdoc data.
 
 **Example**  
@@ -137,16 +152,14 @@ Documented javascript source in, documentation JSON out.
 
 - [ ] split into two separate methods
 
+**Params**
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| src | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | source file(s) to parse |
-| options | <code>object</code> |  | options |
-| [options.stats] | <code>boolean</code> | <code>false</code> | Return stats about the doclets parsed |
-| [options.private] | <code>boolean</code> | <code>false</code> | include @private members in the output |
-| [options.html] | <code>boolean</code> | <code>false</code> | if set, you can parse jsdoc from html files |
-| [options.sort-by] | <code>Array</code> | <code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code> | sort the output |
-
+- src <code>string</code> | <code>Array.&lt;string&gt;</code> - source file(s) to parse  
+- options <code>object</code> - options  
+  - \[stats =<code>false</code>\] <code>boolean</code> - Return stats about the doclets parsed  
+  - \[private =<code>false</code>\] <code>boolean</code> - include @private members in the output  
+  - \[html =<code>false</code>\] <code>boolean</code> - if set, you can parse jsdoc from html files  
+  - \[sort-by =<code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code>\] <code>Array</code> - sort the output  
 **Example**  
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);

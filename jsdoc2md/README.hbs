@@ -29,6 +29,20 @@ $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
 ```
 
 ### Longer example
+This input javascript: 
+```js
+/**
+Pump an idiot full of volts. Returns a promise they will slump. 
+@deprecated
+@param {object | array} - the victim(s) to fry
+@param [crazyHair=true] {boolean} - optional spikey hair effect
+@return {external:Promise}
+@resolve {Slump}
+*/
+function taze(victim, options, done){}
+```
+
+returns this JSON:
 ```
 $ jsdoc-parse example/function.js
 [
@@ -83,44 +97,45 @@ $ jsdoc-parse example/function.js
 ]
 ```
 
-## Compatible Platforms
+## Install and use
+
+### Compatible Platforms
 Tested on Mac OSX, Linux, Windows 8.1 and Windows XP. 
 
-## As a command-line tool
+### As a command-line tool
 Useful for quick access to the data.. 
 
-### Install
 ```sh
 $ npm install -g jsdoc-parse
-```
+$ jsdoc-parse --help
 
-### Usage
-```
-Usage
-$ jsdoc-parse <files>
-$ cat <files> | jsdoc-parse
+  jsdoc-parse
+  Jsdoc-annotated source code in, JSON format documentation out.
 
---private              Include identifiers marked @private in the output
---stats                Print a few stats about the doclets parsed
---html                 Enable experimental parsing of .html files
---src <array>          A list of javascript source files or glob expressions
--s, --sort-by <array>  Sort by one of more fields, e.g. `--sort-by kind category`. Defaults to 'scope kind'.
--h, --help
+  Usage
+  $ jsdoc-parse <files>
+  $ cat <files> | jsdoc-parse
+
+  --private              Include identifiers marked @private in the output
+  --stats                Print a few stats about the doclets parsed
+  --html                 Enable experimental parsing of .html files
+  --src <array>          A list of javascript source files or glob expressions
+  -s, --sort-by <array>  Sort by one of more fields, e.g. `--sort-by kind category`. Defaults to 'scope kind'.
+  -h, --help
 ```
 
 ***Usage form 2 edge case warning***: `jsdoc-parse` will intepret whatever is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
 
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
-## As a library
+### As a library
 For use within your node.js app. 
 
-### Install
 ```sh
 $ npm install jsdoc-parse --save
 ```
 
-###API Reference
+##API Reference
 {{#module name="jsdoc-parse"~}}
   {{>body~}}
   {{>member-index~}}
