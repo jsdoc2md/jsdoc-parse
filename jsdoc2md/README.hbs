@@ -4,22 +4,25 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 # jsdoc-parse
-Jsdoc-annotated source code in, JSON format documentation out. The input can be plain javascript or html (see `--html` option). 
+Jsdoc-annotated source code in, JSON format documentation out.
 
 Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few extras:
 
+* Support for html input files (see `--html` option).
 * Support for new tags in the input javascript
   * `@category <string>`: Useful for grouping identifiers by category.
-  * `@done`: Used mark `@todo` items as complete. 
-  * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for instances of `jQuery`), `_` (the typical name for underscore instances).
-  * `@chainable`: Set on chainable methods with a return value of `this`.
+  * `@done`: Used to mark `@todo` items as complete. 
+  * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for `jQuery` instances), `_` (underscore) etc.
+  * `@chainable`: Set to mark a method as chainable (has a return value of `this`).
 * Some new fields: 
   * `id`: a unique identifier (the jsdoc `longname` field is not guaranteed unique)
   * `isExported`: set to true on the identifier which is exported from a module.
   * `todoList`: A list. 
   * `typicalname` 
   * `category` 
-* A new kind: `"constructor"`. The constructor record is separated from the class.
+  * `order`: The sort position of the identifier in the source file. Useful for use in `--sort-by` expressions.
+* A separate constructor record. In jsdoc, the class and constructor information are contained within the same record. In jsdoc-parse, the constructor information is separated from the class into a record with kind `"constructor"`.
+
 
 ## Synopsis
 ### Simple example
