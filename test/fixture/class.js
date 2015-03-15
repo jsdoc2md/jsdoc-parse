@@ -2,6 +2,7 @@
 the global class constructor
 @class
 @classdesc a global class
+@private
 @param {number} - first param
 @param {string} - second param
 */

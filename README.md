@@ -4,7 +4,7 @@
 [![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
 
 # jsdoc-parse
-Jsdoc-annotated javascript in, parsed documentation data out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
+Jsdoc-annotated source code in, JSON format documentation out. The input can be plain javascript or html (see `--html` option). Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsdoc3/jsdoc) with a few modifications:
 
 * Some new fields: `id` (unique identifier), `isExported`, `thisvalue`, `typicalname`, `category` and `todoList`
 * A new kind: `"constructor"`. The constructor record is separated from the class.
@@ -12,7 +12,8 @@ Jsdoc-annotated javascript in, parsed documentation data out. The input can be p
   
 
 ## Synopsis
-```sh
+### Simple example
+```
 $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
 [
   {
@@ -21,7 +22,63 @@ $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
     "name": "majestic",
     "scope": "global",
     "kind": "member",
-    "description": "a wonderful global"
+    "description": "a wonderful global",
+    "order": 0
+  }
+]
+```
+
+### Longer example
+```
+$ jsdoc-parse example/function.js
+[
+  {
+    "id": "taze",
+    "longname": "taze",
+    "name": "taze",
+    "scope": "global",
+    "kind": "function",
+    "description": "Pump an idiot full of volts. Returns a promise they will slump.",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "object",
+            "array"
+          ]
+        },
+        "description": "the victim(s) to fry",
+        "name": "victim"
+      },
+      {
+        "type": {
+          "names": [
+            "boolean"
+          ]
+        },
+        "optional": true,
+        "defaultvalue": true,
+        "description": "optional spikey hair effect",
+        "name": "crazyHair"
+      }
+    ],
+    "returns": [
+      {
+        "type": {
+          "names": [
+            "external:Promise"
+          ]
+        }
+      }
+    ],
+    "deprecated": true,
+    "customTags": [
+      {
+        "tag": "resolve",
+        "value": "{Slump}"
+      }
+    ],
+    "order": 0
   }
 ]
 ```
@@ -65,11 +122,11 @@ $ npm install jsdoc-parse --save
 
 ###API Reference
   Exports a single function (`parse`) to parse jsdoc data.
-  
-  **Example**  
-  ```js
-  var parse = require("jsdoc-parse");
-  ```
+
+**Example**  
+```js
+var parse = require("jsdoc-parse");
+```
 <a name="exp_module_jsdoc-parse--parse"></a>
 ### parse(src, options) ⇒ <code>Stream</code> ⏏
 Documented javascript source in, documentation JSON out.
@@ -97,4 +154,4 @@ parse("lib/jsdoc-parse.js").pipe(process.stdout);
 
 * * * 
 
-&copy; 2015 Lloyd Brookes <75pound@gmail.com>. *Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
+&copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. *Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
