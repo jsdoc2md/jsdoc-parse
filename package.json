@@ -1,7 +1,7 @@
 {
   "name": "jsdoc-parse",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Jsdoc-annotated source code in, JSON format documentation out.",
   "repository": "https://github.com/75lb/jsdoc-parse.git",
   "main": "lib/jsdoc-parse.js",
