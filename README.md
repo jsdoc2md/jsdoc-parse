@@ -43,7 +43,7 @@ function taze(victim, crazyHair){}
 ```
 
 returns this JSON:
-```
+```json
 $ jsdoc-parse example/function.js
 [
   {
@@ -93,6 +93,70 @@ $ jsdoc-parse example/function.js
       }
     ],
     "order": 0
+  }
+]
+```
+
+### HTML input example
+This input HTML:
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    /**
+    something in the head
+    @type {number}
+    */
+    var headGlobal = 1;
+    </script>
+  </head>
+  <body class="main">
+    <script>
+    /**
+    body global
+    @type {string}
+    @default
+    */
+    var bodyGlobal = "one";
+    
+    </script>
+  </body>
+</html>
+```
+
+produces this JSON output: 
+```json
+$ jsdoc-parse example/doc.html --html
+[
+  {
+    "id": "headGlobal",
+    "longname": "headGlobal",
+    "name": "headGlobal",
+    "scope": "global",
+    "kind": "member",
+    "description": "something in the head",
+    "type": {
+      "names": [
+        "number"
+      ]
+    },
+    "order": 0
+  },
+  {
+    "id": "bodyGlobal",
+    "longname": "bodyGlobal",
+    "name": "bodyGlobal",
+    "scope": "global",
+    "kind": "member",
+    "description": "body global",
+    "type": {
+      "names": [
+        "string"
+      ]
+    },
+    "defaultvalue": "one",
+    "order": 1
   }
 ]
 ```
