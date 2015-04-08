@@ -1,7 +1,7 @@
 [![view on npm](http://img.shields.io/npm/v/jsdoc-parse.svg)](https://www.npmjs.org/package/jsdoc-parse)
 [![npm module downloads per month](http://img.shields.io/npm/dm/jsdoc-parse.svg)](https://www.npmjs.org/package/jsdoc-parse)
 [![Build Status](https://travis-ci.org/75lb/jsdoc-parse.svg?branch=master)](https://travis-ci.org/75lb/jsdoc-parse)
-[![Dependency Status](https://david-dm.org/75lb/jsdoc-parse.svg)](https://david-dm.org/75lb/jsdoc-parse)
+[![Dependency Status](https://david-dm.org/jsdoc2md/jsdoc-parse.svg)](https://david-dm.org/jsdoc2md/jsdoc-parse)
 
 # jsdoc-parse
 Jsdoc-annotated source code in, JSON format documentation out.
@@ -219,6 +219,11 @@ $ npm install jsdoc-parse --save
 ```js
 var parse = require("jsdoc-parse");
 ```
+
+* [jsdoc-parse](#module_jsdoc-parse)
+  * [parse(src, options)](#exp_module_jsdoc-parse--parse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+    * [~parseOptions](#module_jsdoc-parse--parse..parseOptions) : <code>object</code>
+
 <a name="exp_module_jsdoc-parse--parse"></a>
 ### parse(src, options) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
@@ -231,16 +236,24 @@ Documented javascript source in, documentation JSON out.
 **Params**
 
 - src <code>string</code> | <code>Array.&lt;string&gt;</code> - source file(s) to parse  
-- options <code>object</code> - options  
-  - \[stats =<code>false</code>\] <code>boolean</code> - Return stats about the doclets parsed  
-  - \[private =<code>false</code>\] <code>boolean</code> - include @private members in the output  
-  - \[html =<code>false</code>\] <code>boolean</code> - if set, you can parse jsdoc from html files  
-  - \[sort-by =<code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code>\] <code>Array</code> - sort the output  
+- options <code>[parseOptions](#module_jsdoc-parse--parse..parseOptions)</code> - parse options  
 
 **Example**  
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
+<a name="module_jsdoc-parse--parse..parseOptions"></a>
+#### parse~parseOptions : <code>object</code>
+**Kind**: inner typedef of <code>[parse](#exp_module_jsdoc-parse--parse)</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| stats | <code>boolean</code> | <code>false</code> | Return stats about the doclets parsed |
+| private | <code>boolean</code> | <code>false</code> | include @private members in the output |
+| html | <code>boolean</code> | <code>false</code> | if set, you can parse jsdoc from html files |
+| sort-by | <code>Array</code> | <code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code> | sort the output |
+
 
 * * * 
 
