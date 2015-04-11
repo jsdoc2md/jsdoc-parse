@@ -221,30 +221,66 @@ var parse = require("jsdoc-parse");
 ```
 
 * [jsdoc-parse](#module_jsdoc-parse)
-  * [parse(src, options)](#exp_module_jsdoc-parse--parse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
-    * [~parseOptions](#module_jsdoc-parse--parse..parseOptions) : <code>object</code>
+  * [jsdocParse(src, options)](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+    * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
+      * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions#private) : <code>boolean</code>
+      * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions#stats) : <code>boolean</code>
+      * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions#html) : <code>boolean</code>
+      * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions#sort-by) : <code>array</code>
+    * [~parseOptions](#module_jsdoc-parse--jsdocParse..parseOptions) : <code>object</code>
 
-<a name="exp_module_jsdoc-parse--parse"></a>
-### parse(src, options) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+<a name="exp_module_jsdoc-parse--jsdocParse"></a>
+### jsdocParse(src, options) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
 
 **Kind**: Exported function  
-**Todo**
-
-- [ ] split into two separate methods
-
 **Params**
 
 - src <code>string</code> | <code>Array.&lt;string&gt;</code> - source file(s) to parse  
-- options <code>[parseOptions](#module_jsdoc-parse--parse..parseOptions)</code> - parse options  
+- options <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code> - parse options  
 
 **Example**  
 ```js
 parse("lib/jsdoc-parse.js").pipe(process.stdout);
 ```
-<a name="module_jsdoc-parse--parse..parseOptions"></a>
-#### parse~parseOptions : <code>object</code>
-**Kind**: inner typedef of <code>[parse](#exp_module_jsdoc-parse--parse)</code>  
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions"></a>
+#### jsdocParse~ParseOptions
+All options for jsdoc-parse, including defaults
+
+**Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
+
+* [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
+  * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions#private) : <code>boolean</code>
+  * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions#stats) : <code>boolean</code>
+  * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions#html) : <code>boolean</code>
+  * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions#sort-by) : <code>array</code>
+
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions#private"></a>
+##### parseOptions.private : <code>boolean</code>
+Include identifier documentation marked as `@private` in the output
+
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>false</code>  
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions#stats"></a>
+##### parseOptions.stats : <code>boolean</code>
+Print a few stats about the doclets parsed
+
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions#html"></a>
+##### parseOptions.html : <code>boolean</code>
+Enable experimental parsing of .html files.
+
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>false</code>  
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions#sort-by"></a>
+##### parseOptions.sort-by : <code>array</code>
+Sort by one of more fields, e.g. `--sort-by kind category`.
+
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
+<a name="module_jsdoc-parse--jsdocParse..parseOptions"></a>
+#### jsdocParse~parseOptions : <code>object</code>
+**Kind**: inner typedef of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
 **Properties**
 
 | Name | Type | Default | Description |
@@ -257,4 +293,4 @@ parse("lib/jsdoc-parse.js").pipe(process.stdout);
 
 * * * 
 
-&copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. *Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
+&copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
