@@ -221,27 +221,26 @@ var parse = require("jsdoc-parse");
 ```
 
 * [jsdoc-parse](#module_jsdoc-parse)
-  * [jsdocParse(src, options)](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+  * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
     * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
+      * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions#src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
       * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions#private) : <code>boolean</code>
       * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions#stats) : <code>boolean</code>
       * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions#html) : <code>boolean</code>
       * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions#sort-by) : <code>array</code>
-    * [~parseOptions](#module_jsdoc-parse--jsdocParse..parseOptions) : <code>object</code>
 
 <a name="exp_module_jsdoc-parse--jsdocParse"></a>
-### jsdocParse(src, options) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+### jsdocParse([options]) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
 
 **Kind**: Exported function  
 **Params**
 
-- src <code>string</code> | <code>Array.&lt;string&gt;</code> - source file(s) to parse  
-- options <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code> - parse options  
+- [options] <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code> - parse options  
 
 **Example**  
 ```js
-parse("lib/jsdoc-parse.js").pipe(process.stdout);
+parse({ src:"lib/jsdoc-parse.js" }).pipe(process.stdout);
 ```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions"></a>
 #### jsdocParse~ParseOptions
@@ -250,11 +249,26 @@ All options for jsdoc-parse, including defaults
 **Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
 
 * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
+  * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions#src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
   * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions#private) : <code>boolean</code>
   * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions#stats) : <code>boolean</code>
   * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions#html) : <code>boolean</code>
   * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions#sort-by) : <code>array</code>
 
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions#src"></a>
+##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
+The source files to parse. If this option is not set jsdoc-parse will wait for input on stdin.
+
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Example**  
+```js
+var parse = require("jsdoc-parse");
+    parse({ src: "example.js" }).pipe(process.stdout);
+    
+    // or pipe in source code
+    var fs = require("fs");
+    fs.createReadStream("example.js").parse().pipe(process.stdout);
+```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions#private"></a>
 ##### parseOptions.private : <code>boolean</code>
 Include identifier documentation marked as `@private` in the output
@@ -278,18 +292,6 @@ Sort by one of more fields, e.g. `--sort-by kind category`.
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
-<a name="module_jsdoc-parse--jsdocParse..parseOptions"></a>
-#### jsdocParse~parseOptions : <code>object</code>
-**Kind**: inner typedef of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
-**Properties**
-
-| Name | Type | Default | Description |
-| --- | --- | --- | --- |
-| stats | <code>boolean</code> | <code>false</code> | Return stats about the doclets parsed |
-| private | <code>boolean</code> | <code>false</code> | include @private members in the output |
-| html | <code>boolean</code> | <code>false</code> | if set, you can parse jsdoc from html files |
-| sort-by | <code>Array</code> | <code>\[ &quot;scope&quot;, &quot;category&quot;, &quot;kind&quot;, &quot;order&quot; \]</code> | sort the output |
-
 
 * * * 
 

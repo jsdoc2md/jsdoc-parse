@@ -14,7 +14,7 @@ try{
 
 test("valid json out", function(t){
     t.plan(1);
-    var stream = parse("test/fixture/chainable.js");
+    var stream = parse({ src:"test/fixture/chainable.js" });
     stream.on("readable", function(){
         var chunk = this.read();
         if (chunk){
@@ -38,7 +38,7 @@ test("stdin input working", function(t){
 
 test("glob expression", function(t){
     t.plan(2);
-    var stream = parse("lib/*.js");
+    var stream = parse({ src: "lib/*.js" });
     stream.on("readable", function(){
         var chunk = this.read();
         if (chunk){
