@@ -221,7 +221,7 @@ var parse = require("jsdoc-parse");
 ```
 
 * [jsdoc-parse](#module_jsdoc-parse)
-  * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+  * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
     * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
       * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions#src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
       * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions#private) : <code>boolean</code>
@@ -230,7 +230,7 @@ var parse = require("jsdoc-parse");
       * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions#sort-by) : <code>array</code>
 
 <a name="exp_module_jsdoc-parse--jsdocParse"></a>
-### jsdocParse([options]) ⇒ <code>[Transform](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+### jsdocParse([options]) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
 
 **Kind**: Exported function  
@@ -257,17 +257,19 @@ All options for jsdoc-parse, including defaults
 
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions#src"></a>
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-The source files to parse. If this option is not set jsdoc-parse will wait for input on stdin.
+The source files to parse. If this option is not set jsdoc-parse will wait for input to be streamed in.
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Example**  
 ```js
 var parse = require("jsdoc-parse");
-    parse({ src: "example.js" }).pipe(process.stdout);
-    
-    // or pipe in source code
-    var fs = require("fs");
-    fs.createReadStream("example.js").parse().pipe(process.stdout);
+var fs = require("fs");
+
+// either supply one or more file names
+parse({ src: "example.js" }).pipe(process.stdout);
+
+// or pipe in source code
+fs.createReadStream("example.js").parse().pipe(process.stdout);
 ```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions#private"></a>
 ##### parseOptions.private : <code>boolean</code>
