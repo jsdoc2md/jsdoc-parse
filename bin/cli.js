@@ -29,12 +29,12 @@ if (argv.help){
 }
 
 if (argv.src && argv.src.length){
-    var parseStream = parse(argv.src, argv);
+    var parseStream = parse(argv);
     parseStream
         .on("error", console.error)
         .pipe(process.stdout);
 } else {
-    var parseStream = parse(null, argv);
+    var parseStream = parse(argv);
     parseStream.on("error", console.error);
     process.stdin.pipe(parseStream).pipe(process.stdout);
 }
