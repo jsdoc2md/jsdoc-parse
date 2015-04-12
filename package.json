@@ -3,7 +3,7 @@
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "0.3.10",
   "description": "Jsdoc-annotated source code in, JSON format documentation out.",
-  "repository": "https://github.com/75lb/jsdoc-parse.git",
+  "repository": "https://github.com/jsdoc2md/jsdoc-parse.git",
   "main": "lib/jsdoc-parse.js",
   "bin": {
     "jsdoc-parse": "bin/cli.js"
