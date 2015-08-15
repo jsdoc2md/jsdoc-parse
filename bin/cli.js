@@ -4,37 +4,38 @@ var parse = require("../");
 var cliArgs = require("command-line-args");
 
 var cli = cliArgs(parse.cliOptions.concat([
-    { name: "help", alias: "h", type: Boolean }
+    { name: "help", alias: "h", type: Boolean, description: "Display this usage." }
 ]));
 
 try {
 	var usage = cli.getUsage({
 	    title: "jsdoc-parse",
-        header: "Jsdoc-annotated source code in, JSON format documentation out.",
+        description: "Jsdoc-annotated source code in, JSON format documentation out.",
         forms: [
-            "$ jsdoc-parse <files>",
-            "$ cat <files> | jsdoc-parse"
+            "$ jsdoc-parse <options> --src <files>",
+            "$ cat <files> | jsdoc-parse <options>",
+            "$ jsdoc-parse --help"
         ]
 	});
-	var argv = cli.parse();
+	var options = cli.parse();
 } catch (err){
 	console.log(err.message);
 	console.log(usage);
 	process.exit(1);
 }
 
-if (argv.help){
+if (options.help){
 	console.log(usage);
 	process.exit(0);
 }
 
-if (argv.src && argv.src.length){
-    var parseStream = parse(argv);
+if (options.src && options.src.length){
+    var parseStream = parse(options);
     parseStream
         .on("error", console.error)
         .pipe(process.stdout);
 } else {
-    var parseStream = parse(argv);
+    var parseStream = parse(options);
     parseStream.on("error", console.error);
     process.stdin.pipe(parseStream).pipe(process.stdout);
 }
