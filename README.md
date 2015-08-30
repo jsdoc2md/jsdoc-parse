@@ -233,7 +233,7 @@ var parse = require("jsdoc-parse");
 ### jsdocParse([options]) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
 Documented javascript source in, documentation JSON out.
 
-**Kind:** exported function  
+**Kind**: Exported function  
 **Params**
 - [options] <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code> - parse options
 
@@ -245,7 +245,7 @@ parse({ src:"lib/jsdoc-parse.js" }).pipe(process.stdout);
 #### jsdocParse~ParseOptions
 All options for jsdoc-parse, including defaults
 
-**Kind:** inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
+**Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
 
 * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
   * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
@@ -258,7 +258,7 @@ All options for jsdoc-parse, including defaults
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
 The source files to parse. If this option is not set jsdoc-parse will wait for input to be streamed in.
 
-**Kind:** instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Example**  
 ```js
 var parse = require("jsdoc-parse");
@@ -274,25 +274,25 @@ fs.createReadStream("example.js").parse().pipe(process.stdout);
 ##### parseOptions.private : <code>boolean</code>
 Include identifier documentation marked as `@private` in the output
 
-**Kind:** instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default:** <code>false</code>  
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>false</code>  
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions+stats"></a>
 ##### parseOptions.stats : <code>boolean</code>
 Print a few stats about the doclets parsed
 
-**Kind:** instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions+html"></a>
 ##### parseOptions.html : <code>boolean</code>
 Enable experimental parsing of .html files.
 
-**Kind:** instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default:** <code>false</code>  
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>false</code>  
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions+sort-by"></a>
 ##### parseOptions.sort-by : <code>array</code>
 Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
 
-**Kind:** instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default:** <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
+**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
 
 * * * 
 
