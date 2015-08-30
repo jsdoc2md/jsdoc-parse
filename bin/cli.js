@@ -12,10 +12,12 @@ try {
 	    title: "jsdoc-parse",
         description: "Jsdoc-annotated source code in, JSON format documentation out.",
         forms: [
-            "$ jsdoc-parse <options> --src <files>",
-            "$ cat <files> | jsdoc-parse <options>",
-            "$ jsdoc-parse --help"
-        ]
+            "$ jsdoc-parse [-[bold]{PH}] [[bold]{--sort-by} [underline]{fields}] [bold]{--src} [[underline]{file} ...]",
+            "$ cat [underline]{file} ... | jsdoc-parse [-[bold]{PH}] [[bold]{--sort-by} [underline]{fields}]",
+            "$ jsdoc-parse [bold]{--help}",
+            "$ jsdoc-parse [bold]{--stats}"
+        ],
+        optionNameStyles: "bold"
 	});
 	var options = cli.parse();
 } catch (err){
