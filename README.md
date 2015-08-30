@@ -256,7 +256,7 @@ All options for jsdoc-parse, including defaults
 
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions+src"></a>
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-The source files to parse. If this option is not set jsdoc-parse will wait for input to be streamed in.
+A list of javascript source files (or glob expressions) to parse for documentation. If this option is not set jsdoc-parse will wait for source code on stdin (i.e. `cat *.js | jsdoc-parse <options>`).
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Example**  
