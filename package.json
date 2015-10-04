@@ -28,7 +28,7 @@
     "array-tools": "^2",
     "command-line-args": "^1",
     "file-set": "~0.2.1",
-    "jsdoc-75lb": "3.4.0-dev.8",
+    "jsdoc-75lb": "3.4.0-dev.9",
     "more-fs": "~0.5.0",
     "object-tools": "^2",
     "walk-back": "~0.1"
