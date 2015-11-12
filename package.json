@@ -21,17 +21,16 @@
   },
   "scripts": {
     "test": "tape test/*.js",
-    "lint": "jshint lib/*.js bin/*.js test/*.js; echo",
     "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list lib/jsdoc-parse.js > README.md; echo"
   },
   "dependencies": {
     "array-tools": "^2",
-    "command-line-args": "^1",
+    "command-line-args": "^2.1.1",
     "file-set": "~0.2.1",
     "jsdoc-75lb": "3.4.0-dev.9",
     "more-fs": "~0.5.0",
     "object-tools": "^2",
-    "walk-back": "~0.1"
+    "walk-back": "^1"
   },
   "devDependencies": {
     "tape": "^4"
