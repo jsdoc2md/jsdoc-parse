@@ -1,16 +1,16 @@
 /**
 @fires error
 */
-function firesError(){}
+function firesError () {}
 
 /**
 @fires error
 @fires begin
 @fires end
 */
-function firesMany(){}
+function firesMany () {}
 
 /**
 @fires event:docletEvent
 */
-function firesDefinedEvent(){}
+function firesDefinedEvent () {}

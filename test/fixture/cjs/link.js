@@ -22,4 +22,4 @@ this is from {@link module:linkMod}.. it also references {@link external:Math}
 @extends external:Math
 @emits module:linkMod.event:MyEvent
 */
-function linksYeah(){}
+function linksYeah () {}

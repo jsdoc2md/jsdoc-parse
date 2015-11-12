@@ -3,4 +3,4 @@ a global var
 @type {string}
 @default
 */
-var globalVar = "something";
+var globalVar = 'something'

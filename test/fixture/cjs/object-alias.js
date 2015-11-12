@@ -8,8 +8,8 @@ the teams
 @alias module:cjs/object-alias
 */
 var teams = {
-    manu: "england",
-    lyon: "france"
-};
+  manu: 'england',
+  lyon: 'france'
+}
 
-module.exports = teams;
+module.exports = teams

@@ -12,8 +12,8 @@
  * Adds a new method to the built-in string.
  * @function external:String#rot13
  * @example
- * var greeting = new String('hello world');
- * console.log( greeting.rot13() ); // uryyb jbeyq
+ * var greeting = new String('hello world')
+ * console.log( greeting.rot13() ) // uryyb jbeyq
  */
 
 /**
@@ -42,9 +42,9 @@
 /**
 @type {external:Clive}
 */
-var cliveExternal;
+var cliveExternal
 
 /**
 @type {external:String}
 */
-var stringExternal;
+var stringExternal

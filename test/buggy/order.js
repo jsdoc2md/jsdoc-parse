@@ -1,10 +1,10 @@
 /** @class Test */
 
 /** @function Test#method1 */
-function one(){}
+function one () {}
 
 /** @function Test#method2 */
-function two(){}
+function two () {}
 
 /** @function Test#method3 */
-function three(){}
+function three () {}

@@ -2,7 +2,7 @@
 exports a pointer to a function
 @module cjs/function-alias
 */
-module.exports = sum;
+module.exports = sum
 
 /**
 the function
@@ -11,9 +11,9 @@ the function
 @returns {number} the calculation result
 @alias module:cjs/function-alias
 */
-function sum(one, two){};
+function sum (one, two) {}
 
 /**
 an additional static property
 */
-sum.sumthingStatic = 1;
+sum.sumthingStatic = 1

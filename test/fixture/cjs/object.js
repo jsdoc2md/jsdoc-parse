@@ -8,11 +8,11 @@ a module exporting `exports` directly
 the first property
 @type {number}
 */
-exports.one = 1;
+exports.one = 1
 
 /**
 the second property, a function
 @example
 this is the example
 */
-exports.two = function(one, two){};
+exports.two = function (one, two) {}

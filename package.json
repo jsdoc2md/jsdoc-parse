@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "tape": "^4"
+  },
+  "standard": {
+    "ignore": [ "test" ]
   }
 }

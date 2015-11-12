@@ -5,4 +5,4 @@ a global function
 @param {number|string} - third
 @param {Array.<Number|String>} - fourth
 */
-function globalFunction(one, two, three, four){}
+function globalFunction (one, two, three, four) {}

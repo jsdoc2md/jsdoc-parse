@@ -4,4 +4,4 @@
 @throws {string}
 @throws throw three
 */
-function circularIssue(){}
+function circularIssue () {}

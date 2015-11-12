@@ -5,7 +5,7 @@
 /**
 function one
 */
-function functionOne(){}
+function functionOne () {}
 
 /**
 @module two
@@ -14,5 +14,4 @@ function functionOne(){}
 /**
 function two
 */
-function functionOne(){}
-
+function functionOne () {}

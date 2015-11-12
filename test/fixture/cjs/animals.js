@@ -7,32 +7,31 @@ exports animals
 the exported cat
 @type {Animal}
 */
-exports.cat = new Animal();
+exports.cat = new Animal()
 
 /**
 the exported dog
 @type {Animal}
 */
-exports.dog = new Animal();
+exports.dog = new Animal()
 
 /**
 @class
 */
-function Animal(){
-    
+function Animal () {
+  /**
+  @class
+  */
+  function Quadroped () {
     /**
-    @class
+    leg count
     */
-    function Quadroped(){
-        /**
-        leg count
-        */
-        this.legs = 4;
-    }
-    
-    /**
-    animal type
-    @type {Quadroped}
-    */
-    this.type = new Quadroped();
+    this.legs = 4
+  }
+
+  /**
+  animal type
+  @type {Quadroped}
+  */
+  this.type = new Quadroped()
 }

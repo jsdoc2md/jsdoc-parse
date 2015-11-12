@@ -6,4 +6,4 @@
 /**
 a variable in the file
 */
-var fileVar = 1;
+var fileVar = 1

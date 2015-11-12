@@ -2,6 +2,7 @@
 [![npm module downloads per month](http://img.shields.io/npm/dm/jsdoc-parse.svg)](https://www.npmjs.org/package/jsdoc-parse)
 [![Build Status](https://travis-ci.org/jsdoc2md/jsdoc-parse.svg?branch=master)](https://travis-ci.org/jsdoc2md/jsdoc-parse)
 [![Dependency Status](https://david-dm.org/jsdoc2md/jsdoc-parse.svg)](https://david-dm.org/jsdoc2md/jsdoc-parse)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 # jsdoc-parse
 Jsdoc-annotated source code in, JSON format documentation out.
@@ -11,15 +12,15 @@ Essentially, the output is the raw JSON output of [jsdoc](https://github.com/jsd
 * Support for html input files (see `--html` option).
 * Support for new tags in the input javascript
   * `@category <string>`: Useful for grouping identifiers by category.
-  * `@done`: Used to mark `@todo` items as complete. 
+  * `@done`: Used to mark `@todo` items as complete.
   * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for `jQuery` instances), `_` (underscore) etc.
   * `@chainable`: Set to mark a method as chainable (has a return value of `this`).
-* Some new fields: 
+* Some new fields:
   * `id`: a unique identifier (the jsdoc `longname` field is not guaranteed unique)
   * `isExported`: set to true on the identifier which is exported from a module.
-  * `todoList`: A list. 
-  * `typicalname` 
-  * `category` 
+  * `todoList`: A list.
+  * `typicalname`
+  * `category`
   * `order`: The sort position of the identifier in the source file. Useful for use in `--sort-by` expressions.
 * A separate constructor record. In jsdoc, the class and constructor information are contained within the same record. In jsdoc-parse, the constructor information is separated from the class into a record with kind `"constructor"`.
 
@@ -42,10 +43,10 @@ $ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
 ```
 
 ### Longer example
-This input javascript: 
+This input javascript:
 ```js
 /**
-Pump an idiot full of volts. Returns a promise they will slump. 
+Pump an idiot full of volts. Returns a promise they will slump.
 @deprecated
 @param {object | array} - the victim(s) to fry
 @param [crazyHair=true] {boolean} - optional spikey hair effect
@@ -132,13 +133,13 @@ This input HTML:
     @default
     */
     var bodyGlobal = "one";
-    
+
     </script>
   </body>
 </html>
 ```
 
-produces this JSON output: 
+produces this JSON output:
 ```json
 $ jsdoc-parse example/doc.html --html
 [
@@ -177,10 +178,10 @@ $ jsdoc-parse example/doc.html --html
 ## Install and use
 
 ### Compatible Platforms
-Tested on Mac OSX, Linux, Windows 8.1 and Windows XP. 
+Tested on Mac OSX, Linux, Windows 8.1 and Windows XP.
 
 ### As a command-line tool
-Useful for quick access to the data.. 
+Useful for quick access to the data..
 
 ```
 $ npm install -g jsdoc-parse
@@ -206,7 +207,7 @@ $ jsdoc-parse --help
 > The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
 
 ### As a library
-For use within your node.js app. 
+For use within your node.js app.
 
 ```sh
 $ npm install jsdoc-parse --save
@@ -217,7 +218,7 @@ $ npm install jsdoc-parse --save
 
 **Example**  
 ```js
-var parse = require("jsdoc-parse");
+var parse = require("jsdoc-parse")
 ```
 
 * [jsdoc-parse](#module_jsdoc-parse)
@@ -239,7 +240,7 @@ Documented javascript source in, documentation JSON out.
 
 **Example**  
 ```js
-parse({ src:"lib/jsdoc-parse.js" }).pipe(process.stdout);
+parse({ src:"lib/jsdoc-parse.js" }).pipe(process.stdout)
 ```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions"></a>
 #### jsdocParse~ParseOptions
@@ -261,14 +262,14 @@ A list of javascript source files (or glob expressions) to parse for documentati
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Example**  
 ```js
-var parse = require("jsdoc-parse");
-var fs = require("fs");
+var parse = require("jsdoc-parse")
+var fs = require("fs")
 
 // either supply one or more file names
-parse({ src: "example.js" }).pipe(process.stdout);
+parse({ src: "example.js" }).pipe(process.stdout)
 
 // or pipe in source code
-fs.createReadStream("example.js").parse().pipe(process.stdout);
+fs.createReadStream("example.js").parse().pipe(process.stdout)
 ```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions+private"></a>
 ##### parseOptions.private : <code>boolean</code>
@@ -292,8 +293,7 @@ Enable experimental parsing of .html files.
 Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
 
-* * * 
+* * *
 
 &copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).

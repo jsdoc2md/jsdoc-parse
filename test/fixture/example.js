@@ -4,7 +4,7 @@ an example var
 @default "something"
 @example
 var thisVar = funtion(){
-    return "a value";
-};
+    return "a value"
+}
 */
-var exampleVar = "something";
+var exampleVar = 'something'
