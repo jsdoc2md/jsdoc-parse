@@ -213,7 +213,7 @@ For use within your node.js app.
 $ npm install jsdoc-parse --save
 ```
 
-##API Reference
+## API Reference
   Exports a single function to parse jsdoc data.
 
 **Example**  
