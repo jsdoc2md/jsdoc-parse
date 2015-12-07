@@ -1,23 +1,15 @@
 #!/usr/bin/env node
 'use strict'
 var parse = require('../')
-var cliArgs = require('command-line-args')
+var commandLineArgs = require('command-line-args')
+var cliOptions = require('../lib/cli-options')
 
-var cli = cliArgs(parse.cliOptions.concat([
+var cli = commandLineArgs(parse.cliOptions.concat([
   { name: 'help', alias: 'h', type: Boolean, description: 'Display this usage.' }
 ]))
 
 try {
-  var usage = cli.getUsage({
-    title: 'jsdoc-parse',
-    description: 'Jsdoc-annotated source code in, JSON format documentation out.',
-    forms: [
-      '$ jsdoc-parse [-[bold]{PH}] [[bold]{--sort-by} [underline]{fields}] [[bold]{--src} [[underline]{file} ...]]',
-      '$ jsdoc-parse [bold]{--help}',
-      '$ jsdoc-parse [bold]{--stats}'
-    ],
-    optionNameStyles: 'bold'
-  })
+  var usage = cli.getUsage(cliOptions.usage)
   var options = cli.parse()
 } catch (err) {
   console.log(err.message)
