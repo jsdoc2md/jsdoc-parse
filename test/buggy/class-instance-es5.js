@@ -5,22 +5,14 @@
  */
 
 /**
- * create something
+ * constructor description
+ * @class
+ * @classdesc create something
  */
-class Something {
-  /**
-   * constructor description
-   */
-  constructor () {
+function Something () {
     /**
      * a value
      * @type {number}
      */
     this.whatever = 1
-  }
-
-  /**
-   * one 
-   */
-  one () {}
 }
