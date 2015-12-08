@@ -6,7 +6,13 @@ var transform = require('./transform');
 
 exports.publish = function (data) {
   var query = { '!undocumented': true, '!kind': /package|file/ };
-  var json = a.where(data().get(), query);
+  var json = data().get().filter(function (i) {
+    if (i.kind === 'class') {
+      return true;
+    } else {
+      return !i.undocumented && !/package|file/.test(i.kind);
+    }
+  });
 
   json = json.map(transform.setIsExportedFlag);
   json = json.map(transform.setCodename);

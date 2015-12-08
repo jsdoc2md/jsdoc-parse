@@ -8,11 +8,11 @@ var util = require('util');
 var a = require('array-tools');
 var o = require('object-tools');
 var fs = require('fs');
-var mfs = require('more-fs');
 var fileSet = require('file-set');
 var Transform = require('stream').Transform;
 var cliOptions = require('./cli-options');
 var os = require('os');
+var tempPath = require('temp-path');
 
 module.exports = jsdocParse;
 jsdocParse.cliOptions = cliOptions.definitions;
@@ -62,7 +62,7 @@ function jsdocParse(options) {
     return output;
   } else {
     var inputStream = new Transform();
-    var inputFilePath = mfs.getTempFilePath() + '.js';
+    var inputFilePath = tempPath();
 
     var buf = new Buffer(0);
     inputStream._transform = function (chunk, enc, done) {
@@ -85,7 +85,7 @@ function jsdocParse(options) {
             done(err);
           }
         }
-        mfs.deleteFile(inputFilePath);
+        fs.unlinkSync(inputFilePath);
       });
     };
     return inputStream;
@@ -113,7 +113,7 @@ function OutputTransform(options) {
 util.inherits(OutputTransform, Transform);
 
 function getJsdocOutput(src, options, done) {
-  var jsdocTemplatePath = path.resolve(__dirname, '..', 'lib');
+  var jsdocTemplatePath = __dirname;
   var jsdocPath = path.resolve(__dirname, '../node_modules/.bin/jsdoc');
 
   if (!fs.existsSync(jsdocPath)) {
@@ -127,9 +127,9 @@ function getJsdocOutput(src, options, done) {
   }
   args = args.concat(src);
 
-  var outputFilePath = os.tmpdir() + '/jsdoc-stdout.json';
+  var outputFilePath = tempPath();
   var outputFile = fs.openSync(outputFilePath, 'w');
-  var outputStderrPath = os.tmpdir() + '/jsdoc-stderr.json';
+  var outputStderrPath = tempPath();
   var outputStderr = fs.openSync(outputStderrPath, 'w');
   var handle = cp.spawn('node', args, { stdio: [process.stdin, outputFile, outputStderr] });
   handle.on('error', done);

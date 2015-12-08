@@ -22,7 +22,7 @@ exports.definitions = [{
   name: 'conf',
   type: String,
   typeLabel: '[underline]{file}',
-  description: 'Jsdoc config file.'
+  description: 'Path to a jsdoc configuration file, passed directly to `jsdoc -c`.'
 }, {
   name: 'sort-by',
   type: String,
