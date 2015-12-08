@@ -12,7 +12,11 @@ var fileSet = require('file-set');
 var Transform = require('stream').Transform;
 var cliOptions = require('./cli-options');
 var os = require('os');
-var tempPath = require('temp-path');
+var getTempPath = require('temp-path');
+
+function tempPath() {
+  return getTempPath() + 'jsdoc-parse.js';
+}
 
 module.exports = jsdocParse;
 jsdocParse.cliOptions = cliOptions.definitions;
@@ -134,16 +138,18 @@ function getJsdocOutput(src, options, done) {
   var handle = cp.spawn('node', args, { stdio: [process.stdin, outputFile, outputStderr] });
   handle.on('error', done);
   handle.on('close', function (code) {
+    var stderr = fs.readFileSync(outputStderrPath, 'utf8');
+    var stdout = fs.readFileSync(outputFilePath, 'utf8');
+    if (/no input files/.test(stdout)) code = 1;
+
     if (code) {
-      var output = fs.readFileSync(outputStderrPath, 'utf8');
       fs.unlinkSync(outputFilePath);
       fs.unlinkSync(outputStderrPath);
-      done(new Error(output));
+      done(new Error(stderr || stdout));
     } else {
-      var output = fs.readFileSync(outputFilePath, 'utf8');
       fs.unlinkSync(outputFilePath);
       fs.unlinkSync(outputStderrPath);
-      done(null, output);
+      done(null, stdout);
     }
   });
 }

@@ -25,13 +25,13 @@ if (options.src && options.src.length) {
   var parseStream = parse(options)
   parseStream
     .on('error', function (err) {
-      stop(err.message, 1)
+      stop(err.stack, 1)
     })
     .pipe(process.stdout)
 } else {
   var parseStream = parse(options)
   parseStream.on('error', function (err) {
-    stop(err.message, 1)
+    stop(err.stack, 1)
   })
   process.stdin.pipe(parseStream).pipe(process.stdout)
 }
