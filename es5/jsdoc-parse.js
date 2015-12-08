@@ -11,7 +11,6 @@ var fs = require('fs');
 var fileSet = require('file-set');
 var Transform = require('stream').Transform;
 var cliOptions = require('./cli-options');
-var os = require('os');
 var getTempPath = require('temp-path');
 
 function tempPath() {
@@ -182,7 +181,6 @@ function getStats(data) {
   kinds.forEach(function (kind) {
     stats.identifiers[kind] = a(data).where({ kind: kind }).pluck('longname').val();
   });
-  console.log(stats);
   return stats;
 }
 

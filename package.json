@@ -40,7 +40,7 @@
   },
   "standard": {
     "ignore": [
-      "test"
+      "test", "es5", "example"
     ]
   }
 }

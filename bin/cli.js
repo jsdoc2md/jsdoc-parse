@@ -21,15 +21,16 @@ if (options.help) {
   process.exit(0)
 }
 
+var parseStream
 if (options.src && options.src.length) {
-  var parseStream = parse(options)
+  parseStream = parse(options)
   parseStream
     .on('error', function (err) {
       stop(err.stack, 1)
     })
     .pipe(process.stdout)
 } else {
-  var parseStream = parse(options)
+  parseStream = parse(options)
   parseStream.on('error', function (err) {
     stop(err.stack, 1)
   })

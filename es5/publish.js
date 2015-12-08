@@ -1,11 +1,9 @@
 'use strict';
 
-var o = require('object-tools');
 var a = require('array-tools');
 var transform = require('./transform');
 
 exports.publish = function (data) {
-  var query = { '!undocumented': true, '!kind': /package|file/ };
   var json = data().get().filter(function (i) {
     if (i.kind === 'class') {
       return true;
