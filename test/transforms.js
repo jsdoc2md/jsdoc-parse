@@ -1,7 +1,7 @@
 'use strict'
 var test = require('tape')
 var parse = require('../')
-var transform = require('../lib/transform')
+var transform = require('../es5/transform')
 var human = require('./transforms/human')
 var util = require('util')
 
