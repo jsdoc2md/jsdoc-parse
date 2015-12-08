@@ -224,10 +224,10 @@ var parse = require("jsdoc-parse")
 * [jsdoc-parse](#module_jsdoc-parse)
   * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
     * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-      * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-      * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions+private) : <code>boolean</code>
-      * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions+stats) : <code>boolean</code>
-      * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions+html) : <code>boolean</code>
+      * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
+      * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
+      * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
+      * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
       * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
 
 <a name="exp_module_jsdoc-parse--jsdocParse"></a>
@@ -249,13 +249,13 @@ All options for jsdoc-parse, including defaults
 **Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
 
 * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-  * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-  * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions+private) : <code>boolean</code>
-  * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions+stats) : <code>boolean</code>
-  * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions+html) : <code>boolean</code>
+  * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
+  * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
+  * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
+  * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
   * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
 
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions+src"></a>
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src"></a>
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
 A list of javascript source files (or glob expressions) to parse for documentation. If this option is not set jsdoc-parse will wait for source code on stdin (i.e. `cat *.js | jsdoc-parse <options>`).
 
@@ -271,18 +271,18 @@ parse({ src: "example.js" }).pipe(process.stdout)
 // or pipe in source code
 fs.createReadStream("example.js").parse().pipe(process.stdout)
 ```
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions+private"></a>
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private"></a>
 ##### parseOptions.private : <code>boolean</code>
 Include identifier documentation marked as `@private` in the output
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Default**: <code>false</code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions+stats"></a>
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats"></a>
 ##### parseOptions.stats : <code>boolean</code>
 Print a few stats about the doclets parsed
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions+html"></a>
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html"></a>
 ##### parseOptions.html : <code>boolean</code>
 Enable experimental parsing of .html files.
 

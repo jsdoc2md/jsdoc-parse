@@ -171,6 +171,15 @@ function removeUnwanted(identifier) {
   delete identifier.___id;
   delete identifier.___s;
 
+  if (identifier.meta) {
+    var oldMeta = identifier.meta;
+    identifier.meta = {
+      lineno: oldMeta.lineno,
+      filename: oldMeta.filename,
+      path: oldMeta.path
+    };
+  }
+
   return identifier;
 }
 
