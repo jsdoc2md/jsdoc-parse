@@ -32,6 +32,8 @@ var ParseOptions = function ParseOptions() {
 
   this.html = false;
 
+  this.conf = null;
+
   this['sort-by'] = ['scope', 'category', 'kind', 'order'];
 };
 

@@ -39,6 +39,6 @@ exports.definitions = [{
 exports.usage = {
   title: 'jsdoc-parse',
   description: 'Jsdoc-annotated source code in, JSON format documentation out.',
-  forms: ['$ jsdoc-parse [-[bold]{PH}] [[bold]{--sort-by} [underline]{fields}] [[bold]{--src} [underline]{file} ...]', '$ jsdoc-parse [bold]{--help}', '$ jsdoc-parse [bold]{--stats}'],
+  forms: ['$ jsdoc-parse [-[bold]{PH}] [[bold]{--sort-by} [underline]{fields}] [[bold]{--conf} [underline]{file}] [[bold]{--src} [underline]{file} ...]', '$ jsdoc-parse [bold]{--help}', '$ jsdoc-parse [bold]{--stats}'],
   optionNameStyles: 'bold'
 };
