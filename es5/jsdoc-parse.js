@@ -122,7 +122,7 @@ function getJsdocOutput(src, options, done) {
   if (!fs.existsSync(jsdocPath)) {
     throw Error('jsdoc-parse: cannot find jsdoc: ' + jsdocPath);
   }
-  var args = [jsdocPath, '--pedantic', '-t', jsdocTemplatePath];
+  var args = ['--pedantic', '-t', jsdocTemplatePath];
   if (options.html) {
     args = args.concat(['-c', path.resolve(__dirname, 'default-conf.json')]);
   } else if (options.conf) {
@@ -134,7 +134,7 @@ function getJsdocOutput(src, options, done) {
   var outputFile = fs.openSync(outputFilePath, 'w');
   var outputStderrPath = tempPath();
   var outputStderr = fs.openSync(outputStderrPath, 'w');
-  var handle = cp.spawn('node', args, { stdio: [process.stdin, outputFile, outputStderr] });
+  var handle = cp.spawn(jsdocPath, args, { stdio: [process.stdin, outputFile, outputStderr] });
   handle.on('error', done);
   handle.on('close', function (code) {
     var stderr = fs.readFileSync(outputStderrPath, 'utf8');
