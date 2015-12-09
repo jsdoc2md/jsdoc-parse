@@ -12,6 +12,7 @@ var fileSet = require('file-set');
 var Transform = require('stream').Transform;
 var cliOptions = require('./cli-options');
 var getTempPath = require('temp-path');
+var walkBack = require('walk-back');
 
 function tempPath() {
   return getTempPath() + 'jsdoc-parse.js';
@@ -117,7 +118,7 @@ util.inherits(OutputTransform, Transform);
 
 function getJsdocOutput(src, options, done) {
   var jsdocTemplatePath = __dirname;
-  var jsdocPath = path.resolve(__dirname, '../node_modules/.bin/jsdoc');
+  var jsdocPath = walkBack(path.join(__dirname, '..'), path.join('node_modules', 'jsdoc-75lb', 'jsdoc.js'));
 
   if (!fs.existsSync(jsdocPath)) {
     throw Error('jsdoc-parse: cannot find jsdoc: ' + jsdocPath);
