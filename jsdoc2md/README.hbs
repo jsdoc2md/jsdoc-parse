@@ -172,9 +172,6 @@ $ jsdoc-parse example/doc.html --html
 Useful for quick access to the data..
 
 ```
-$ npm install -g jsdoc-parse
-$ jsdoc-parse --help
-
 jsdoc-parse
 
   Jsdoc-annotated source code in, JSON format documentation out.
