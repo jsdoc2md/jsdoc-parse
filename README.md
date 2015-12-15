@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/jsdoc2md/jsdoc-parse.svg?branch=master)](https://travis-ci.org/jsdoc2md/jsdoc-parse)
 [![Dependency Status](https://david-dm.org/jsdoc2md/jsdoc-parse.svg)](https://david-dm.org/jsdoc2md/jsdoc-parse)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
+[![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # jsdoc-parse
 Jsdoc-annotated source code in, JSON format documentation out.
@@ -217,14 +218,14 @@ var parse = require("jsdoc-parse")
 ```
 
 * [jsdoc-parse](#module_jsdoc-parse)
-  * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
-    * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-      * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-      * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
-      * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
-      * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
-      * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-      * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
+    * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
+        * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
+            * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
+            * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
+            * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
+            * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
+            * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
+            * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
 
 <a name="exp_module_jsdoc-parse--jsdocParse"></a>
 ### jsdocParse([options]) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
@@ -245,12 +246,12 @@ All options for jsdoc-parse, including defaults
 **Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
 
 * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-  * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-  * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
-  * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
-  * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
-  * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-  * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
+    * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
+    * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
+    * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
+    * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
+    * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
+    * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
 
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src"></a>
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
