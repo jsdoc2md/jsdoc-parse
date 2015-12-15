@@ -1,0 +1,374 @@
+[
+  {
+    "comment": "/**\n * a global class\n * @private\n */",
+    "meta": {
+      "range": [
+        38,
+        397
+      ],
+      "filename": "es6-class.js",
+      "lineno": 5,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000001",
+        "name": "GlobalClass",
+        "type": "ClassDeclaration",
+        "paramnames": [
+          "one",
+          "two"
+        ]
+      }
+    },
+    "classdesc": "a global class",
+    "access": "private",
+    "name": "GlobalClass",
+    "longname": "GlobalClass",
+    "kind": "class",
+    "scope": "global",
+    "description": "the global class constructor",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "first param",
+        "name": "one"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "second param",
+        "name": "two"
+      }
+    ]
+  },
+  {
+    "comment": "/**\n   * the global class constructor\n   * @param {number} - first param\n   * @param {string} - second param\n   */",
+    "meta": {
+      "range": [
+        177,
+        258
+      ],
+      "filename": "es6-class.js",
+      "lineno": 11,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000004",
+        "name": "GlobalClass",
+        "type": "MethodDefinition",
+        "paramnames": [
+          "one",
+          "two"
+        ]
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "the global class constructor",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "first param",
+        "name": "one"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "second param",
+        "name": "two"
+      }
+    ],
+    "name": "GlobalClass",
+    "longname": "GlobalClass",
+    "kind": "class",
+    "scope": "global",
+    "undocumented": true
+  },
+  {
+    "comment": "/** an instance property */",
+    "meta": {
+      "range": [
+        238,
+        254
+      ],
+      "filename": "es6-class.js",
+      "lineno": 13,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000011",
+        "name": "this.propOne",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propOne",
+    "longname": "GlobalClass#propOne",
+    "kind": "member",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** a static method */",
+    "meta": {
+      "range": [
+        287,
+        304
+      ],
+      "filename": "es6-class.js",
+      "lineno": 17,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000016",
+        "name": "GlobalClass.shat",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "a static method",
+    "name": "shat",
+    "longname": "GlobalClass.shat",
+    "kind": "function",
+    "memberof": "GlobalClass",
+    "scope": "static"
+  },
+  {
+    "comment": "/** parent method one */",
+    "meta": {
+      "range": [
+        335,
+        350
+      ],
+      "filename": "es6-class.js",
+      "lineno": 20,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000020",
+        "name": "GlobalClass#methodOne",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "parent method one",
+    "name": "methodOne",
+    "longname": "GlobalClass#methodOne",
+    "kind": "function",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** parent method two */",
+    "meta": {
+      "range": [
+        380,
+        395
+      ],
+      "filename": "es6-class.js",
+      "lineno": 22,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000024",
+        "name": "GlobalClass#methodTwo",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "parent method two",
+    "name": "methodTwo",
+    "longname": "GlobalClass#methodTwo",
+    "kind": "function",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/**\n * the child of global class\n * @extends GlobalClass\n */",
+    "meta": {
+      "range": [
+        460,
+        639
+      ],
+      "filename": "es6-class.js",
+      "lineno": 29,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000028",
+        "name": "GlobalChildClass",
+        "type": "ClassDeclaration",
+        "paramnames": []
+      }
+    },
+    "classdesc": "the child of global class",
+    "augments": [
+      "GlobalClass"
+    ],
+    "name": "GlobalChildClass",
+    "longname": "GlobalChildClass",
+    "kind": "class",
+    "scope": "global"
+  },
+  {
+    "comment": "",
+    "meta": {
+      "range": [
+        507,
+        582
+      ],
+      "filename": "es6-class.js",
+      "lineno": 30,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000032",
+        "name": "GlobalChildClass",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "undocumented": true,
+    "name": "GlobalChildClass",
+    "longname": "GlobalChildClass",
+    "kind": "class",
+    "scope": "global"
+  },
+  {
+    "comment": "/** an instance property */",
+    "meta": {
+      "range": [
+        560,
+        578
+      ],
+      "filename": "es6-class.js",
+      "lineno": 32,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000037",
+        "name": "this.propThree",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propThree",
+    "longname": "GlobalChildClass#propThree",
+    "kind": "member",
+    "memberof": "GlobalChildClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** overridden child methodTwo */",
+    "meta": {
+      "range": [
+        622,
+        637
+      ],
+      "filename": "es6-class.js",
+      "lineno": 36,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000042",
+        "name": "GlobalChildClass#methodTwo",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "overridden child methodTwo",
+    "name": "methodTwo",
+    "longname": "GlobalChildClass#methodTwo",
+    "kind": "function",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "overrides": "GlobalClass#methodTwo"
+  },
+  {
+    "kind": "package",
+    "longname": "package:undefined",
+    "files": [
+      "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture/es6-class.js"
+    ]
+  },
+  {
+    "comment": "/** an instance property */",
+    "meta": {
+      "range": [
+        238,
+        254
+      ],
+      "filename": "es6-class.js",
+      "lineno": 13,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000011",
+        "name": "this.propOne",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propOne",
+    "longname": "GlobalChildClass#propOne",
+    "kind": "member",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "inherits": "GlobalClass#propOne",
+    "inherited": true
+  },
+  {
+    "comment": "/** parent method one */",
+    "meta": {
+      "range": [
+        335,
+        350
+      ],
+      "filename": "es6-class.js",
+      "lineno": 20,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000020",
+        "name": "GlobalClass#methodOne",
+        "type": "MethodDefinition",
+        "paramnames": []
+      },
+      "vars": {
+        "": null
+      }
+    },
+    "description": "parent method one",
+    "name": "methodOne",
+    "longname": "GlobalChildClass#methodOne",
+    "kind": "function",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "inherits": "GlobalClass#methodOne",
+    "inherited": true
+  }
+]

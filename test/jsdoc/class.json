@@ -1,0 +1,291 @@
+[
+  {
+    "comment": "/**\nthe global class constructor\n@class\n@classdesc a global class\n@private\n@param {number} - first param\n@param {string} - second param\n*/",
+    "meta": {
+      "range": [
+        139,
+        223
+      ],
+      "filename": "class.js",
+      "lineno": 9,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000001",
+        "name": "GlobalClass",
+        "type": "FunctionDeclaration",
+        "paramnames": [
+          "one",
+          "two"
+        ]
+      },
+      "vars": {
+        "this.propOne": "GlobalClass#propOne"
+      }
+    },
+    "description": "the global class constructor",
+    "kind": "class",
+    "classdesc": "a global class",
+    "access": "private",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "first param",
+        "name": "one"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "second param",
+        "name": "two"
+      }
+    ],
+    "name": "GlobalClass",
+    "longname": "GlobalClass",
+    "scope": "global"
+  },
+  {
+    "comment": "/** an instance property */",
+    "meta": {
+      "range": [
+        205,
+        221
+      ],
+      "filename": "class.js",
+      "lineno": 11,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000007",
+        "name": "this.propOne",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propOne",
+    "longname": "GlobalClass#propOne",
+    "kind": "member",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** a static property */",
+    "meta": {
+      "range": [
+        249,
+        272
+      ],
+      "filename": "class.js",
+      "lineno": 14,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000013",
+        "name": "GlobalClass.propTwo",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "a static property",
+    "name": "propTwo",
+    "longname": "GlobalClass.propTwo",
+    "kind": "member",
+    "memberof": "GlobalClass",
+    "scope": "static"
+  },
+  {
+    "comment": "/** parent method one */",
+    "meta": {
+      "range": [
+        299,
+        347
+      ],
+      "filename": "class.js",
+      "lineno": 17,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000019",
+        "name": "GlobalClass.prototype.methodOne",
+        "type": "FunctionExpression",
+        "paramnames": []
+      }
+    },
+    "description": "parent method one",
+    "name": "methodOne",
+    "longname": "GlobalClass#methodOne",
+    "kind": "function",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** parent method two */",
+    "meta": {
+      "range": [
+        373,
+        421
+      ],
+      "filename": "class.js",
+      "lineno": 19,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000028",
+        "name": "GlobalClass.prototype.methodTwo",
+        "type": "FunctionExpression",
+        "paramnames": []
+      }
+    },
+    "description": "parent method two",
+    "name": "methodTwo",
+    "longname": "GlobalClass#methodTwo",
+    "kind": "function",
+    "memberof": "GlobalClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/**\n@class\n@classdesc the child of global class\n@extends GlobalClass\n*/",
+    "meta": {
+      "range": [
+        495,
+        582
+      ],
+      "filename": "class.js",
+      "lineno": 26,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000036",
+        "name": "GlobalChildClass",
+        "type": "FunctionDeclaration",
+        "paramnames": []
+      },
+      "vars": {
+        "this.propThree": "GlobalChildClass#propThree"
+      }
+    },
+    "kind": "class",
+    "classdesc": "the child of global class",
+    "augments": [
+      "GlobalClass"
+    ],
+    "name": "GlobalChildClass",
+    "longname": "GlobalChildClass",
+    "scope": "global",
+    "params": []
+  },
+  {
+    "comment": "/**\n  an instance property\n  */",
+    "meta": {
+      "range": [
+        562,
+        580
+      ],
+      "filename": "class.js",
+      "lineno": 30,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000040",
+        "name": "this.propThree",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propThree",
+    "longname": "GlobalChildClass#propThree",
+    "kind": "member",
+    "memberof": "GlobalChildClass",
+    "scope": "instance"
+  },
+  {
+    "comment": "/** overridden child methodTwo */",
+    "meta": {
+      "range": [
+        617,
+        670
+      ],
+      "filename": "class.js",
+      "lineno": 33,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000046",
+        "name": "GlobalChildClass.prototype.methodTwo",
+        "type": "FunctionExpression",
+        "paramnames": []
+      }
+    },
+    "description": "overridden child methodTwo",
+    "name": "methodTwo",
+    "longname": "GlobalChildClass#methodTwo",
+    "kind": "function",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "overrides": "GlobalClass#methodTwo"
+  },
+  {
+    "kind": "package",
+    "longname": "package:undefined",
+    "files": [
+      "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture/class.js"
+    ]
+  },
+  {
+    "comment": "/** an instance property */",
+    "meta": {
+      "range": [
+        205,
+        221
+      ],
+      "filename": "class.js",
+      "lineno": 11,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000007",
+        "name": "this.propOne",
+        "type": "Literal",
+        "value": 1,
+        "paramnames": []
+      }
+    },
+    "description": "an instance property",
+    "name": "propOne",
+    "longname": "GlobalChildClass#propOne",
+    "kind": "member",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "inherits": "GlobalClass#propOne",
+    "inherited": true
+  },
+  {
+    "comment": "/** parent method one */",
+    "meta": {
+      "range": [
+        299,
+        347
+      ],
+      "filename": "class.js",
+      "lineno": 17,
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture",
+      "code": {
+        "id": "astnode100000019",
+        "name": "GlobalClass.prototype.methodOne",
+        "type": "FunctionExpression",
+        "paramnames": []
+      }
+    },
+    "description": "parent method one",
+    "name": "methodOne",
+    "longname": "GlobalChildClass#methodOne",
+    "kind": "function",
+    "memberof": "GlobalChildClass",
+    "scope": "instance",
+    "inherits": "GlobalClass#methodOne",
+    "inherited": true
+  }
+]

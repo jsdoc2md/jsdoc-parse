@@ -1,0 +1,193 @@
+[
+  {
+    "id": "GlobalClass",
+    "longname": "GlobalClass",
+    "name": "GlobalClass",
+    "scope": "global",
+    "kind": "class",
+    "description": "a global class",
+    "meta": {
+      "lineno": 4,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 0
+  },
+  {
+    "id": "GlobalChildClass",
+    "longname": "GlobalChildClass",
+    "name": "GlobalChildClass",
+    "scope": "global",
+    "kind": "class",
+    "augments": [
+      "GlobalClass"
+    ],
+    "description": "the child of global class",
+    "meta": {
+      "lineno": 28,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 6
+  },
+  {
+    "id": "GlobalClass()",
+    "longname": "GlobalClass",
+    "name": "GlobalClass",
+    "scope": "global",
+    "kind": "constructor",
+    "description": "the global class constructor",
+    "memberof": "GlobalClass",
+    "params": [
+      {
+        "type": {
+          "names": [
+            "number"
+          ]
+        },
+        "description": "first param",
+        "name": "one"
+      },
+      {
+        "type": {
+          "names": [
+            "string"
+          ]
+        },
+        "description": "second param",
+        "name": "two"
+      }
+    ],
+    "meta": {
+      "lineno": 10,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 1
+  },
+  {
+    "id": "GlobalClass#propOne",
+    "longname": "GlobalClass#propOne",
+    "name": "propOne",
+    "scope": "instance",
+    "kind": "member",
+    "description": "an instance property",
+    "memberof": "GlobalClass",
+    "meta": {
+      "lineno": 12,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 2
+  },
+  {
+    "id": "GlobalChildClass#propThree",
+    "longname": "GlobalChildClass#propThree",
+    "name": "propThree",
+    "scope": "instance",
+    "kind": "member",
+    "description": "an instance property",
+    "memberof": "GlobalChildClass",
+    "meta": {
+      "lineno": 31,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 7
+  },
+  {
+    "id": "GlobalChildClass#propOne",
+    "longname": "GlobalChildClass#propOne",
+    "name": "propOne",
+    "scope": "instance",
+    "kind": "member",
+    "inherits": "GlobalClass#propOne",
+    "inherited": true,
+    "description": "an instance property",
+    "memberof": "GlobalChildClass",
+    "meta": {
+      "lineno": 12,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 9
+  },
+  {
+    "id": "GlobalClass#methodOne",
+    "longname": "GlobalClass#methodOne",
+    "name": "methodOne",
+    "scope": "instance",
+    "kind": "function",
+    "description": "parent method one",
+    "memberof": "GlobalClass",
+    "meta": {
+      "lineno": 19,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 4
+  },
+  {
+    "id": "GlobalClass#methodTwo",
+    "longname": "GlobalClass#methodTwo",
+    "name": "methodTwo",
+    "scope": "instance",
+    "kind": "function",
+    "description": "parent method two",
+    "memberof": "GlobalClass",
+    "meta": {
+      "lineno": 21,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 5
+  },
+  {
+    "id": "GlobalChildClass#methodTwo",
+    "longname": "GlobalChildClass#methodTwo",
+    "name": "methodTwo",
+    "scope": "instance",
+    "kind": "function",
+    "overrides": "GlobalClass#methodTwo",
+    "description": "overridden child methodTwo",
+    "memberof": "GlobalChildClass",
+    "meta": {
+      "lineno": 35,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 8
+  },
+  {
+    "id": "GlobalChildClass#methodOne",
+    "longname": "GlobalChildClass#methodOne",
+    "name": "methodOne",
+    "scope": "instance",
+    "kind": "function",
+    "inherits": "GlobalClass#methodOne",
+    "inherited": true,
+    "description": "parent method one",
+    "memberof": "GlobalChildClass",
+    "meta": {
+      "lineno": 19,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 10
+  },
+  {
+    "id": "GlobalClass.shat",
+    "longname": "GlobalClass.shat",
+    "name": "shat",
+    "scope": "static",
+    "kind": "function",
+    "description": "a static method",
+    "memberof": "GlobalClass",
+    "meta": {
+      "lineno": 16,
+      "filename": "es6-class.js",
+      "path": "/Users/lloyd/Documents/75lb/jsdoc-parse/test/fixture"
+    },
+    "order": 3
+  }
+]
