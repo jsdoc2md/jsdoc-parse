@@ -2,6 +2,7 @@
 
 var o = require('object-tools');
 var a = require('array-tools');
+var testValue = require('test-value');
 
 var data;
 exports.createConstructor = createConstructor;
@@ -96,13 +97,16 @@ function insertConstructors(data) {
   var toDelete = [];
 
   data.forEach(function (identifier, index) {
-    if (identifier.kind === 'class' && identifier.scope !== 'static') {
-      var es6constructor = a.findWhere(data, { kind: 'class', scope: 'static', memberof: identifier.longname });
+    if (isES5Class(identifier)) {
+      replacements.push({ index: index, items: createConstructor(identifier) });
+    } else if (isES6Class(identifier)) {
+      var es6constructor = getEs6Constructor(data, identifier);
       if (es6constructor) {
         if (!(es6constructor.description || es6constructor.params && es6constructor.params.length)) {
           toDelete.push(es6constructor);
         }
         es6constructor.kind = 'constructor';
+        es6constructor.memberof = identifier.longname;
         var constructorChildren = a.where(data, { memberof: es6constructor.longname });
         constructorChildren.forEach(function (i) {
           i.memberof = identifier.longname;
@@ -110,8 +114,6 @@ function insertConstructors(data) {
         identifier.description = identifier.classdesc;
         delete identifier.classdesc;
         delete identifier.params;
-      } else {
-        replacements.push({ index: index, items: createConstructor(identifier) });
       }
     }
   });
@@ -126,6 +128,28 @@ function insertConstructors(data) {
   });
 
   return data;
+}
+
+function getEs6Constructor(data, identifier) {
+  return data.find(isES6Constructor);
+}
+function isES5Class(identifier) {
+  return testValue(identifier, {
+    kind: 'class',
+    meta: { code: { type: 'FunctionDeclaration' } }
+  });
+}
+function isES6Class(identifier) {
+  return testValue(identifier, {
+    kind: 'class',
+    meta: { code: { type: 'ClassDeclaration' } }
+  });
+}
+function isES6Constructor(identifier) {
+  return testValue(identifier, {
+    kind: 'class',
+    meta: { code: { type: 'MethodDefinition' } }
+  });
 }
 
 function updateIDReferences(identifier, newID) {
