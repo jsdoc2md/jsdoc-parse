@@ -1,5 +1,6 @@
 'use strict';
 
+require('core-js/es6/array');
 var a = require('array-tools');
 var transform = require('./transform');
 

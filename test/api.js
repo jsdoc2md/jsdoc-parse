@@ -2,7 +2,7 @@
 var test = require('tape')
 var parse = require('../')
 
-test('valid json out', function (t) {
+test('api: valid json out', function (t) {
   t.plan(1)
   var stream = parse({ src: 'test/fixture/chainable.js' })
   stream.on('readable', function () {
@@ -14,7 +14,7 @@ test('valid json out', function (t) {
   })
 })
 
-test('glob expression', function (t) {
+test('api: glob expression', function (t) {
   t.plan(2)
   var stream = parse({ src: 'lib/*.js' })
   stream.on('readable', function () {
