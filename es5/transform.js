@@ -131,7 +131,7 @@ function insertConstructors(data) {
 }
 
 function getEs6Constructor(data, identifier) {
-  return data.find(isES6Constructor);
+  return a.findWhere(data, isES6Constructor);
 }
 function isES5Class(identifier) {
   return testValue(identifier, {

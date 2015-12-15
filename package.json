@@ -28,7 +28,6 @@
     "ansi-escape-sequences": "^2.2.1",
     "array-tools": "^2",
     "command-line-args": "^2.1.1",
-    "core-js": "^1.2.6",
     "feature-detect-es6": "^1.2.0",
     "file-set": "~0.2.1",
     "jsdoc-75lb": "^3.4.1",
