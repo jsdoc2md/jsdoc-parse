@@ -30,7 +30,7 @@
     "command-line-args": "^2.1.1",
     "feature-detect-es6": "^1.2.0",
     "file-set": "~0.2.1",
-    "jsdoc-75lb": "^3.4.1",
+    "jsdoc-75lb": "^3.5",
     "object-tools": "^2",
     "temp-path": "^1.0.0",
     "test-value": "^1.0.1",
