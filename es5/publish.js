@@ -4,12 +4,11 @@ var a = require('array-tools');
 var transform = require('./transform');
 
 exports.publish = function (data) {
-  var json = data().get().filter(function (i) {
-    if (i.kind === 'class') {
-      return true;
-    } else {
-      return !i.undocumented && !/package|file/.test(i.kind);
-    }
+  data = data().get();
+  data = transform.fixConstructorMemberLongnames(data);
+
+  var json = data.filter(function (i) {
+    return !i.undocumented && !/package|file/.test(i.kind);
   });
 
   json = json.map(transform.setIsExportedFlag);

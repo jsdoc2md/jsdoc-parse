@@ -7,6 +7,7 @@ var testValue = require('test-value');
 var data;
 exports.createConstructor = createConstructor;
 exports.insertConstructors = insertConstructors;
+exports.fixConstructorMemberLongnames = fixConstructorMemberLongnames;
 exports.setIsExportedFlag = setIsExportedFlag;
 exports.setCodename = setCodename;
 exports.setID = setID;
@@ -94,27 +95,10 @@ function createConstructor(class_) {
 
 function insertConstructors(data) {
   var replacements = [];
-  var toDelete = [];
 
   data.forEach(function (identifier, index) {
-    if (isES5Class(identifier)) {
+    if (identifier.kind === 'class') {
       replacements.push({ index: index, items: createConstructor(identifier) });
-    } else if (isES6Class(identifier)) {
-      var es6constructor = getEs6Constructor(data, identifier);
-      if (es6constructor) {
-        if (!(es6constructor.description || es6constructor.params && es6constructor.params.length)) {
-          toDelete.push(es6constructor);
-        }
-        es6constructor.kind = 'constructor';
-        es6constructor.memberof = identifier.longname;
-        var constructorChildren = a.where(data, { memberof: es6constructor.longname });
-        constructorChildren.forEach(function (i) {
-          i.memberof = identifier.longname;
-        });
-        identifier.description = identifier.classdesc;
-        delete identifier.classdesc;
-        delete identifier.params;
-      }
     }
   });
 
@@ -123,15 +107,13 @@ function insertConstructors(data) {
     data.splice.apply(data, spliceArgs);
   });
 
-  toDelete.forEach(function (d) {
-    data.splice(data.indexOf(d), 1);
-  });
-
   return data;
 }
 
-function getEs6Constructor(data, identifier) {
-  return a.findWhere(data, isES6Constructor);
+function getEs6Constructor(data, parent) {
+  return a.findWhere(data, function (i) {
+    return isES6Constructor(i) && i.memberof === parent.longname;
+  });
 }
 function isES5Class(identifier) {
   return testValue(identifier, {
@@ -178,10 +160,11 @@ function updateIDReferences(identifier, newID) {
 }
 
 function removeQuotes(identifier) {
-  if (identifier.name) identifier.name = identifier.name.replace(/"/g, '');
-  if (identifier.memberof) identifier.memberof = identifier.memberof.replace(/"/g, '');
-  if (identifier.longname) identifier.longname = identifier.longname.replace(/"/g, '');
-  if (identifier.id) identifier.id = identifier.id.replace(/"/g, '');
+  var re = /["']/g;
+  if (identifier.name) identifier.name = identifier.name.replace(re, '');
+  if (identifier.memberof) identifier.memberof = identifier.memberof.replace(re, '');
+  if (identifier.longname) identifier.longname = identifier.longname.replace(re, '');
+  if (identifier.id) identifier.id = identifier.id.replace(re, '');
   return identifier;
 }
 
@@ -329,4 +312,19 @@ function removeMemberofFromModule(identifier) {
     delete identifier.scope;
   }
   return identifier;
+}
+
+function fixConstructorMemberLongnames(data) {
+  data.forEach(function (i) {
+    if (isES6Class(i)) {
+      var es6constructor = getEs6Constructor(data, i);
+      if (es6constructor) {
+        var constructorChildren = a.where(data, { memberof: es6constructor.longname });
+        constructorChildren.forEach(function (child) {
+          child.memberof = i.longname;
+        });
+      }
+    }
+  });
+  return data;
 }

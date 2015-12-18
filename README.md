@@ -225,7 +225,7 @@ var parse = require("jsdoc-parse")
             * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
             * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
             * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-            * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
+            * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by) : <code>array</code>
 
 <a name="exp_module_jsdoc-parse--jsdocParse"></a>
 ### jsdocParse([options]) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
@@ -251,7 +251,7 @@ All options for jsdoc-parse, including defaults
     * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
     * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
     * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-    * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions+sort-by) : <code>array</code>
+    * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by) : <code>array</code>
 
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src"></a>
 ##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
@@ -292,11 +292,12 @@ Path to a jsdoc configuration file, passed directly to `jsdoc -c`.
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
 **Default**: <code></code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions+sort-by"></a>
+<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by"></a>
 ##### parseOptions.sort-by : <code>array</code>
 Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
 
 **Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
+**Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
 
 * * *
 
