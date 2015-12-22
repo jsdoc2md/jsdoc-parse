@@ -23,8 +23,7 @@ if (options.help) {
 
 var parseStream
 if (options.src && options.src.length) {
-  parseStream = parse(options)
-  parseStream
+  parse(options)
     .on('error', function (err) {
       stop(err.stack, 1)
     })
