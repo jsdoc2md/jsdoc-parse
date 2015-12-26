@@ -7,6 +7,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 var util = require('util');
+var path = require('path');
 var a = require('array-tools');
 var fileSet = require('file-set');
 var Transform = require('stream').Transform;
@@ -14,18 +15,21 @@ var cliOptions = require('./cli-options');
 var jsdoc = require('jsdoc-api');
 var transform = require('./transform');
 var collectJson = require('collect-json');
+var assert = require('assert');
+var connect = require('stream-connect');
 
 module.exports = jsdocParse;
 jsdocParse.cliOptions = cliOptions.definitions;
 
 function jsdocParse(options) {
   options = new ParseOptions(options);
-
-  if (options.invalidMessage) {
+  try {
+    options.validate();
+  } catch (err) {
     var _ret = (function () {
       var output = new Transform();
       process.nextTick(function () {
-        output.emit('error', new Error(options.invalidMessage));
+        output.emit('error', err);
       });
       return {
         v: output
@@ -33,36 +37,26 @@ function jsdocParse(options) {
     })();
 
     if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-  } else {
-    if (options.src) {
-      return jsdoc.createExplainStream(options.fileSet.files).pipe(transform()).pipe(collectJson(function (data) {
-        return applyOptions(data, options);
-      }));
-    }
   }
 
-  return;
-}
+  var jsdocOptions = {};
+  if (options.html) jsdocOptions.configure = path.resolve(__dirname, 'html-conf.json');
+  jsdocOptions.files = options.files;
 
-function OutputTransform(options) {
-  Transform.call(this);
-  this.json = new Buffer(0);
-  this._transform = function (chunk, enc, done) {
-    if (chunk) this.json = Buffer.concat([this.json, chunk]);
-    done();
-  };
-  this._flush = function () {
-    try {
-      this.json = applyOptions(this.json, options);
-    } catch (err) {
-      err.message += ' [Problem parsing the JSON data output by jsdoc, input data: ' + this.json.toString().substr(0, 100) + ']';
-      return this.emit('error', err);
-    }
-    this.push(this.json);
-    this.push(null);
-  };
+  var explainStream = jsdoc.createExplainStream(jsdocOptions).once('error', emitError);
+
+  var transformedStream = transform().once('error', emitError);
+
+  var outputStream = collectJson(function (data) {
+    return applyOptions(data, options);
+  }).once('error', emitError);
+
+  function emitError(err) {
+    outputStream.emit('error', err);
+  }
+
+  return connect(explainStream, connect(transformedStream, outputStream));
 }
-util.inherits(OutputTransform, Transform);
 
 function applyOptions(data, options) {
   if (options.stats) {
@@ -124,18 +118,18 @@ var ParseOptions = (function () {
     this['sort-by'] = ['scope', 'category', 'kind', 'order'];
 
     Object.assign(this, options);
-    if (this.src) this.fileSet = fileSet(this.src);
+    if (this.src) {
+      this.fileSet = fileSet(this.src);
+      this.files = this.fileSet.files;
+    }
   }
 
   _createClass(ParseOptions, [{
-    key: 'invalidMessage',
-    get: function get() {
+    key: 'validate',
+    value: function validate() {
       if (this.src) {
-        if (!this.fileSet.files.length) {
-          return '[jsdoc-parse] please specify valid input files.';
-        } else if (this.fileSet.notExisting && this.fileSet.notExisting.length) {
-          return 'These files do not exist: ' + this.fileSet.notExisting.join(', ');
-        }
+        assert.ok(this.fileSet.files.length, 'Please specify valid input files.');
+        assert.ok(!(this.fileSet.notExisting && this.fileSet.notExisting.length), 'These files do not exist: ' + this.fileSet.notExisting.join(', '));
       }
     }
   }]);

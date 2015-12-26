@@ -30,7 +30,8 @@ var expected = {
   setCodename: require('./transforms/expected/setCodename')
 }
 
-test('setID', function (t) {
+test.only('setID', function (t) {
+  console.log(fixture.setID.map)
   t.deepEqual(fixture.setID.map(transform.setID), expected.setID)
   t.end()
 })
