@@ -4,7 +4,7 @@ var parse = require('../')
 
 test('api: valid json out', function (t) {
   t.plan(1)
-  var stream = parse({ src: 'test/fixture/chainable.js' })
+  var stream = parse({ src: 'node_modules/jsdoc2md-testbed/input/global/chainable.js' })
   stream.on('readable', function () {
     var chunk = this.read()
     if (chunk) {
