@@ -31,7 +31,7 @@
     "command-line-args": "^2.1.1",
     "feature-detect-es6": "^1.2.0",
     "file-set": "~0.2.1",
-    "jsdoc-api": "~0.1.0",
+    "jsdoc-api": "~0.2.0",
     "object-tools": "^2",
     "stream-connect": "^0.2.2",
     "test-value": "^1.0.1"
