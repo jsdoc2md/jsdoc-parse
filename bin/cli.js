@@ -21,7 +21,7 @@ if (options.help) {
   process.exit(0)
 }
 
-const parseStream = parse(options)
+var parseStream = parse(options)
   .on('error', function (err) {
     stop(err.stack, 1)
   })
