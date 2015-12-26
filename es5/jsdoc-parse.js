@@ -6,7 +6,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
-var util = require('util');
 var path = require('path');
 var a = require('array-tools');
 var fileSet = require('file-set');
