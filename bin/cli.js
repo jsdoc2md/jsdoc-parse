@@ -17,25 +17,17 @@ try {
 }
 
 if (options.help) {
-  console.log(usage)
+  console.error(usage)
   process.exit(0)
 }
 
-var parseStream
-if (options.src && options.src.length) {
-  parseStream = parse(options)
-  parseStream
-    .on('error', function (err) {
-      stop(err.stack, 1)
-    })
-    .pipe(process.stdout)
-} else {
-  parseStream = parse(options)
-  parseStream.on('error', function (err) {
+var parseStream = parse(options)
+  .on('error', function (err) {
     stop(err.stack, 1)
   })
-  process.stdin.pipe(parseStream).pipe(process.stdout)
-}
+parseStream.pipe(process.stdout)
+
+if (!options.src) process.stdin.pipe(parseStream)
 
 function stop (msg, code) {
   console.error(ansi.format(msg, 'red'))

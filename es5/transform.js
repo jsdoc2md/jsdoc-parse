@@ -3,36 +3,66 @@
 var o = require('object-tools');
 var a = require('array-tools');
 var testValue = require('test-value');
+var collectJson = require('collect-json');
 
-var data;
-exports.createConstructor = createConstructor;
-exports.insertConstructors = insertConstructors;
-exports.fixConstructorMemberLongnames = fixConstructorMemberLongnames;
-exports.setIsExportedFlag = setIsExportedFlag;
-exports.setCodename = setCodename;
-exports.setID = setID;
-exports.updateIDReferences = updateIDReferences;
+module.exports = transform;
 
-exports.setData = function (d) {
-  data = d;return this;
-};
-exports.getData = function () {
-  return data;
-};
-exports.removeQuotes = removeQuotes;
-exports.wantedProperties = wantedProperties;
-exports.removeUnwanted = removeUnwanted;
-exports.cleanProperties = cleanProperties;
-exports.buildTodoList = buildTodoList;
-exports.extractTypicalName = extractTypicalName;
-exports.extractCategory = extractCategory;
-exports.extractChainable = extractChainable;
-exports.extractCustomTags = extractCustomTags;
-exports.setTypedefScope = setTypedefScope;
-exports.sortIdentifier = sortIdentifier;
-exports.renameThisProperty = renameThisProperty;
-exports.removeMemberofFromModule = removeMemberofFromModule;
-exports.update = update;
+function transform() {
+  return collectJson(function (data) {
+    data = fixConstructorMemberLongnames(data);
+
+    var json = data.filter(function (i) {
+      return !i.undocumented && !/package|file/.test(i.kind);
+    });
+
+    json = json.map(setIsExportedFlag);
+    json = json.map(setCodename);
+    json = insertConstructors(json);
+
+    json = json.map(function (identifier) {
+      identifier = setID(identifier);
+
+      identifier = removeQuotes(identifier);
+      identifier = cleanProperties(identifier);
+      identifier = buildTodoList(identifier);
+      identifier = extractTypicalName(identifier);
+      identifier = extractCategory(identifier);
+      identifier = extractChainable(identifier);
+      identifier = extractCustomTags(identifier);
+      identifier = setTypedefScope(identifier);
+      identifier = renameThisProperty(identifier);
+      identifier = removeMemberofFromModule(identifier);
+      return identifier;
+    });
+
+    var exported = a.where(json, { isExported: true });
+    var newIDs = a.pluck(exported, 'id');
+
+    newIDs.forEach(function (newID) {
+      update(json, { isExported: undefined, '!kind': 'module' }, function (identifier) {
+        return updateIDReferences(identifier, newID);
+      });
+    });
+
+    json = json.filter(function (identifier) {
+      var parent = a.findWhere(json, { id: identifier.memberof });
+      if (parent && parent.isEnum) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    json = json.map(removeUnwanted);
+    json = json.map(sortIdentifier);
+
+    json.forEach(function (identifier, index) {
+      identifier.order = index;
+    });
+
+    return JSON.stringify(json, null, '  ');
+  });
+}
 
 function setID(identifier) {
   if (identifier.longname) {
