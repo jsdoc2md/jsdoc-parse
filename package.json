@@ -29,7 +29,7 @@
     "array-tools": "^2",
     "collect-json": "^1.0.1",
     "command-line-args": "^2.1.4",
-    "command-line-tool": "^0.1.0",
+    "command-line-tool": "~0.1.0",
     "core-js": "^2.0.1",
     "feature-detect-es6": "^1.2.0",
     "file-set": "~0.2.1",
