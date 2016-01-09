@@ -42,19 +42,12 @@ function jsdocParse(options) {
   if (options.html) jsdocOptions.configure = path.resolve(__dirname, 'html-conf.json');
   jsdocOptions.files = options.files;
 
-  var explainStream = jsdoc.createExplainStream(jsdocOptions).once('error', emitError);
-
-  var transformedStream = transform().once('error', emitError);
-
+  var explainStream = jsdoc.createExplainStream(jsdocOptions);
   var outputStream = collectJson(function (data) {
     return applyOptions(data, options);
-  }).once('error', emitError);
+  });
 
-  function emitError(err) {
-    outputStream.emit('error', err);
-  }
-
-  return connect(explainStream, connect(transformedStream, outputStream));
+  return connect(explainStream, transform(), outputStream);
 }
 
 function applyOptions(data, options) {
