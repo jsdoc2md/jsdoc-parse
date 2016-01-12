@@ -6,16 +6,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
-var path = require('path');
 var a = require('array-tools');
 var fileSet = require('file-set');
 var Transform = require('stream').Transform;
 var cliOptions = require('./cli-options');
-var jsdoc = require('jsdoc-api');
 var transform = require('./transform');
 var collectJson = require('collect-json');
 var assert = require('assert');
 var connect = require('stream-connect');
+var fs = require('fs');
 
 module.exports = jsdocParse;
 jsdocParse.cliOptions = cliOptions.definitions;
@@ -38,16 +37,23 @@ function jsdocParse(options) {
     if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
   }
 
-  var jsdocOptions = {};
-  if (options.html) jsdocOptions.configure = path.resolve(__dirname, 'html-conf.json');
-  jsdocOptions.files = options.files;
-
-  var explainStream = jsdoc.createExplainStream(jsdocOptions);
   var outputStream = collectJson(function (data) {
     return applyOptions(data, options);
   });
+  var transformStream = connect(transform(), outputStream);
 
-  return connect(explainStream, transform(), outputStream);
+  if (options.src && options.files.length) {
+    (function () {
+      var input = options.files.reduce(function (prev, curr) {
+        var data = JSON.parse(fs.readFileSync(curr, 'utf8'));
+        return prev.concat(data);
+      }, []);
+      process.nextTick(function () {
+        transformStream.end(JSON.stringify(input));
+      });
+    })();
+  }
+  return transformStream;
 }
 
 function applyOptions(data, options) {
