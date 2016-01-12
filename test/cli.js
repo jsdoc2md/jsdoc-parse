@@ -14,7 +14,7 @@ try {
 
 test('cli with stdin input', function (t) {
   t.plan(1)
-  var inputFile = fs.openSync('node_modules/jsdoc2md-testbed/input/global/chainable.js', 'r')
+  var inputFile = fs.openSync('./test/fixture/jsdoc-input.json', 'r')
   var outputFile = fs.openSync('tmp/cli-stdin.json', 'w')
   var handle = spawn('node', [ 'bin/cli.js'], { stdio: [ inputFile, outputFile, process.stderr ]})
   handle.on('close', function () {
@@ -28,7 +28,7 @@ test('cli with --src input', function (t) {
   var outputFile = fs.openSync('tmp/cli-src.json', 'w')
   var handle = spawn(
     'node',
-    [ 'bin/cli.js', '--src', 'node_modules/jsdoc2md-testbed/input/global/chainable.js'],
+    [ 'bin/cli.js', '--src', 'test/fixture/jsdoc-input.json'],
     { stdio: [ 'ignore', outputFile, process.stderr ] }
   )
   handle.on('close', function () {

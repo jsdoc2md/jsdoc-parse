@@ -32,6 +32,7 @@ function transform() {
       identifier = setTypedefScope(identifier);
       identifier = renameThisProperty(identifier);
       identifier = removeMemberofFromModule(identifier);
+      identifier = convertIsEnumFlagToKind(identifier);
       return identifier;
     });
 
@@ -357,4 +358,12 @@ function fixConstructorMemberLongnames(data) {
     }
   });
   return data;
+}
+
+function convertIsEnumFlagToKind(identifier) {
+  if (identifier.isEnum) {
+    identifier.kind = 'enum';
+    delete identifier.isEnum;
+  }
+  return identifier;
 }
