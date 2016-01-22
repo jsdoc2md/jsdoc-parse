@@ -5,7 +5,7 @@ var commandLineArgs = require('command-line-args')
 var cliOptions = require('../lib/cli-options')
 var tool = require('command-line-tool')
 
-var cli = commandLineArgs(parse.cliOptions.concat([
+var cli = commandLineArgs(cliOptions.definitions.concat([
   { name: 'help', alias: 'h', type: Boolean, description: 'Display this usage.' }
 ]))
 
