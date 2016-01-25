@@ -39,7 +39,12 @@ function jsdocParse(options) {
   }
 
   var jsdocOptions = {};
-  if (options.html) jsdocOptions.configure = path.resolve(__dirname, 'html-conf.json');
+
+  if (options.html) {
+    jsdocOptions.configure = path.resolve(__dirname, 'html-conf.json');
+  } else {
+    jsdocOptions.configure = options.conf;
+  }
   jsdocOptions.files = options.files;
 
   var explainStream = jsdoc.createExplainStream(jsdocOptions);
@@ -105,7 +110,7 @@ var ParseOptions = (function () {
 
     this.html = false;
 
-    this.conf = null;
+    this.conf = undefined;
 
     this['sort-by'] = ['scope', 'category', 'kind', 'order'];
 
