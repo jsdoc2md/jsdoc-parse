@@ -21,6 +21,7 @@ function transform() {
 
     json = json.map(function (identifier) {
       identifier = setID(identifier);
+      identifier = setParentID(identifier);
 
       identifier = removeQuotes(identifier);
       identifier = cleanProperties(identifier);
@@ -45,15 +46,7 @@ function transform() {
       });
     });
 
-    json = json.filter(function (identifier) {
-      var parent = a.findWhere(json, { id: identifier.memberof });
-      if (parent && parent.isEnum) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
+    json = removeEnumChildren(json);
     json = json.map(removeUnwanted);
     json = json.map(sortIdentifier);
 
@@ -80,6 +73,11 @@ function setID(identifier) {
   if (identifier.isExported) {
     identifier.id = identifier.longname + '--' + identifier.codeName;
   }
+  return identifier;
+}
+
+function setParentID(identifier) {
+  identifier.parentId = identifier.memberof;
   return identifier;
 }
 
@@ -165,22 +163,26 @@ function isES6Constructor(identifier) {
   });
 }
 
+function replaceID(id, oldID, newID) {
+  return id.replace(new RegExp('\b' + oldID + '\b'), newID);
+}
+
 function updateIDReferences(identifier, newID) {
   var oldID = newID.split('--')[0];
   if (oldID && !identifier.isExported) {
-    if (identifier.id) identifier.id = identifier.id.replace(oldID, newID);
-    if (identifier.memberof) identifier.memberof = identifier.memberof.replace(oldID, newID);
-    if (identifier.name) identifier.name = identifier.name.replace(oldID, newID);
+    if (identifier.id) identifier.id = replaceID(identifier.id, oldID, newID);
+    if (identifier.memberof) identifier.memberof = replaceID(identifier.memberof, oldID, newID);
+    if (identifier.name) identifier.name = replaceID(identifier.name, oldID, newID);
     if (identifier.type && identifier.type.names) {
       identifier.type.names = identifier.type.names.map(function (id) {
-        return id.replace(oldID, newID);
+        return replaceID(id, oldID, newID);
       });
     }
     if (identifier.returns) {
       identifier.returns = identifier.returns.map(function (identifier) {
         if (identifier.type && identifier.type.names) {
           identifier.type.names = identifier.type.names.map(function (id) {
-            return id.replace(oldID, newID);
+            return replaceID(id, oldID, newID);
           });
         }
         return identifier;
@@ -352,7 +354,7 @@ function fixConstructorMemberLongnames(data) {
       if (es6constructor) {
         var constructorChildren = a.where(data, { memberof: es6constructor.longname });
         constructorChildren.forEach(function (child) {
-          child.memberof = i.longname;
+          return child.memberof = i.longname;
         });
       }
     }
@@ -366,4 +368,15 @@ function convertIsEnumFlagToKind(identifier) {
     delete identifier.isEnum;
   }
   return identifier;
+}
+
+function removeEnumChildren(json) {
+  return json.filter(function (identifier) {
+    var parent = a.findWhere(json, { id: identifier.memberof });
+    if (parent && parent.kind === 'enum') {
+      return false;
+    } else {
+      return true;
+    }
+  });
 }

@@ -19,11 +19,6 @@ exports.definitions = [{
   type: Boolean,
   description: 'Enable experimental parsing of .html files'
 }, {
-  name: 'conf',
-  type: String,
-  typeLabel: '[underline]{file}',
-  description: 'Path to a jsdoc configuration file, passed directly to `jsdoc -c`.'
-}, {
   name: 'sort-by',
   type: String,
   multiple: true,
