@@ -6,7 +6,7 @@
 [![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # jsdoc-parse
-Jsdoc-annotated source code in, JSON format documentation out.
+Jsdoc explain out in, jsdoc2md template data out.
 
 jsdoc-parse extends [jsdoc](https://github.com/jsdoc3/jsdoc) with a few features:
 
@@ -17,288 +17,50 @@ jsdoc-parse extends [jsdoc](https://github.com/jsdoc3/jsdoc) with a few features
   * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for `jQuery` instances), `_` (underscore) etc.
   * `@chainable`: Set to mark a method as chainable (has a return value of `this`).
 
-## Synopsis
-### Simple example
-```
-$ echo "/** a wonderful global */ var majestic = true;" | jsdoc-parse
-[
-  {
-    "id": "majestic",
-    "longname": "majestic",
-    "name": "majestic",
-    "scope": "global",
-    "kind": "member",
-    "description": "a wonderful global",
-    "order": 0
-  }
-]
-```
-
-### Longer example
-This input javascript:
-```js
-/**
-Pump an idiot full of volts. Returns a promise they will slump.
-@deprecated
-@param {object | array} - the victim(s) to fry
-@param [crazyHair=true] {boolean} - optional spikey hair effect
-@return {external:Promise}
-@resolve {Slump}
-*/
-function taze(victim, crazyHair){}
-```
-
-returns this JSON:
-```json
-$ jsdoc-parse example/function.js
-[
-  {
-    "id": "taze",
-    "longname": "taze",
-    "name": "taze",
-    "scope": "global",
-    "kind": "function",
-    "description": "Pump an idiot full of volts. Returns a promise they will slump.",
-    "params": [
-      {
-        "type": {
-          "names": [
-            "object",
-            "array"
-          ]
-        },
-        "description": "the victim(s) to fry",
-        "name": "victim"
-      },
-      {
-        "type": {
-          "names": [
-            "boolean"
-          ]
-        },
-        "optional": true,
-        "defaultvalue": true,
-        "description": "optional spikey hair effect",
-        "name": "crazyHair"
-      }
-    ],
-    "returns": [
-      {
-        "type": {
-          "names": [
-            "external:Promise"
-          ]
-        }
-      }
-    ],
-    "deprecated": true,
-    "customTags": [
-      {
-        "tag": "resolve",
-        "value": "{Slump}"
-      }
-    ],
-    "order": 0
-  }
-]
-```
-
-### HTML input example
-This input HTML:
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <script>
-    /**
-    something in the head
-    @type {number}
-    */
-    var headGlobal = 1;
-    </script>
-  </head>
-  <body class="main">
-    <script>
-    /**
-    body global
-    @type {string}
-    @default
-    */
-    var bodyGlobal = "one";
-
-    </script>
-  </body>
-</html>
-```
-
-produces this JSON output:
-```json
-$ jsdoc-parse example/doc.html --html
-[
-  {
-    "id": "headGlobal",
-    "longname": "headGlobal",
-    "name": "headGlobal",
-    "scope": "global",
-    "kind": "member",
-    "description": "something in the head",
-    "type": {
-      "names": [
-        "number"
-      ]
-    },
-    "order": 0
-  },
-  {
-    "id": "bodyGlobal",
-    "longname": "bodyGlobal",
-    "name": "bodyGlobal",
-    "scope": "global",
-    "kind": "member",
-    "description": "body global",
-    "type": {
-      "names": [
-        "string"
-      ]
-    },
-    "defaultvalue": "one",
-    "order": 1
-  }
-]
-```
-
-## Install and use
-
-### As a command-line tool
-Useful for quick access to the data..
-
-```
-jsdoc-parse
-
-  Jsdoc-annotated source code in, JSON format documentation out.
-
-Synopsis
-
-  $ jsdoc-parse [-PH] [--sort-by fields] [--conf file] [--src file ...]
-  $ jsdoc-parse --help
-  $ jsdoc-parse --stats
-
-Options
-
-  -f, --src file ...           A list of javascript source files (or glob expressions) to parse for
-                               documentation. If this option is not set jsdoc-parse will wait for source
-                               code on stdin (i.e. `cat *.js | jsdoc-parse [options]`).
-  -P, --private                Include identifiers marked @private in the output
-  -H, --html                   Enable experimental parsing of .html files
-  --conf file                  Path to a jsdoc configuration file, passed directly to `jsdoc -c`.
-  -s, --sort-by property ...   Sort by one of more properties, e.g. `--sort-by kind category`. Defaults to
-                               `[ "scope", "category", "kind", "order" ]`. Pass the special value `none` to
-                               remove the default sort order.
-  --stats                      Print a few stats about the doclets parsed
-  -h, --help                   Display this usage.
-```
-
-***Usage form 2 warning***: When piping input into `jsdoc-parse` it will intepret the whole of what is piped in as a single file, so take care not to pipe in input containing multipe @modules as this is illegal in jsdoc (see [here](http://usejsdoc.org/tags-module.html)):
-
-> The @module tag marks the current file as being its own module. All symbols in the file are assumed to be members of the module unless documented otherwise.
-
-### As a library
-For use within your node.js app.
-
-```sh
-$ npm install jsdoc-parse --save
-```
-
 ## API Reference
-  Exports a single function to parse jsdoc data.
 
-**Example**  
+<a name="module_jsdoc-parse"></a>
+  
+**Example**
 ```js
-var parse = require("jsdoc-parse")
+var jsdocParse = require('jsdoc-parse')
 ```
 
-* [jsdoc-parse](#module_jsdoc-parse)
-    * [jsdocParse([options])](#exp_module_jsdoc-parse--jsdocParse) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
-        * [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-            * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-            * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
-            * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
-            * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
-            * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-            * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by) : <code>array</code>
+* jsdoc-parse
+    * [~parse(jsdocExplainOutput, [options])](#module_jsdoc-parse..parse)   
+    * [~applyOptions(data, options)](#module_jsdoc-parse..applyOptions) ⇒ `string`  
+    * [~getStats(data)](#module_jsdoc-parse..getStats) ⇒ `object`  
 
-<a name="exp_module_jsdoc-parse--jsdocParse"></a>
-### jsdocParse([options]) ⇒ <code>[TransformStream](http://nodejs.org/api/stream.html#stream_class_stream_transform)</code> ⏏
-Documented javascript source in, documentation JSON out.
 
-**Kind**: Exported function  
+<a name="module_jsdoc-parse..parse"></a>
+### jsdoc-parse~parse(jsdocExplainOutput, [options])   
+**Kind**: inner method of module:jsdoc-parse  
 **Params**
-- [options] <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code> - parse options
 
-**Example**  
-```js
-parse({ src:"lib/jsdoc-parse.js" }).pipe(process.stdout)
-```
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions"></a>
-#### jsdocParse~ParseOptions
-All options for jsdoc-parse, including defaults
+- jsdocExplainOutput Array.<object> - jsdoc output
+- [options] object
+    - [.private] boolean - Include identifier documentation marked as `@private` in the output
+    - [.html] boolean - Enable experimental parsing of .html files.
+    - [.sort-by] Array.<string> <code> = [ 'scope', 'category', 'kind', 'order' ]</code> - Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
 
-**Kind**: inner class of <code>[jsdocParse](#exp_module_jsdoc-parse--jsdocParse)</code>  
+<a name="module_jsdoc-parse..applyOptions"></a>
+### jsdoc-parse~applyOptions(data, options) ⇒ `string`  
+**Kind**: inner method of module:jsdoc-parse  
+**Params**
 
-* [~ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)
-    * [.src](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src) : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-    * [.private](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private) : <code>boolean</code>
-    * [.stats](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats) : <code>boolean</code>
-    * [.html](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html) : <code>boolean</code>
-    * [.conf](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf) : <code>boolean</code>
-    * [.sort-by](#module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by) : <code>array</code>
+- data string - input json string
+- options object - jsdoc-parse options
 
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+src"></a>
-##### parseOptions.src : <code>string</code> &#124; <code>Array.&lt;string&gt;</code>
-A list of javascript source files (or glob expressions) to parse for documentation. If this option is not set jsdoc-parse will wait for source code on stdin (i.e. `cat *.js | jsdoc-parse <options>`).
+<a name="module_jsdoc-parse..getStats"></a>
+### jsdoc-parse~getStats(data) ⇒ `object`  
+return some stats about the parsed data
 
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Example**  
-```js
-var parse = require("jsdoc-parse")
-var fs = require("fs")
+**Kind**: inner method of module:jsdoc-parse  
+**Params**
 
-// either supply one or more file names
-parse({ src: "example.js" }).pipe(process.stdout)
+- data object - jsdoc-parse data
 
-// or pipe in source code
-fs.createReadStream("example.js").parse().pipe(process.stdout)
-```
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private"></a>
-##### parseOptions.private : <code>boolean</code>
-Include identifier documentation marked as `@private` in the output
-
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default**: <code>false</code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+stats"></a>
-##### parseOptions.stats : <code>boolean</code>
-Print a few stats about the doclets parsed
-
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+html"></a>
-##### parseOptions.html : <code>boolean</code>
-Enable experimental parsing of .html files.
-
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default**: <code>false</code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+conf"></a>
-##### parseOptions.conf : <code>boolean</code>
-Path to a jsdoc configuration file, passed directly to `jsdoc -c`.
-
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default**: <code></code>  
-<a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+sort-by"></a>
-##### parseOptions.sort-by : <code>array</code>
-Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
-
-**Kind**: instance property of <code>[ParseOptions](#module_jsdoc-parse--jsdocParse..ParseOptions)</code>  
-**Default**: <code>[&quot;scope&quot;,&quot;category&quot;,&quot;kind&quot;,&quot;order&quot;]</code>  
 
 * * *
 
-&copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2015 Lloyd Brookes <75pound@gmail.com>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
