@@ -3,59 +3,56 @@
 var o = require('object-tools');
 var a = require('array-tools');
 var testValue = require('test-value');
-var collectJson = require('collect-json');
 
 module.exports = transform;
 
-function transform() {
-  return collectJson(function (data) {
-    data = fixConstructorMemberLongnames(data);
+function transform(data) {
+  data = fixConstructorMemberLongnames(data);
 
-    var json = data.filter(function (i) {
-      return !i.undocumented && !/package|file/.test(i.kind);
-    });
-
-    json = json.map(setIsExportedFlag);
-    json = json.map(setCodename);
-    json = insertConstructors(json);
-
-    json = json.map(function (doclet) {
-      doclet = setID(doclet);
-      doclet = setParentID(doclet);
-
-      doclet = removeQuotes(doclet);
-      doclet = cleanProperties(doclet);
-      doclet = buildTodoList(doclet);
-      doclet = extractTypicalName(doclet);
-      doclet = extractCategory(doclet);
-      doclet = extractChainable(doclet);
-      doclet = extractCustomTags(doclet);
-      doclet = setTypedefScope(doclet);
-      doclet = renameThisProperty(doclet);
-      doclet = removeMemberofFromModule(doclet);
-      doclet = convertIsEnumFlagToKind(doclet);
-      return doclet;
-    });
-
-    var exported = a.where(json, { isExported: true });
-    var newIDs = a.pluck(exported, 'id');
-
-    newIDs.forEach(function (newID) {
-      update(json, { isExported: undefined, '!kind': 'module' }, function (doclet) {
-        return updateIDReferences(doclet, newID);
-      });
-    });
-
-    json = removeEnumChildren(json);
-    json = json.map(removeUnwanted);
-    json = json.map(sortIdentifier);
-
-    json.forEach(function (doclet, index) {
-      doclet.order = index;
-    });
-
-    return JSON.stringify(json, null, '  ');
+  var json = data.filter(function (i) {
+    return !i.undocumented && !/package|file/.test(i.kind);
   });
+
+  json = json.map(setIsExportedFlag);
+  json = json.map(setCodename);
+  json = insertConstructors(json);
+
+  json = json.map(function (doclet) {
+    doclet = setID(doclet);
+    doclet = setParentID(doclet);
+
+    doclet = removeQuotes(doclet);
+    doclet = cleanProperties(doclet);
+    doclet = buildTodoList(doclet);
+    doclet = extractTypicalName(doclet);
+    doclet = extractCategory(doclet);
+    doclet = extractChainable(doclet);
+    doclet = extractCustomTags(doclet);
+    doclet = setTypedefScope(doclet);
+    doclet = renameThisProperty(doclet);
+    doclet = removeMemberofFromModule(doclet);
+    doclet = convertIsEnumFlagToKind(doclet);
+    return doclet;
+  });
+
+  var exported = a.where(json, { isExported: true });
+  var newIDs = a.pluck(exported, 'id');
+
+  newIDs.forEach(function (newID) {
+    update(json, { isExported: undefined, '!kind': 'module' }, function (doclet) {
+      return updateIDReferences(doclet, newID);
+    });
+  });
+
+  json = removeEnumChildren(json);
+  json = json.map(removeUnwanted);
+  json = json.map(sortIdentifier);
+
+  json.forEach(function (doclet, index) {
+    doclet.order = index;
+  });
+
+  return json;
 }
 
 function setID(doclet) {
