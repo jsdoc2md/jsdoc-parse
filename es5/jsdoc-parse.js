@@ -1,48 +1,38 @@
 'use strict';
 
 var sortArray = require('sort-array');
-var fileSet = require('file-set');
-var Transform = require('stream').Transform;
 var transform = require('./transform');
-var collectJson = require('collect-json');
-var assert = require('assert');
-var connect = require('stream-connect');
-var fs = require('fs');
+var a = require('array-tools');
 
 exports.parse = parse;
 exports.getStats = getStats;
 
 function parse(jsdocExplainOutput, options) {
+  options = options || {};
   var data = transform(jsdocExplainOutput);
+
+  data = data.filter(function (doclet) {
+    var parent = data.find(function (d) {
+      return d.id === doclet.memberof;
+    }) || {};
+    if (doclet.ignore || parent.ignore) {
+      return false;
+    } else if (!options.private && (doclet.access === 'private' || parent.access === 'private')) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  if (options['sort-by'] && !a(options['sort-by']).contains('none')) {
+    data = sort(data, options['sort-by']);
+  }
 
   return data;
 }
 
-function applyOptions(data, options) {
-  if (options.stats) {
-    return JSON.stringify(getStats(data), null, '  ') + '\n';
-  } else {
-    data = data.filter(function (item) {
-      var parent = data.find(function (d) {
-        return d.id === item.memberof;
-      }) || {};
-      if (item.ignore || parent.ignore) {
-        return false;
-      } else if (!options.private && item.access === 'private' || parent.access === 'private') {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    if (options['sort-by'] && !a(options['sort-by']).contains('none')) {
-      data = sort(data, options['sort-by']);
-    }
-    return JSON.stringify(data, null, '  ') + '\n';
-  }
-}
-
-function getStats(data) {
+function getStats(jsdocExplainOutput) {
+  var data = parse(jsdocExplainOutput);
   var stats = {
     identifiers: {}
   };

@@ -309,7 +309,7 @@ function sort(object, sortFunction) {
 }
 
 function sortIdentifier(doclet) {
-  var fieldOrder = ['id', 'longname', 'name', 'scope', 'kind', 'isExported', 'classdesc', 'augments', 'inherits', 'inherited', 'implements', 'overrides', 'mixes', 'description', 'memberof', 'alias', 'params', 'fires', 'examples', 'returns', 'type', 'defaultvalue', 'readonly', 'thisvalue', 'isEnum', 'properties', 'optional', 'nullable', 'variable', 'author', 'deprecated', 'ignore', 'access', 'requires', 'version', 'since', 'licenses', 'license', 'typicalname', 'category', 'see', 'exceptions', 'codeName', 'todoList', 'customTags', 'chainable', 'meta', 'order'];
+  var fieldOrder = ['id', 'parentId', 'longname', 'name', 'scope', 'kind', 'isExported', 'classdesc', 'augments', 'inherits', 'inherited', 'implements', 'overrides', 'mixes', 'description', 'memberof', 'alias', 'params', 'fires', 'examples', 'returns', 'type', 'defaultvalue', 'readonly', 'thisvalue', 'isEnum', 'properties', 'optional', 'nullable', 'variable', 'author', 'deprecated', 'ignore', 'access', 'requires', 'version', 'since', 'licenses', 'license', 'typicalname', 'category', 'see', 'exceptions', 'codeName', 'todoList', 'customTags', 'chainable', 'meta', 'order'];
   return sort(doclet, function (a, b) {
     if (fieldOrder.indexOf(a) === -1 && fieldOrder.indexOf(b) > -1) {
       return 1;
