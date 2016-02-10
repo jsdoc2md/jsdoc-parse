@@ -23,13 +23,10 @@
   },
   "dependencies": {
     "array-tools": "^2",
-    "collect-json": "^1.0.1",
     "core-js": "^2.1.0",
     "feature-detect-es6": "^1.2.0",
-    "file-set": "~0.2.1",
     "object-tools": "^2",
     "sort-array": "^0.1.0",
-    "stream-connect": "^1.0.1",
     "test-value": "^1.0.1"
   },
   "devDependencies": {
