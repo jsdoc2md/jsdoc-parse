@@ -1,5 +1,5 @@
 {
-  "name": "jsdoc-parse",
+  "name": "jsdoc-parse2",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "2.0.0",
   "description": "Jsdoc-annotated source code in, JSON format documentation out.",
