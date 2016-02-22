@@ -27,7 +27,7 @@
     "core-js": "^2.1.0",
     "feature-detect-es6": "^1.2.0",
     "object-tools": "^2",
-    "sort-array": "^0.1.0",
+    "sort-array": "^1.0.0",
     "test-value": "^1.0.1",
     "typical": "^2.4.2"
   },
