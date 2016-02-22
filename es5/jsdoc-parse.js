@@ -54,7 +54,7 @@ function getStats(jsdocExplainOutput) {
 }
 
 function sort(array, sortBy) {
-  var customSortOrders = {
+  var customOrder = {
     kind: ['class', 'constructor', 'mixin', 'member', 'namespace', 'enum', 'constant', 'function', 'event', 'typedef', 'external'],
     scope: ['global', 'instance', 'static', 'inner']
   };
@@ -62,7 +62,7 @@ function sort(array, sortBy) {
   if (!sortBy) {
     return array;
   } else {
-    return sortArray(array, sortBy, customSortOrders);
+    return sortArray(array, sortBy, customOrder);
   }
 }
 
