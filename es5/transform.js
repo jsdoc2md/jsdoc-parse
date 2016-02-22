@@ -7,7 +7,7 @@ var testValue = require('test-value');
 module.exports = transform;
 
 function transform(data) {
-  data = fixConstructorMemberLongnames(data);
+  data = fixES6ConstructorMemberLongnames(data);
 
   var json = data.filter(function (i) {
     return !i.undocumented && !/package|file/.test(i.kind);
@@ -19,7 +19,6 @@ function transform(data) {
 
   json = json.map(function (doclet) {
     doclet = setID(doclet);
-    doclet = setParentID(doclet);
 
     doclet = removeQuotes(doclet);
     doclet = cleanProperties(doclet);
@@ -45,6 +44,7 @@ function transform(data) {
   });
 
   json = removeEnumChildren(json);
+  json = json.map(setParentID);
   json = json.map(removeUnwanted);
   json = json.map(sortIdentifier);
 
@@ -102,7 +102,6 @@ function createConstructor(class_) {
   var replacements = [];
   class_ = o.clone(class_);
   var constructor = o.extract(class_, ['description', 'params', 'examples', 'returns', 'exceptions']);
-
   if (class_.classdesc) {
     class_.description = class_.classdesc;
     delete class_.classdesc;
@@ -110,6 +109,7 @@ function createConstructor(class_) {
   replacements.push(class_);
 
   if (constructor.description || constructor.params && constructor.params.length) {
+    constructor.id = class_.id;
     constructor.longname = class_.longname;
     constructor.name = class_.codeName || class_.name;
     constructor.kind = 'constructor';
@@ -161,7 +161,7 @@ function isES6Constructor(doclet) {
 }
 
 function replaceID(id, oldID, newID) {
-  return id.replace(new RegExp('\b' + oldID + '\b'), newID);
+  return id.replace(new RegExp('' + oldID), newID);
 }
 
 function updateIDReferences(doclet, newID) {
@@ -344,7 +344,7 @@ function removeMemberofFromModule(doclet) {
   return doclet;
 }
 
-function fixConstructorMemberLongnames(data) {
+function fixES6ConstructorMemberLongnames(data) {
   data.forEach(function (i) {
     if (isES6Class(i)) {
       var es6constructor = getEs6Constructor(data, i);
