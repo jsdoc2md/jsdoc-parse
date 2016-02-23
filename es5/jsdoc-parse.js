@@ -9,7 +9,6 @@ var t = require('typical');
 
 exports.parse = parse;
 exports.getStats = getStats;
-exports.groupBy = groupBy;
 
 function parse(jsdocExplainOutput, options) {
   options = new ParseOptions(options);
@@ -32,10 +31,6 @@ function parse(jsdocExplainOutput, options) {
     data = sort(data, options['sort-by']);
   } else if (!options['sort-by']) {
     data = sort(data, ['scope', 'category', 'kind', 'order']);
-  }
-
-  if (options['group-by']) {
-    data = groupBy(data, options['group-by']);
   }
 
   return data;
@@ -64,67 +59,6 @@ function sort(array, sortBy) {
   } else {
     return sortArray(array, sortBy, customOrder);
   }
-}
-
-function _addGroup(doclets, groupByFields) {
-  return doclets.map(function (doclet) {
-    doclet._group = groupByFields.map(function (field) {
-      return t.isDefined(doclet[field]) ? doclet[field] : null;
-    });
-    return doclet;
-  });
-}
-
-function groupBy(doclets, groupByFields) {
-  var commonSequence = require('common-sequence');
-
-  groupByFields = groupByFields.slice(0);
-
-  groupByFields.forEach(function (group) {
-    var docletGroupValues = doclets.filter(function (doclet) {
-      return doclet.kind !== 'constructor';
-    }).map(function (d) {
-      return d[group];
-    });
-    var groupValues = a.unique(docletGroupValues);
-    if (groupValues.length <= 1) groupByFields = a.without(groupByFields, group);
-  });
-
-  doclets = _addGroup(doclets, groupByFields);
-
-  var inserts = [];
-  var prevGroup = [];
-  doclets.forEach(function (doclet, index) {
-    if (!deepEqual(doclet._group, prevGroup)) {
-      var common = commonSequence(doclet._group, prevGroup);
-      doclet._group.forEach(function (group, i) {
-        if (group !== common[i] && group !== null) {
-          inserts.push({
-            index: index,
-            group: group
-          });
-        }
-      });
-    }
-    prevGroup = doclet._group;
-    delete doclet._group;
-  });
-
-  inserts.reverse().forEach(function (insert, i) {
-    doclets.splice(insert.index, 0, { id: insert.group, kind: 'group', parentId: null });
-  });
-
-  var currentGroup = null;
-  doclets.forEach(function (d, index) {
-    d.parentId = currentGroup;
-    if (index === 0) {
-      currentGroup = d.id;
-    } else {
-      if (d.kind === 'group') currentGroup = d.id;
-    }
-  });
-
-  return doclets;
 }
 
 function deepEqual(a, b) {
