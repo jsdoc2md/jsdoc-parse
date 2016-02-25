@@ -5,6 +5,7 @@ var a = require('array-tools');
 var testValue = require('test-value');
 var where = require('filter-where');
 var arrayify = require('array-back');
+var extract = require('reduce-extract');
 
 module.exports = transform;
 
@@ -247,7 +248,7 @@ function buildTodoList(doclet) {
   }
 
   if (doclet.tags) {
-    var done = a.extract(doclet.tags, { title: 'done' });
+    var done = doclet.tags.reduce(extract({ title: 'done' }), []);
     if (!doclet.tags.length) delete doclet.tags;
     todoList = todoList.concat(done.map(function (task) {
       return { done: true, task: task.value };
@@ -262,7 +263,7 @@ function buildTodoList(doclet) {
 
 function extractTypicalName(doclet) {
   if (doclet.tags) {
-    var typicalName = a.extract(doclet.tags, { title: 'typicalname' });
+    var typicalName = doclet.tags.reduce(extract({ title: 'typicalname' }), []);
     if (typicalName.length) doclet.typicalname = typicalName[0].value;
   }
   return doclet;
@@ -270,7 +271,7 @@ function extractTypicalName(doclet) {
 
 function extractCategory(doclet) {
   if (doclet.tags) {
-    var category = a.extract(doclet.tags, { title: 'category' });
+    var category = doclet.tags.reduce(extract({ title: 'category' }), []);
     if (category.length) doclet.category = category[0].value;
   }
   return doclet;
@@ -278,7 +279,7 @@ function extractCategory(doclet) {
 
 function extractChainable(doclet) {
   if (doclet.tags) {
-    var chainable = a.extract(doclet.tags, { title: 'chainable' });
+    var chainable = doclet.tags.reduce(extract({ title: 'chainable' }), []);
     if (chainable.length) doclet.chainable = true;
   }
   return doclet;

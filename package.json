@@ -28,6 +28,7 @@
     "feature-detect-es6": "^1.2.0",
     "filter-where": "^1.0.1",
     "object-tools": "^2",
+    "reduce-extract": "^1.0.0",
     "test-value": "^1.0.1"
   },
   "devDependencies": {
