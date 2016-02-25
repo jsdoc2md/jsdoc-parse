@@ -3,6 +3,8 @@
 var o = require('object-tools');
 var a = require('array-tools');
 var testValue = require('test-value');
+var where = require('filter-where');
+var arrayify = require('array-back');
 
 module.exports = transform;
 
@@ -34,8 +36,10 @@ function transform(data) {
     return doclet;
   });
 
-  var exported = a.where(json, { isExported: true });
-  var newIDs = a.pluck(exported, 'id');
+  var exported = json.filter(where({ isExported: true }));
+  var newIDs = exported.map(function (d) {
+    return d.id;
+  });
 
   newIDs.forEach(function (newID) {
     update(json, { isExported: undefined, '!kind': 'module' }, function (doclet) {
@@ -137,7 +141,7 @@ function insertConstructors(data) {
 }
 
 function getEs6Constructor(data, parent) {
-  return a.findWhere(data, function (i) {
+  return data.find(function (i) {
     return isES6Constructor(i) && i.memberof === parent.longname;
   });
 }
@@ -236,7 +240,7 @@ function wantedProperties(input) {
 function buildTodoList(doclet) {
   var todoList = [];
   if (doclet.todo) {
-    var todo = a.arrayify(doclet.todo);
+    var todo = arrayify(doclet.todo);
     todoList = todoList.concat(todo.map(function (task) {
       return { done: false, task: task };
     }));
@@ -349,7 +353,7 @@ function fixES6ConstructorMemberLongnames(data) {
     if (isES6Class(i)) {
       var es6constructor = getEs6Constructor(data, i);
       if (es6constructor) {
-        var constructorChildren = a.where(data, { memberof: es6constructor.longname });
+        var constructorChildren = data.filter(where({ memberof: es6constructor.longname }));
         constructorChildren.forEach(function (child) {
           return child.memberof = i.longname;
         });
@@ -369,7 +373,7 @@ function convertIsEnumFlagToKind(doclet) {
 
 function removeEnumChildren(json) {
   return json.filter(function (doclet) {
-    var parent = a.findWhere(json, { id: doclet.memberof });
+    var parent = json.find(where({ id: doclet.memberof }));
     if (parent && parent.kind === 'enum') {
       return false;
     } else {

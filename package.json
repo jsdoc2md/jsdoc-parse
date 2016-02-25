@@ -18,18 +18,17 @@
   },
   "scripts": {
     "test": "tape test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.md -p list --skip-heading lib/jsdoc-parse.js > README.md; echo",
+    "docs": "jsdoc2md2 -t jsdoc2md/README.md -p list --skip-heading lib/jsdoc-parse.js > README.md; echo",
     "es5": "babel --presets babel-preset-es2015 --no-comments lib --out-dir es5"
   },
   "dependencies": {
+    "array-back": "^1.0.2",
     "array-tools": "^2",
-    "common-sequence": "^1.0.2",
     "core-js": "^2.1.0",
     "feature-detect-es6": "^1.2.0",
+    "filter-where": "^1.0.1",
     "object-tools": "^2",
-    "sort-array": "^1.0.0",
-    "test-value": "^1.0.1",
-    "typical": "^2.4.2"
+    "test-value": "^1.0.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
