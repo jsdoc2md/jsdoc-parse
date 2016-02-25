@@ -23,7 +23,6 @@
   },
   "dependencies": {
     "array-back": "^1.0.2",
-    "array-tools": "^2",
     "core-js": "^2.1.0",
     "feature-detect-es6": "^1.2.0",
     "filter-where": "^1.0.1",
