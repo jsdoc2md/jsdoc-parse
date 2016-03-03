@@ -4,9 +4,9 @@ var transform = require('./transform');
 
 exports.parse = parse;
 
-function parse(jsdocExplainOutput, options) {
+function parse(jsdocData, options) {
   options = options || {};
-  var data = transform(jsdocExplainOutput);
+  var data = transform(jsdocData);
 
   data = data.filter(function (doclet) {
     var parent = data.find(function (d) {

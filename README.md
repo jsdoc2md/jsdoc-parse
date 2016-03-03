@@ -18,49 +18,24 @@ jsdoc-parse extends [jsdoc](https://github.com/jsdoc3/jsdoc) with a few features
   * `@chainable`: Set to mark a method as chainable (has a return value of `this`).
 
 ## API Reference
-
-<a name="module_jsdoc-parse"></a>
   
 **Example**
 ```js
 var jsdocParse = require('jsdoc-parse')
 ```
 
-* jsdoc-parse
-    * [~parse(jsdocExplainOutput, [options])](#module_jsdoc-parse..parse)   
-    * [~applyOptions(data, options)](#module_jsdoc-parse..applyOptions) ⇒ `string`  
-    * [~getStats(data)](#module_jsdoc-parse..getStats) ⇒ `object`  
 
+### parse(jsdocData, [options]) ⇒ Array.&lt;object&gt; ⏏
+**Kind**: Exported function  
+__Params__
 
-<a name="module_jsdoc-parse..parse"></a>
-### jsdoc-parse~parse(jsdocExplainOutput, [options])   
-**Kind**: inner method of module:jsdoc-parse  
-**Params**
-
-- jsdocExplainOutput Array.<object> - jsdoc output
+- jsdocData Array.&lt;object&gt; - jsdoc output
 - [options] object
     - [.private] boolean - Include identifier documentation marked as `@private` in the output
-    - [.html] boolean - Enable experimental parsing of .html files.
-    - [.sort-by] Array.<string> <code> = [ 'scope', 'category', 'kind', 'order' ]</code> - Sort by one of more fields, e.g. `--sort-by kind category`. Pass the special value `none` to remove the default sort order.
 
-<a name="module_jsdoc-parse..applyOptions"></a>
-### jsdoc-parse~applyOptions(data, options) ⇒ `string`  
-**Kind**: inner method of module:jsdoc-parse  
-**Params**
 
-- data string - input json string
-- options object - jsdoc-parse options
-
-<a name="module_jsdoc-parse..getStats"></a>
-### jsdoc-parse~getStats(data) ⇒ `object`  
-return some stats about the parsed data
-
-**Kind**: inner method of module:jsdoc-parse  
-**Params**
-
-- data object - jsdoc-parse data
 
 
 * * *
 
-&copy; 2015 Lloyd Brookes <75pound@gmail.com>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2014-16 Lloyd Brookes <75pound@gmail.com>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
