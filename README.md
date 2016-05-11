@@ -267,7 +267,7 @@ var fs = require("fs")
 parse({ src: "example.js" }).pipe(process.stdout)
 
 // or pipe in source code
-fs.createReadStream("example.js").parse().pipe(process.stdout)
+fs.createReadStream("example.js").pipe(parse()).pipe(process.stdout)
 ```
 <a name="module_jsdoc-parse--jsdocParse..ParseOptions.ParseOptions+private"></a>
 ##### parseOptions.private : <code>boolean</code>
