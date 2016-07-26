@@ -48,7 +48,6 @@ function transform(data) {
   });
 
   json = removeEnumChildren(json);
-  json = json.map(setParentID);
   json = json.map(removeUnwanted);
   json = json.map(sortIdentifier);
 
