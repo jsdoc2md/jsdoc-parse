@@ -1,5 +1,5 @@
 {
-  "name": "jsdoc-parse2",
+  "name": "jsdoc-parse",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "version": "2.0.0",
   "description": "Jsdoc-annotated source code in, JSON format documentation out.",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "tape test/*.js",
-    "docs": "jsdoc2md2 -t jsdoc2md/README.md -p list --skip-heading lib/jsdoc-parse.js > README.md; echo",
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list lib/jsdoc-parse.js > README.md; echo",
     "es5": "babel --presets babel-preset-es2015 --no-comments lib --out-dir es5"
   },
   "dependencies": {

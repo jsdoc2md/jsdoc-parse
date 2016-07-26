@@ -2,7 +2,7 @@
 
 var transform = require('./transform');
 
-exports.parse = parse;
+module.exports = parse;
 
 function parse(jsdocData, options) {
   options = options || {};
