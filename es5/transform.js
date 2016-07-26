@@ -2,6 +2,7 @@
 
 var o = require('object-tools');
 var testValue = require('test-value');
+var where = testValue.where;
 var arrayify = require('array-back');
 var extract = require('reduce-extract');
 
@@ -35,7 +36,7 @@ function transform(data) {
     return doclet;
   });
 
-  var exported = json.filter(testValue.cb({ isExported: true }));
+  var exported = json.filter(where({ isExported: true }));
   var newIDs = exported.map(function (d) {
     return d.id;
   });
@@ -352,7 +353,7 @@ function fixES6ConstructorMemberLongnames(data) {
     if (isES6Class(i)) {
       var es6constructor = getEs6Constructor(data, i);
       if (es6constructor) {
-        var constructorChildren = data.filter(testValue.cb({ memberof: es6constructor.longname }));
+        var constructorChildren = data.filter(where({ memberof: es6constructor.longname }));
         constructorChildren.forEach(function (child) {
           return child.memberof = i.longname;
         });
@@ -372,7 +373,7 @@ function convertIsEnumFlagToKind(doclet) {
 
 function removeEnumChildren(json) {
   return json.filter(function (doclet) {
-    var parent = json.find(testValue.cb({ id: doclet.memberof }));
+    var parent = json.find(where({ id: doclet.memberof }));
     if (parent && parent.kind === 'enum') {
       return false;
     } else {
