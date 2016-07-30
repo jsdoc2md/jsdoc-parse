@@ -1,11 +1,11 @@
 'use strict'
-var test = require('tape')
+var test = require('test-runner')
 var jsdocParse = require('../')
 var fs = require('fs')
+var a = require('assert')
 
 test('api: valid json out', function (t) {
-  t.plan(1)
   var jsdocOutput = JSON.parse(fs.readFileSync('./test/fixture/jsdoc-input.json', 'utf8'))
   var data = jsdocParse(jsdocOutput)
-  t.equal(data[0].name, 'Chainable')
+  a.strictEqual(data[0].name, 'Chainable')
 })

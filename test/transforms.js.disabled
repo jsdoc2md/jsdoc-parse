@@ -1,5 +1,5 @@
 'use strict'
-var test = require('tape')
+var test = require('test-runner')
 var parse = require('../')
 var transform = require('../es5/transform')
 var human = require('./transforms/human')

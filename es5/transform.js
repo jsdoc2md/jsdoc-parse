@@ -1,6 +1,5 @@
 'use strict';
 
-var o = require('object-tools');
 var testValue = require('test-value');
 var where = testValue.where;
 var arrayify = require('array-back');
