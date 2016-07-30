@@ -5,6 +5,8 @@ var testValue = require('test-value');
 var where = testValue.where;
 var arrayify = require('array-back');
 var extract = require('reduce-extract');
+var pick = require('lodash.pick');
+var omit = require('lodash.omit');
 
 module.exports = transform;
 
@@ -103,8 +105,33 @@ function createConstructor(class_) {
   }
 
   var replacements = [];
-  class_ = o.clone(class_);
-  var constructor = o.extract(class_, ['description', 'params', 'examples', 'returns', 'exceptions']);
+  class_ = Object.assign({}, class_);
+  var constructorProperties = ['description', 'params', 'examples', 'returns', 'exceptions'];
+  var constructor = pick(class_, constructorProperties);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = constructorProperties[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var prop = _step.value;
+      delete class_[prop];
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
   if (class_.classdesc) {
     class_.description = class_.classdesc;
     delete class_.classdesc;
@@ -233,7 +260,7 @@ function cleanProperties(doclet) {
 }
 
 function wantedProperties(input) {
-  return o.without(input, ['comment', 'meta', 'undocumented', '___id', '___s']);
+  return omit(input, ['comment', 'meta', 'undocumented', '___id', '___s']);
 }
 
 function buildTodoList(doclet) {
@@ -324,7 +351,7 @@ function sortIdentifier(doclet) {
 
 function update(array, query, newValues) {
   for (var i = 0; i < array.length; i++) {
-    if (o.exists(array[i], query)) {
+    if (testValue(array[i], query)) {
       var values = typeof newValues === 'function' ? newValues(array[i]) : newValues;
       for (var prop in values) {
         if (values[prop] !== undefined) array[i][prop] = values[prop];
