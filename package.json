@@ -28,6 +28,7 @@
     "lodash.omit": "^4.4.0",
     "lodash.pick": "^4.3.0",
     "reduce-extract": "^1.0.0",
+    "sort-array": "^1.1.1",
     "test-value": "^2.0.0"
   },
   "devDependencies": {
