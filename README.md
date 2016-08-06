@@ -30,7 +30,7 @@ const jsdocParse = require('jsdoc-parse')
 
 - jsdocData <code>Array.&lt;object&gt;</code> - jsdoc output
 - [options] <code>object</code>
-    - [.sort-by] <code>string</code> | <code>Array.&lt;string&gt;</code> - Sort by one of more properties, e.g. `[ 'kind', 'category' ]`. Defaults to `[ 'scope', 'category', 'kind', 'order' ]`.
+    - [.sortBy] <code>string</code> | <code>Array.&lt;string&gt;</code> - Sort by one of more properties, e.g. `[ 'kind', 'category' ]`. Defaults to `[ 'scope', 'category', 'kind', 'order' ]`.
 
 
 * * *
