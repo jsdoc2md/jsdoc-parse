@@ -6,11 +6,8 @@
 [![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # jsdoc-parse
-Jsdoc explain out in, jsdoc2md template data out.
+Transforms [jsdoc](https://github.com/jsdoc3/jsdoc) data, adding a few features:
 
-jsdoc-parse extends [jsdoc](https://github.com/jsdoc3/jsdoc) with a few features:
-
-* Support for html input files (see `--html` option).
 * Support for new tags in the input javascript
   * `@category <string>`: Useful for grouping identifiers by category.
   * `@done`: Used to mark `@todo` items as complete.
@@ -25,9 +22,9 @@ jsdoc-parse extends [jsdoc](https://github.com/jsdoc3/jsdoc) with a few features
 ```js
 const jsdocParse = require('jsdoc-parse')
 ```
-<a name="exp_module_jsdoc-parse--parse"></a>
+<a name="exp_module_jsdoc-parse--jsdocParse"></a>
 
-### parse(jsdocData, [options]) ⇒ <code>Array.&lt;object&gt;</code> ⏏
+### jsdocParse(jsdocData, [options]) ⇒ <code>Array.&lt;object&gt;</code> ⏏
 **Kind**: Exported function  
 **Params**
 

@@ -2,9 +2,9 @@
 
 var transform = require('./transform');
 
-module.exports = parse;
+module.exports = jsdocParse;
 
-function parse(jsdocData, options) {
+function jsdocParse(jsdocData, options) {
   options = options || {};
   var data = transform(jsdocData);
 
