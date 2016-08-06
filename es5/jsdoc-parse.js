@@ -4,12 +4,9 @@ var transform = require('./transform');
 
 module.exports = jsdocParse;
 
-function jsdocParse(jsdocData, options) {
-  options = options || {};
+function jsdocParse(jsdocData) {
   var data = transform(jsdocData);
-
-  data = sort(data, options['sort-by']);
-  return data;
+  return sort(data);
 }
 
 function sort(array, properties) {
