@@ -1,101 +1,101 @@
 'use strict';
 
-var o = require('object-tools');
-var a = require('array-tools');
 var testValue = require('test-value');
-var collectJson = require('collect-json');
+var where = testValue.where;
+var arrayify = require('array-back');
+var extract = require('reduce-extract');
+var pick = require('lodash.pick');
+var omit = require('lodash.omit');
 
 module.exports = transform;
 
-function transform() {
-  return collectJson(function (data) {
-    data = fixConstructorMemberLongnames(data);
+function transform(data) {
+  data = fixES6ConstructorMemberLongnames(data);
 
-    var json = data.filter(function (i) {
-      return !i.undocumented && !/package|file/.test(i.kind);
-    });
-
-    json = json.map(setIsExportedFlag);
-    json = json.map(setCodename);
-    json = insertConstructors(json);
-
-    json = json.map(function (identifier) {
-      identifier = setID(identifier);
-
-      identifier = removeQuotes(identifier);
-      identifier = cleanProperties(identifier);
-      identifier = buildTodoList(identifier);
-      identifier = extractTypicalName(identifier);
-      identifier = extractCategory(identifier);
-      identifier = extractChainable(identifier);
-      identifier = extractCustomTags(identifier);
-      identifier = setTypedefScope(identifier);
-      identifier = renameThisProperty(identifier);
-      identifier = removeMemberofFromModule(identifier);
-      return identifier;
-    });
-
-    var exported = a.where(json, { isExported: true });
-    var newIDs = a.pluck(exported, 'id');
-
-    newIDs.forEach(function (newID) {
-      update(json, { isExported: undefined, '!kind': 'module' }, function (identifier) {
-        return updateIDReferences(identifier, newID);
-      });
-    });
-
-    json = json.filter(function (identifier) {
-      var parent = a.findWhere(json, { id: identifier.memberof });
-      if (parent && parent.isEnum) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    json = json.map(removeUnwanted);
-    json = json.map(sortIdentifier);
-
-    json.forEach(function (identifier, index) {
-      identifier.order = index;
-    });
-
-    return JSON.stringify(json, null, '  ');
+  var json = data.filter(function (i) {
+    return !i.undocumented && !/package|file/.test(i.kind);
   });
+
+  json = json.map(setIsExportedFlag);
+  json = json.map(setCodename);
+  json = insertConstructors(json);
+
+  json = json.map(function (doclet) {
+    doclet = setID(doclet);
+
+    doclet = removeQuotes(doclet);
+    doclet = cleanProperties(doclet);
+    doclet = buildTodoList(doclet);
+    doclet = extractTypicalName(doclet);
+    doclet = extractCategory(doclet);
+    doclet = extractChainable(doclet);
+    doclet = extractCustomTags(doclet);
+    doclet = setTypedefScope(doclet);
+    doclet = renameThisProperty(doclet);
+    doclet = removeMemberofFromModule(doclet);
+    doclet = convertIsEnumFlagToKind(doclet);
+    return doclet;
+  });
+
+  var exported = json.filter(where({ isExported: true }));
+  var newIDs = exported.map(function (d) {
+    return d.id;
+  });
+
+  newIDs.forEach(function (newID) {
+    update(json, { isExported: undefined, '!kind': 'module' }, function (doclet) {
+      return updateIDReferences(doclet, newID);
+    });
+  });
+
+  json = removeEnumChildren(json);
+  json = json.map(removeUnwanted);
+  json = json.map(sortIdentifier);
+
+  json.forEach(function (doclet, index) {
+    doclet.order = index;
+  });
+
+  return json;
 }
 
-function setID(identifier) {
-  if (identifier.longname) {
-    identifier.id = identifier.longname;
+function setID(doclet) {
+  if (doclet.longname) {
+    doclet.id = doclet.longname;
   }
-  if (identifier.kind === 'constructor') {
-    if (identifier.scope === 'static') {
-      identifier.id = identifier.longname;
-      delete identifier.scope;
+  if (doclet.kind === 'constructor') {
+    if (doclet.scope === 'static') {
+      doclet.id = doclet.longname;
+      delete doclet.scope;
     } else {
-      identifier.id = identifier.longname + '()';
+      doclet.id = doclet.longname + '()';
     }
   }
-  if (identifier.isExported) {
-    identifier.id = identifier.longname + '--' + identifier.codeName;
+  if (doclet.isExported) {
+    doclet.id = doclet.longname + '--' + doclet.codeName;
   }
-  return identifier;
+  return doclet;
 }
 
-function setCodename(identifier) {
-  if (identifier.meta && identifier.meta.code) {
-    identifier.codeName = identifier.meta.code.name;
-    if (identifier.isExported) identifier.name = identifier.codeName;
-  }
-  return identifier;
+function setParentID(doclet) {
+  doclet.parentId = doclet.memberof;
+  return doclet;
 }
 
-function setIsExportedFlag(identifier) {
-  if (/module:/.test(identifier.name) && identifier.kind !== 'module' && identifier.kind !== 'constructor') {
-    identifier.isExported = true;
-    identifier.memberof = identifier.longname;
+function setCodename(doclet) {
+  if (doclet.meta && doclet.meta.code) {
+    doclet.codeName = doclet.meta.code.name;
+    if (doclet.isExported) doclet.name = doclet.codeName;
   }
-  return identifier;
+  return doclet;
+}
+
+function setIsExportedFlag(doclet) {
+  if (/module:/.test(doclet.name) && doclet.kind !== 'module' && doclet.kind !== 'constructor') {
+    doclet.isExported = true;
+    doclet.memberof = doclet.longname;
+  }
+  return doclet;
 }
 
 function createConstructor(class_) {
@@ -104,8 +104,32 @@ function createConstructor(class_) {
   }
 
   var replacements = [];
-  class_ = o.clone(class_);
-  var constructor = o.extract(class_, ['description', 'params', 'examples', 'returns', 'exceptions']);
+  class_ = Object.assign({}, class_);
+  var constructorProperties = ['description', 'params', 'examples', 'returns', 'exceptions'];
+  var constructor = pick(class_, constructorProperties);
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = constructorProperties[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var prop = _step.value;
+      delete class_[prop];
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
 
   if (class_.classdesc) {
     class_.description = class_.classdesc;
@@ -114,6 +138,7 @@ function createConstructor(class_) {
   replacements.push(class_);
 
   if (constructor.description || constructor.params && constructor.params.length) {
+    constructor.id = class_.id;
     constructor.longname = class_.longname;
     constructor.name = class_.codeName || class_.name;
     constructor.kind = 'constructor';
@@ -126,9 +151,9 @@ function createConstructor(class_) {
 function insertConstructors(data) {
   var replacements = [];
 
-  data.forEach(function (identifier, index) {
-    if (identifier.kind === 'class') {
-      replacements.push({ index: index, items: createConstructor(identifier) });
+  data.forEach(function (doclet, index) {
+    if (doclet.kind === 'class') {
+      replacements.push({ index: index, items: createConstructor(doclet) });
     }
   });
 
@@ -141,160 +166,164 @@ function insertConstructors(data) {
 }
 
 function getEs6Constructor(data, parent) {
-  return a.findWhere(data, function (i) {
+  return data.find(function (i) {
     return isES6Constructor(i) && i.memberof === parent.longname;
   });
 }
-function isES5Class(identifier) {
-  return testValue(identifier, {
+function isES5Class(doclet) {
+  return testValue(doclet, {
     kind: 'class',
     meta: { code: { type: 'FunctionDeclaration' } }
   });
 }
-function isES6Class(identifier) {
-  return testValue(identifier, {
+function isES6Class(doclet) {
+  return testValue(doclet, {
     kind: 'class',
     meta: { code: { type: 'ClassDeclaration' } }
   });
 }
-function isES6Constructor(identifier) {
-  return testValue(identifier, {
+function isES6Constructor(doclet) {
+  return testValue(doclet, {
     kind: 'class',
     meta: { code: { type: 'MethodDefinition' } }
   });
 }
 
-function updateIDReferences(identifier, newID) {
+function replaceID(id, oldID, newID) {
+  return id.replace(new RegExp('' + oldID), newID);
+}
+
+function updateIDReferences(doclet, newID) {
   var oldID = newID.split('--')[0];
-  if (oldID && !identifier.isExported) {
-    if (identifier.id) identifier.id = identifier.id.replace(oldID, newID);
-    if (identifier.memberof) identifier.memberof = identifier.memberof.replace(oldID, newID);
-    if (identifier.name) identifier.name = identifier.name.replace(oldID, newID);
-    if (identifier.type && identifier.type.names) {
-      identifier.type.names = identifier.type.names.map(function (id) {
-        return id.replace(oldID, newID);
+  if (oldID && !doclet.isExported) {
+    if (doclet.id) doclet.id = replaceID(doclet.id, oldID, newID);
+    if (doclet.memberof) doclet.memberof = replaceID(doclet.memberof, oldID, newID);
+    if (doclet.name) doclet.name = replaceID(doclet.name, oldID, newID);
+    if (doclet.type && doclet.type.names) {
+      doclet.type.names = doclet.type.names.map(function (id) {
+        return replaceID(id, oldID, newID);
       });
     }
-    if (identifier.returns) {
-      identifier.returns = identifier.returns.map(function (identifier) {
-        if (identifier.type && identifier.type.names) {
-          identifier.type.names = identifier.type.names.map(function (id) {
-            return id.replace(oldID, newID);
+    if (doclet.returns) {
+      doclet.returns = doclet.returns.map(function (doclet) {
+        if (doclet.type && doclet.type.names) {
+          doclet.type.names = doclet.type.names.map(function (id) {
+            return replaceID(id, oldID, newID);
           });
         }
-        return identifier;
+        return doclet;
       });
     }
   }
-  return identifier;
+  return doclet;
 }
 
-function removeQuotes(identifier) {
+function removeQuotes(doclet) {
   var re = /["']/g;
-  if (identifier.name) identifier.name = identifier.name.replace(re, '');
-  if (identifier.memberof) identifier.memberof = identifier.memberof.replace(re, '');
-  if (identifier.longname) identifier.longname = identifier.longname.replace(re, '');
-  if (identifier.id) identifier.id = identifier.id.replace(re, '');
-  return identifier;
+  if (doclet.name) doclet.name = doclet.name.replace(re, '');
+  if (doclet.memberof) doclet.memberof = doclet.memberof.replace(re, '');
+  if (doclet.longname) doclet.longname = doclet.longname.replace(re, '');
+  if (doclet.id) doclet.id = doclet.id.replace(re, '');
+  return doclet;
 }
 
-function removeUnwanted(identifier) {
-  delete identifier.todo;
-  delete identifier.tags;
-  delete identifier.codeName;
+function removeUnwanted(doclet) {
+  delete doclet.todo;
+  delete doclet.tags;
+  delete doclet.codeName;
 
-  delete identifier.comment;
-  delete identifier.undocumented;
-  delete identifier.___id;
-  delete identifier.___s;
+  delete doclet.comment;
+  delete doclet.undocumented;
+  delete doclet.___id;
+  delete doclet.___s;
 
-  if (identifier.meta) {
-    var oldMeta = identifier.meta;
-    identifier.meta = {
+  if (doclet.meta) {
+    var oldMeta = doclet.meta;
+    doclet.meta = {
       lineno: oldMeta.lineno,
       filename: oldMeta.filename,
       path: oldMeta.path
     };
   }
 
-  return identifier;
+  return doclet;
 }
 
-function cleanProperties(identifier) {
-  if (identifier.properties) {
-    identifier.properties = identifier.properties.map(function (prop) {
+function cleanProperties(doclet) {
+  if (doclet.properties) {
+    doclet.properties = doclet.properties.map(function (prop) {
       return wantedProperties(prop);
     });
   }
-  return identifier;
+  return doclet;
 }
 
 function wantedProperties(input) {
-  return o.without(input, ['comment', 'meta', 'undocumented', '___id', '___s']);
+  return omit(input, ['comment', 'meta', 'undocumented', '___id', '___s']);
 }
 
-function buildTodoList(identifier) {
+function buildTodoList(doclet) {
   var todoList = [];
-  if (identifier.todo) {
-    var todo = a.arrayify(identifier.todo);
+  if (doclet.todo) {
+    var todo = arrayify(doclet.todo);
     todoList = todoList.concat(todo.map(function (task) {
       return { done: false, task: task };
     }));
   }
 
-  if (identifier.tags) {
-    var done = a.extract(identifier.tags, { title: 'done' });
-    if (!identifier.tags.length) delete identifier.tags;
+  if (doclet.tags) {
+    var done = doclet.tags.reduce(extract({ title: 'done' }), []);
+    if (!doclet.tags.length) delete doclet.tags;
     todoList = todoList.concat(done.map(function (task) {
       return { done: true, task: task.value };
     }));
   }
 
   if (todoList.length) {
-    identifier.todoList = todoList;
+    doclet.todoList = todoList;
   }
-  return identifier;
+  return doclet;
 }
 
-function extractTypicalName(identifier) {
-  if (identifier.tags) {
-    var typicalName = a.extract(identifier.tags, { title: 'typicalname' });
-    if (typicalName.length) identifier.typicalname = typicalName[0].value;
+function extractTypicalName(doclet) {
+  if (doclet.tags) {
+    var typicalName = doclet.tags.reduce(extract({ title: 'typicalname' }), []);
+    if (typicalName.length) doclet.typicalname = typicalName[0].value;
   }
-  return identifier;
+  return doclet;
 }
 
-function extractCategory(identifier) {
-  if (identifier.tags) {
-    var category = a.extract(identifier.tags, { title: 'category' });
-    if (category.length) identifier.category = category[0].value;
+function extractCategory(doclet) {
+  if (doclet.tags) {
+    var category = doclet.tags.reduce(extract({ title: 'category' }), []);
+    if (category.length) doclet.category = category[0].value;
   }
-  return identifier;
+  return doclet;
 }
 
-function extractChainable(identifier) {
-  if (identifier.tags) {
-    var chainable = a.extract(identifier.tags, { title: 'chainable' });
-    if (chainable.length) identifier.chainable = true;
+function extractChainable(doclet) {
+  if (doclet.tags) {
+    var chainable = doclet.tags.reduce(extract({ title: 'chainable' }), []);
+    if (chainable.length) doclet.chainable = true;
   }
-  return identifier;
+  return doclet;
 }
 
-function extractCustomTags(identifier) {
-  if (identifier.tags && identifier.tags.length > 0) {
-    identifier.customTags = identifier.tags.map(function (tag) {
+function extractCustomTags(doclet) {
+  if (doclet.tags && doclet.tags.length > 0) {
+    doclet.customTags = doclet.tags.map(function (tag) {
       return {
         tag: tag.title,
         value: tag.value
       };
     });
   }
-  return identifier;
+  return doclet;
 }
 
-function setTypedefScope(identifier) {
-  if (identifier.kind === 'typedef' && !identifier.scope) identifier.scope = 'global';
-  return identifier;
+function setTypedefScope(doclet) {
+  if (doclet.kind === 'typedef' && !doclet.scope) doclet.scope = 'global';
+  return doclet;
 }
 
 function sort(object, sortFunction) {
@@ -308,9 +337,9 @@ function sort(object, sortFunction) {
   return output;
 }
 
-function sortIdentifier(identifier) {
-  var fieldOrder = ['id', 'longname', 'name', 'scope', 'kind', 'isExported', 'classdesc', 'augments', 'inherits', 'inherited', 'implements', 'overrides', 'mixes', 'description', 'memberof', 'alias', 'params', 'fires', 'examples', 'returns', 'type', 'defaultvalue', 'readonly', 'thisvalue', 'isEnum', 'properties', 'optional', 'nullable', 'variable', 'author', 'deprecated', 'ignore', 'access', 'requires', 'version', 'since', 'licenses', 'license', 'typicalname', 'category', 'see', 'exceptions', 'codeName', 'todoList', 'customTags', 'chainable', 'meta', 'order'];
-  return sort(identifier, function (a, b) {
+function sortIdentifier(doclet) {
+  var fieldOrder = ['id', 'parentId', 'longname', 'name', 'kind', 'scope', 'isExported', 'classdesc', 'augments', 'inherits', 'inherited', 'implements', 'overrides', 'mixes', 'description', 'memberof', 'alias', 'params', 'fires', 'examples', 'returns', 'type', 'defaultvalue', 'readonly', 'thisvalue', 'isEnum', 'properties', 'optional', 'nullable', 'variable', 'author', 'deprecated', 'ignore', 'access', 'requires', 'version', 'since', 'licenses', 'license', 'typicalname', 'category', 'see', 'exceptions', 'codeName', 'todoList', 'customTags', 'chainable', 'meta', 'order'];
+  return sort(doclet, function (a, b) {
     if (fieldOrder.indexOf(a) === -1 && fieldOrder.indexOf(b) > -1) {
       return 1;
     } else {
@@ -321,7 +350,7 @@ function sortIdentifier(identifier) {
 
 function update(array, query, newValues) {
   for (var i = 0; i < array.length; i++) {
-    if (o.exists(array[i], query)) {
+    if (testValue(array[i], query)) {
       var values = typeof newValues === 'function' ? newValues(array[i]) : newValues;
       for (var prop in values) {
         if (values[prop] !== undefined) array[i][prop] = values[prop];
@@ -330,31 +359,50 @@ function update(array, query, newValues) {
   }
 }
 
-function renameThisProperty(identifier) {
-  identifier.thisvalue = identifier.this;
-  delete identifier.this;
-  return identifier;
+function renameThisProperty(doclet) {
+  doclet.thisvalue = doclet.this;
+  delete doclet.this;
+  return doclet;
 }
 
-function removeMemberofFromModule(identifier) {
-  if (identifier.kind === 'module') {
-    delete identifier.memberof;
-    delete identifier.scope;
+function removeMemberofFromModule(doclet) {
+  if (doclet.kind === 'module') {
+    delete doclet.memberof;
+    delete doclet.scope;
   }
-  return identifier;
+  return doclet;
 }
 
-function fixConstructorMemberLongnames(data) {
+function fixES6ConstructorMemberLongnames(data) {
   data.forEach(function (i) {
     if (isES6Class(i)) {
       var es6constructor = getEs6Constructor(data, i);
       if (es6constructor) {
-        var constructorChildren = a.where(data, { memberof: es6constructor.longname });
+        var constructorChildren = data.filter(where({ memberof: es6constructor.longname }));
         constructorChildren.forEach(function (child) {
-          child.memberof = i.longname;
+          return child.memberof = i.longname;
         });
       }
     }
   });
   return data;
+}
+
+function convertIsEnumFlagToKind(doclet) {
+  if (doclet.isEnum) {
+    doclet.kind = 'enum';
+    delete doclet.isEnum;
+  }
+  return doclet;
+}
+
+function removeEnumChildren(json) {
+  return json.filter(function (doclet) {
+    var parent = json.find(where({ id: doclet.memberof }));
+    if (parent && parent.kind === 'enum') {
+      return false;
+    } else {
+      return true;
+    }
+  });
 }
