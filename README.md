@@ -5,8 +5,6 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-***[Try the jsdoc2md v2 pre-release](https://github.com/jsdoc2md/jsdoc-to-markdown/releases)***
-
 # jsdoc-parse
 Transforms [jsdoc](https://github.com/jsdoc3/jsdoc) data into something more suitable for use as template input. Also adds a few tags to the default set:
 
@@ -23,23 +21,6 @@ This module is built into [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-
 ```
 $ jsdoc2md --json <files>
 ```
-
-## API Reference
-<a name="module_jsdoc-parse"></a>
-
-## jsdoc-parse
-**Example**  
-```js
-const jsdocParse = require('jsdoc-parse')
-```
-<a name="exp_module_jsdoc-parse--jsdocParse"></a>
-
-### jsdocParse(jsdocData) ⇒ <code>Array.&lt;object&gt;</code> ⏏
-**Kind**: Exported function  
-**Params**
-
-- jsdocData <code>Array.&lt;object&gt;</code> - jsdoc output
-
 
 * * *
 
