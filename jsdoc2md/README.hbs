@@ -6,13 +6,21 @@
 [![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # jsdoc-parse
-Transforms [jsdoc](https://github.com/jsdoc3/jsdoc) data, adding a few features:
+Transforms [jsdoc](https://github.com/jsdoc3/jsdoc) data into something more suitable for use as template input. Also adds a few tags to the default set:
 
 * Support for new tags in the input javascript
   * `@category <string>`: Useful for grouping identifiers by category.
   * `@done`: Used to mark `@todo` items as complete.
   * `@typicalname`: If set on a class, namespace or module, child members will documented using this typical name as the parent name. Real-world typical name examples are `$` (the typical name for `jQuery` instances), `_` (underscore) etc.
   * `@chainable`: Set to mark a method as chainable (has a return value of `this`).
+
+## Command-line usage
+
+This module is built into [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown/), you can see the output using this command:
+
+```
+$ jsdoc2md --json <files>
+```
 
 ## API Reference
 {{>main}}
