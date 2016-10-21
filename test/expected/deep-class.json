@@ -10,7 +10,7 @@
         "id": "module:farm--Farm()",
         "parentId": "module:farm--Farm"
       },
-      { "id": "instance", "kind": "group", "parentId": "module:farm--Farm" }
+      { "id": "instance", "kind": "group", "parentId": "module:farm--Farm" },
       {
         "id": "module:farm--Farm.Farm#equipment",
         "parentId": "instance",
