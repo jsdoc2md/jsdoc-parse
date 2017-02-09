@@ -4,7 +4,7 @@
   "version": "2.0.5",
   "description": "Transforms jsdoc data into something more suitable for use as template input",
   "repository": "https://github.com/jsdoc2md/jsdoc-parse.git",
-  "main": "index",
+  "main": "lib/jsdoc-parse",
   "license": "MIT",
   "keywords": [
     "javascript",
@@ -14,17 +14,14 @@
     "documentation"
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
     "test": "test-runner test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list lib/jsdoc-parse.js > README.md; echo",
-    "es5": "rm -rf es5 && babel --presets babel-preset-es2015 --no-comments lib --out-dir es5"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list lib/jsdoc-parse.js > README.md; echo"
   },
   "dependencies": {
-    "array-back": "^1.0.3",
-    "core-js": "^2.4.1",
-    "feature-detect-es6": "^1.3.1",
+    "array-back": "^1.0.4",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "reduce-extract": "^1.0.0",
@@ -32,13 +29,11 @@
     "test-value": "^2.1.0"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.16.0",
-    "test-runner": "~0.2.4"
+    "test-runner": "~0.3.0"
   },
   "standard": {
     "ignore": [
       "test",
-      "es5",
       "example"
     ]
   }
