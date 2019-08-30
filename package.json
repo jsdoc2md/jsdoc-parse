@@ -4,7 +4,6 @@
   "version": "3.0.1",
   "description": "Transforms jsdoc data into something more suitable for use as template input",
   "repository": "https://github.com/jsdoc2md/jsdoc-parse.git",
-  "main": "lib/jsdoc-parse",
   "license": "MIT",
   "keywords": [
     "javascript",
@@ -14,14 +13,13 @@
     "documentation"
   ],
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8"
   },
   "scripts": {
-    "test": "test-runner test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs -p list lib/jsdoc-parse.js > README.md; echo"
+    "test": "test-runner test/*.js"
   },
   "dependencies": {
-    "array-back": "^2.0.0",
+    "array-back": "^4.0.0",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "reduce-extract": "^1.0.0",
@@ -29,7 +27,7 @@
     "test-value": "^3.0.0"
   },
   "devDependencies": {
-    "test-runner": "~0.4.1"
+    "test-runner": "^0.6.0"
   },
   "standard": {
     "ignore": [
