@@ -34,5 +34,9 @@
       "test",
       "example"
     ]
-  }
+  },
+  "files": [
+    "index.js",
+    "lib/**/*.js"
+  ]
 }
