@@ -13,13 +13,13 @@
     "documentation"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "scripts": {
     "test": "test-runner test/*.js"
   },
   "dependencies": {
-    "array-back": "^4.0.0",
+    "array-back": "^4.0.1",
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "reduce-extract": "^1.0.0",
@@ -27,7 +27,7 @@
     "test-value": "^3.0.0"
   },
   "devDependencies": {
-    "test-runner": "^0.6.0"
+    "test-runner": "^0.8.3"
   },
   "standard": {
     "ignore": [
