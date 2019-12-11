@@ -16,14 +16,18 @@ function jsdocParse (jsdocData) {
   return sort(data)
 }
 
-function sort (array, properties) {
+function sort (array) {
   const sortBy = require('sort-array')
-  const customOrder = {
-    kind: ['class', 'constructor', 'mixin', 'member', 'namespace', 'enum', 'constant', 'function', 'event', 'typedef', 'external'],
-    scope: ['global', 'instance', 'static', 'inner']
-  }
-  properties = properties || ['scope', 'category', 'kind', 'order']
-  return sortBy(array, properties, customOrder)
+  return sortBy(array, {
+    by: ['scope', 'category', 'kind', 'order'],
+    order: ['scope', 'asc', 'kind', 'asc'],
+    customOrders: {
+      kind: ['class', 'constructor', 'mixin', 'member', 'namespace', 'enum', 'constant', 'function', 'event', 'typedef', 'external'],
+      scope: ['global', 'instance', 'static', 'inner']
+    },
+    nullRank: -1,
+    undefinedRank: -1
+  })
 }
 
 module.exports = jsdocParse

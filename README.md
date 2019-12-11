@@ -24,4 +24,6 @@ $ jsdoc2md --json <files>
 
 * * *
 
-&copy; 2014-19 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown).
+&copy; 2014-20 Lloyd Brookes \<75pound@gmail.com\>.
+
+Tested by [test-runner](https://github.com/test-runner-js/test-runner). Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).
