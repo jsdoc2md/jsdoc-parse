@@ -23,11 +23,11 @@
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "reduce-extract": "^1.0.0",
-    "sort-array": "^4.1.0-0",
+    "sort-array": "^4.1.1",
     "test-value": "^3.0.0"
   },
   "devDependencies": {
-    "test-runner": "^0.8.10"
+    "test-runner": "^0.8.13"
   },
   "standard": {
     "ignore": [

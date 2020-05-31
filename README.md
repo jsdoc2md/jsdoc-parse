@@ -1,11 +1,13 @@
-[![view on npm](http://img.shields.io/npm/v/jsdoc-parse.svg)](https://www.npmjs.org/package/jsdoc-parse)
-[![npm module downloads](http://img.shields.io/npm/dt/jsdoc-parse.svg)](https://www.npmjs.org/package/jsdoc-parse)
+[![view on npm](https://badgen.net/npm/v/jsdoc-parse)](https://www.npmjs.org/package/jsdoc-parse)
+[![npm module downloads](https://badgen.net/npm/dt/jsdoc-parse)](https://www.npmjs.org/package/jsdoc-parse)
+[![Gihub repo dependents](https://badgen.net/github/dependents-repo/jsdoc2md/jsdoc-parse)](https://github.com/jsdoc2md/jsdoc-parse/network/dependents?dependent_type=REPOSITORY)
+[![Gihub package dependents](https://badgen.net/github/dependents-pkg/jsdoc2md/jsdoc-parse)](https://github.com/jsdoc2md/jsdoc-parse/network/dependents?dependent_type=PACKAGE)
 [![Build Status](https://travis-ci.org/jsdoc2md/jsdoc-parse.svg?branch=master)](https://travis-ci.org/jsdoc2md/jsdoc-parse)
-[![Dependency Status](https://badgen.net/david/dep/jsdoc2md/jsdoc-parse)](https://david-dm.org/jsdoc2md/jsdoc-parse)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![Join the chat at https://gitter.im/jsdoc2md/jsdoc2md](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jsdoc2md/jsdoc2md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # jsdoc-parse
+
 Transforms [jsdoc](https://github.com/jsdoc3/jsdoc) data into something more suitable for use as template input. Also adds a few tags to the default set:
 
 * Support for new tags in the input javascript
