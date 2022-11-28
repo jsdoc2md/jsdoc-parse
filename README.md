@@ -2,7 +2,7 @@
 [![npm module downloads](https://badgen.net/npm/dt/jsdoc-parse)](https://www.npmjs.org/package/jsdoc-parse)
 [![Gihub repo dependents](https://badgen.net/github/dependents-repo/jsdoc2md/jsdoc-parse)](https://github.com/jsdoc2md/jsdoc-parse/network/dependents?dependent_type=REPOSITORY)
 [![Gihub package dependents](https://badgen.net/github/dependents-pkg/jsdoc2md/jsdoc-parse)](https://github.com/jsdoc2md/jsdoc-parse/network/dependents?dependent_type=PACKAGE)
-[![Build Status](https://travis-ci.org/jsdoc2md/jsdoc-parse.svg?branch=master)](https://travis-ci.org/jsdoc2md/jsdoc-parse)
+[![Node.js CI](https://github.com/jsdoc2md/jsdoc-parse/actions/workflows/node.js.yml/badge.svg)](https://github.com/jsdoc2md/jsdoc-parse/actions/workflows/node.js.yml)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 # jsdoc-parse
