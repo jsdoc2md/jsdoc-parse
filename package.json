@@ -38,6 +38,6 @@
   },
   "files": [
     "index.js",
-    "lib/**/*.js"
+    "lib"
   ]
 }
