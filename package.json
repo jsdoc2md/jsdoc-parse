@@ -1,7 +1,7 @@
 {
   "name": "jsdoc-parse",
   "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "description": "Transforms jsdoc data into something more suitable for use as template input",
   "repository": {
     "type": "git",
