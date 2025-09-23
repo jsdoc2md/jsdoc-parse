@@ -24,7 +24,6 @@
   "dependencies": {
     "array-back": "^6.2.2",
     "find-replace": "^5.0.1",
-    "lodash.omit": "^4.5.0",
     "sort-array": "^5.0.0"
   },
   "devDependencies": {
